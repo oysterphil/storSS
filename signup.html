@@ -70,22 +70,30 @@
                 </div>
               </div>
             </div>
-            <div>
-              <div style="width: 80%; margin-left: 10%; padding: 20px 0 20px 0;">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td class="calculatorInput" id="1-5 boxes estimate">1-5</td>
-                      <td class="calculatorInput" id="6-10 boxes estimate">6-10</td>
-                    </tr>
-                    <tr>
-                      <td class="calculatorInput" id="11-15 boxes estimate">11-15</td>
-                      <td class="calculatorInput" id="15+ boxes estimate">15+</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="input-field calculatorInput" style="width: 40%; margin-left: 30%;">
+              <select id="boxEstimateInput" class="browser-default">
+                <option value="" disabled selected>Provide Estimate</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11+">11+</option>
+              </select>
             </div>
+            <p>
+              <b>
+                Estimate with confidence!
+                <br>
+                (You won't be charged anything until your pickup day.)
+              </b>
+            </p>
           </div>
         </li>
         <li id="itemSection" class="quoteSection">
@@ -110,22 +118,27 @@
                 </div>
               </div>
             </div>
-            <div>
-              <div style="width: 80%; margin-left: 10%; padding: 20px 0 20px 0;">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td class="calculatorInput" id="1-2 items estimate">1-2</td>
-                      <td class="calculatorInput" id="3-4 items estimate">3-4</td>
-                    </tr>
-                    <tr>
-                      <td class="calculatorInput" id="5-6 items estimate">5-6</td>
-                      <td class="calculatorInput" id="6+ items estimate">6+</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="input-field calculatorInput" style="width: 40%; margin-left: 30%;">
+              <select id="itemEstimateInput" class="browser-default">
+                <option value="" disabled selected>Provide Estimate</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="7+">7+</option>
+              </select>
             </div>
+            <p>
+              <b>
+                Estimate with confidence!
+                <br>
+                (You won't be charged anything until your pickup day.)
+              </b>
+            </p>
           </div>
         </li>
         <li id="monthSection" class="quoteSection">
@@ -217,7 +230,44 @@
         <li id="quoteSection" class="quoteSection">
           <div class="collapsible-header"><i class="material-icons">assignment</i>Free Quote</div>
           <div class="collapsible-body cbody-content">
-            
+            <p>
+              <b>
+                Estimated Total Storage Bill*:
+              </b>
+            </p>
+            <h3 id="insertQuoteValue" style="color: #ff8b38;">
+              Complete the form to see the quote!
+            </h3>
+            <div id="nextSteps" style="display: none;">
+              <div class="col s12" style="align-items: right;">
+                Add Coupon:
+                <div class="input-field inline" style="text-align: left !important; margin-left: 15px;">
+                  <input id="coupon" class="validate">
+                  <label for="coupon" data-error="wrong" data-success="right">Coupon</label>
+                </div>
+                <a id="checkCouponStatus" style="color:#ff8b38;margin-left: 20px;cursor: pointer;">Apply</a>
+              </div>
+              <p>
+                <a class="waves-effect waves-light btn" style="background-color:#ff8b38;">Sign up!</a>
+              </p>
+              <p>
+                <a class="modal-trigger" href="javascript: $('#modal5').modal('open');">E-mail Quote</a>
+              </p>
+
+                  <!-- Modal Structure -->
+                  <div id="modal5" class="modal modal-fixed-footer">
+                    <div class="modal-content">
+                      <h4>Modal Header</h4>
+                      <p>A bunch of text</p>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                  </div>
+              <p style="font-size: 10px; width: 80%; margin-left: 10%;">
+                *Final price dependent on how many boxes and items you actually store.
+              </p>
+            </div>
           </div>
         </li>
       </ul>
@@ -8297,6 +8347,8 @@
         email: null,
         coupon: null,
         quoteValue: null,
+        monthlyQuoteValue: null,
+        planEstimate: null,
         priceBoxMonth: 15,
         priceItemMonth: 30,
         discount: .1
@@ -8309,60 +8361,40 @@
         collection[i].addEventListener('click', manageCalculatorInputs, false);
     }
 
-    // Event Listeners for Start and End Months on Other Selection
+    // Event Listeners for Select Inputs
+    $("#boxEstimateInput").on('change', manageCalculatorInputs);
+    $("#itemEstimateInput").on('change', manageCalculatorInputs);
     $("#endMonthEstimate").on('change', manageCalculatorInputs);
 
     function manageCalculatorInputs() {
       const selection = this.id;
-      if (selection === '1-5 boxes estimate' ||
-          selection === '6-10 boxes estimate' ||
-          selection === '11-15 boxes estimate' ||
-          selection === '15+ boxes estimate') {
-        
-          // Make sure to reset box inputs
-          var ids = ['1-5 boxes estimate', '6-10 boxes estimate',
-                      '11-15 boxes estimate', '15+ boxes estimate'];
-          ids.forEach(function(id) {
-              document.getElementById(id).classList.remove('clicked');
-          });
-
-          // Add Clicked Class to Selection
-          document.getElementById(selection).classList.add('clicked');
+      if (selection === 'boxEstimateInput') {
 
           // Log Selection to the Model
-          model.calculatorInputs.boxEstimate = selection;
-          console.log(model.calculatorInputs.boxEstimate);
+          model.calculatorInputs.boxEstimate = document.getElementById(selection).value;
+
+          // Calculate and Display Quote Value
+          calculateQuote();
           
           // Open Next Calculator Section
           setTimeout(function(){ 
             $('.collapsible').collapsible('close', 0);
             $('.collapsible').collapsible('open', 1);
-          }, 1250);
+          }, 1100);
 
-      } else if (selection === '1-2 items estimate' ||
-          selection === '3-4 items estimate' ||
-          selection === '4-5 items estimate' ||
-          selection === '6+ items estimate') {
-
-          // Make sure to reset box inputs
-          var ids = ['1-2 items estimate', '3-4 items estimate',
-                      '5-6 items estimate', '6+ items estimate'];
-          ids.forEach(function(id) {
-              document.getElementById(id).classList.remove('clicked');
-          });
-
-          // Add Clicked Class to Selection
-          document.getElementById(selection).classList.add('clicked');
+      } else if (selection === 'itemEstimateInput') {
 
           // Log Selection to the Model
-          model.calculatorInputs.itemEstimate = selection;
-          console.log(model.calculatorInputs.itemEstimate);
+          model.calculatorInputs.itemEstimate = document.getElementById(selection).value;
+
+          // Calculate and Display Quote Value
+          calculateQuote();
           
           // Open Next Calculator Section
           setTimeout(function(){ 
             $('.collapsible').collapsible('close', 1);
             $('.collapsible').collapsible('open', 2);
-          }, 1250);
+          }, 1100);
 
       } else if (selection === 'Summer May - Aug 2017 estimate' ||
           selection === 'Other month estimate') {
@@ -8385,34 +8417,61 @@
           } else {
             // Log Selection to the Model
             model.calculatorInputs.monthEstimate = 4;
-            console.log(model.calculatorInputs.monthEstimate);
           }
 
-          var m = model.calculatorInputs;
-          m.quoteValue = (m.monthEstimate * m.boxEstimate * m.priceBoxMonth) + (m.monthEstimate * m.itemEstimate * m.priceItemMonth);
+          // Calculate and Display Quote Value
+          calculateQuote();
 
           // Open Next Calculator Section
           setTimeout(function(){ 
             $('.collapsible').collapsible('close', 2);
             $('.collapsible').collapsible('open', 3);
-          }, 1250);
+          }, 1100);
 
       } else if (selection === 'endMonthEstimate') {
           // Log Month Selections to the Model
           var startMonth = document.getElementById('startMonthEstimate').value;
           var endMonth = document.getElementById('endMonthEstimate').value;
+          
+          // Calculate Storage Duration
           var storageDuration = (endMonth - startMonth) + 1;
           model.calculatorInputs.monthEstimate = storageDuration;
-          console.log(model.calculatorInputs.monthEstimate);
-          var m = model.calculatorInputs;
-          m.quoteValue = (m.monthEstimate * m.boxEstimate * m.priceBoxMonth) + (m.monthEstimate * m.itemEstimate * m.priceItemMonth);
-          console.log(model.calculatorInputs.quoteValue);
+
+          // Calculate and Display Quote Value
+          calculateQuote();
 
           // Open Next Calculator Section
           setTimeout(function(){ 
             $('.collapsible').collapsible('close', 2);
             $('.collapsible').collapsible('open', 3);
-          }, 1250);
+          }, 1100);
+      }
+    }
+
+    function calculateQuote() {
+      
+      var m = model.calculatorInputs;
+
+      if (m.boxEstimate && m.itemEstimate && m.monthEstimate) {
+
+        // Calculate Quote Value
+        m.quoteValue = (m.monthEstimate * m.boxEstimate * m.priceBoxMonth) + (m.monthEstimate * m.itemEstimate * m.priceItemMonth);
+        m.monthlyQuoteValue = m.quoteValue / m.monthEstimate
+
+
+        // Determine Plan Level
+        if (m.monthlyQuoteValue < 350) {
+          m.planEstimate = 'Item Plan';
+        } else {
+          m.planEstimate = 'Apartment Plan';
+          m.quoteValue = 350;
+        }
+
+        // Insert Values into the Quote Section
+        document.getElementById('insertQuoteValue').innerHTML = '$' + m.quoteValue;
+
+        // Show Quote Next Steps
+        document.getElementById('nextSteps').style.display = 'inline';
       }
     }
   </script>
