@@ -1,0 +1,108 @@
+<body class="w3-light-grey">
+
+<!-- All HTML for signup and profile is below -->
+
+<!-- Signup Form HTML is below-->
+		<div class="w3-card-4" id="signupForm" style="display:block">
+
+			<div class="w3-container w3-teal">
+			  <h2>Storganize Referrer Portal</h2>
+			</div>
+
+			<div class="w3-container w3-padding-16">
+				<label class="w3-label">First Name</label>
+				<input class="w3-input" id='firstName' type="text" placeholder="Enter First Name" required>
+              
+              	<label class="w3-label">Last Name</label>
+				<input class="w3-input" id='lastName' type="text" placeholder="Enter Last Name" required>
+				
+              	<label class="w3-label">Email</label>
+				<input class="w3-input" id='email' type="text" placeholder="Enter Email" required>
+				
+				<label class="w3-label">Password</label>
+				<input class="w3-input" id='password' type="password" placeholder="Enter Password" required>
+
+				<span class="w3-left w3-padding"><a href="#" onclick="document.getElementById('forgotPassword').style.display='block'"">Forgot password?</a></span>
+
+        <div class="w3-container w3-padding-16">
+				<button class="w3-button w3-large w3-teal " id="register">Register</button>
+
+				<button class="w3-button w3-large w3-teal" id="login">Login</button>
+				</div>
+
+			</div>
+		</div>
+
+<!--Forgot Password Modal-->
+		<div id="forgotPassword" class="w3-modal" style="display:none">
+	    <div class="w3-modal-content w3-card-8">
+	      <header class="w3-container w3-teal"> 
+	        <span onclick="document.getElementById('forgotPassword').style.display='none'" 
+	        class="w3-closebtn">&times;</span>
+	        <h2>Forgot Your Password?</h2>
+	      </header>
+	      <div class="w3-container" id="forgotPasswordForm">
+	        <label class="w3-label">Please enter the email address associated with your account</label>
+					<input class="w3-input" id='forgotPasswordEmail' type="text" placeholder="Enter Email" required>
+	      </div>
+	      <div class="w3-container" id="forgotPasswordResult" style="display:none">
+	      	<h3>RESULT OF PASSWORD RESET</h3>
+	      </div>
+	      <div class="w3-container w3-padding">
+	        <button class="w3-button w3-large w3-teal" id="submitPasswordReset">Submit</button>
+	      </div>
+	    </div>
+  	</div>
+
+<!-- Profile HTML is below-->
+	      <!-- !PAGE CONTENT! -->
+	      <div class="w3-main w3-mobile" id="profile" style="display:none">
+	        <!-- Header -->
+	        <header class="w3-container" style="padding-top:10px padding-bottom:10px">
+	          <p><h1 id= "yourName">JOHN DOE</h1></p>
+	        </header>
+
+	        <!--DEMO CODE-->
+	        <div class="w3-row-padding w3-margin-bottom">
+					    <div class="w3-third">
+					      <div class="w3-container w3-red w3-padding-16">
+					        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+					        <div class="w3-right">
+					          <h4 id="referralUrl"></h4>
+					        </div>
+					        <div class="w3-clear"></div>
+					        <h4>Your Referral Link</h4>
+					      </div>
+					    </div>
+					    <div class="w3-third">
+					      <div class="w3-container w3-blue w3-padding-16">
+					        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+					        <div class="w3-right">
+					          <h4>0</h4>
+					        </div>
+					        <div class="w3-clear"></div>
+					        <h4>Your Referrals</h4>
+					      </div>
+					    </div>
+					    <div class="w3-third">
+					      <div class="w3-container w3-teal w3-padding-16">
+					        <div class="w3-left"><i class="fa fa-usd w3-xxxlarge"></i></div>
+					        <div class="w3-right">
+					          <h4>$0</h4>
+					        </div>
+					        <div class="w3-clear"></div>
+					        <h4>Total Earnings</h4>
+					      </div>
+					    </div>
+					 </div>
+
+					<div class="w3-container w3-mobile">						 
+						 <span class="w3-left" style="padding-bottom:10px">
+		          	<button class="w3-button w3-large w3-orange w3-text-white" id="logout">Log Out</button>
+		          </span>
+		      </div>
+			<!-- END MAIN CONTENT -->
+			</div>		
+
+
+	</body>
