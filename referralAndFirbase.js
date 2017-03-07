@@ -28,16 +28,15 @@
 			$.ajax({
 			    type: 'POST',
 			    // 'http://f4549ce0.ngrok.io/' + 'referralCandy/sign-up',
-			    url: 'https://young-plateau-13187.herokuapp.com/' + 'referralCandy/sign-up',
-			    data: JSON.stringify({
-					firstName: firstName, 
-					lastName: lastName,	
+			    url: 'https://young-plateau-13187.herokuapp.com/' + 'referralCandy/invite',
+			    data: JSON.stringify({	
 					email: email
 				}), 
 			    success: function(data) {
 					if (data.message === 'Success') {
-						delete data.message;
-						sendRegisterDataToFirebase(data, email, password, firstName, lastName);
+						console.log('It worked.');
+						// delete data.message;
+						// sendRegisterDataToFirebase(data, email, password, firstName, lastName);
 
 					}
 				},
