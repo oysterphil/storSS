@@ -12,20 +12,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 
   <style type="text/css">
-    th, td {
-      border: solid 1px #e0e0e0 !important; 
-      text-align: center !important;
-      color: #ff8b38;
-      width: 25%
+    .collection-horizontal {
+      border: 1px solid #e0e0e0;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
     }
-    th, td:hover {
+    .btn-flat-horizonatal {
+      box-shadow: none;
+      background-color: transparent;
+      cursor: pointer;
+      transition: background-color .2s;
+      vertical-align: middle;
+      height: 36px;
+      line-height: 36px;
+    }
+    a.collection-horizontal:not(.active):hover {
       background-color: #ddd;
     }
-    .clicked {
-      background-color: #ff8b38;
-      color: white;
-    }
-    .clicked:hover {
+
+    a.collection-horizontal.active {
       background-color: #ff8b38;
       color: white;
     }
@@ -40,23 +46,24 @@
     }
   </style>
 </head>
-<body style="background-color: #eceff1;">
+<body>
 
-  <!-- Signup Page Desktop -->
+  <!-- Signup Page -->
   <div class="section no-pad-bot">
     <h2 class="header center">
       Get a Free Storage Quote in 30 seconds!
     </h2>
-    <div class="row"> 
-      <ul class="collapsible" data-collapsible="accordion">
-        <li id="boxSection" class="quoteSection">
-          <div class="collapsible-header active"><i class="material-icons">
-            picture_in_picture</i>Step 1: Boxes
-          </div>
-          <div class="collapsible-body cbody-content">
-            <img src="img/icons/open-box-orange.png">
-            <div>
-              <div>
+    <div class="row">
+
+      <!-- Estimate Boxes --> 
+      <div class="col m10 offset-m1">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+              <div class="col s12 center">
+                <img src="img/icons/open-box-orange.png">
+              </div>
+              <div class="row col s12 center">
                 <h4>How many boxes do you think you will store?</h4>
                 <!-- Modal Trigger -->
                 <a class="modal-trigger" href="javascript: $('#modal1').modal('open');">Need Help?</a>
@@ -129,44 +136,39 @@
                   </div>
                 </div>
               </div>
+              <div class="row col s12 center">
+                <a id="0-10" class="col m3 offset-m3 s4 offset-s2 collection-horizontal btn-flat-horizonatal calculatorInput">
+                  0-10
+                </a>
+                <a id="11+" class="col m3 s4 collection-horizontal btn-flat-horizonatal calculatorInput">
+                  11+
+                </a>
+              </div>
+              <div id="enterBoxEstimate" class="row col s12 center" style="display: none;">
+                <h5>Enter an estimate between 0 - 10:</h5>
+                <p>(most students store 4 - 6)</p>
+                <div class="input-field col s2 offset-s5">
+                  <input placeholder="6" id="boxEstimate" type="text" class="validate" style="text-align: center;">
+                </div>
+              </div>
             </div>
-            <div class="input-field calculatorInput" style="width: 40%; margin-left: 30%;">
-              <select id="boxEstimateInput" class="browser-default">
-                <option value="" disabled selected>Provide Estimate</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11+">11+</option>
-              </select>
-            </div>
-            <p>
-              <b>
-                Estimate with confidence!
-                <br>
-                (You won't be charged anything until your pickup day.)
-              </b>
-            </p>
           </div>
-        </li>
-        <li id="itemSection" class="quoteSection">
-          <div class="collapsible-header"><i class="material-icons">dashboard</i>Step 2: Items</div>
-          <div class="collapsible-body cbody-content">
-            <div>
-              <img src="img/icons/sofa-orange.png" style="margin-left: 10px; margin-right: 10px;">
-              <img src="img/icons/bike-orange.png" style="margin-left: 10px; margin-right: 10px;">
-              <img class="hide-on-med-only hide-on-small-only" src="img/icons/tv-stand-orange.png" style="margin-left: 10px; margin-right: 10px;">
-              <img class="hide-on-med-only hide-on-small-only" src="img/icons/table-and-chairs-orange.png" style="margin-left: 10px; margin-right: 10px;">
-            </div>
-            <div>
-              <div>
+        </div>
+      </div>
+      <!-- End Estimate Boxes -->
+
+      <!-- Estimate Items --> 
+      <div class="col m10 offset-m1">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+              <div class="col s12 center">
+                <img src="img/icons/sofa-orange.png" style="margin-left: 10px; margin-right: 10px;">
+                <img src="img/icons/bike-orange.png" style="margin-left: 10px; margin-right: 10px;">
+                <img class="hide-on-med-only hide-on-small-only" src="img/icons/tv-stand-orange.png" style="margin-left: 10px; margin-right: 10px;">
+                <img class="hide-on-med-only hide-on-small-only" src="img/icons/table-and-chairs-orange.png" style="margin-left: 10px; margin-right: 10px;">
+              </div>
+              <div class="row col s12 center">
                 <h4>How many items do you want to store that won't fit into boxes?</h4>
                 <!-- Modal Trigger -->
                 <a class="modal-trigger" href="javascript: $('#modal2').modal('open');">Need Help?</a>
@@ -220,36 +222,36 @@
                   </div>
                 </div>
               </div>
+              <div class="row col s12 center">
+                <a id="0-7" class="col m3 offset-m3 s4 offset-s2 collection-horizontal btn-flat-horizonatal calculatorInput">
+                  0-7
+                </a>
+                <a id="8+" class="col m3 s4 collection-horizontal btn-flat-horizonatal calculatorInput">
+                  8+
+                </a>
+              </div>
+              <div id="enterItemEstimate" class="row col s12 center" style="display: none;">
+                <h5>Enter an estimate between 0 - 7:</h5>
+                <p>(most students store 0 - 2)</p>
+                <div class="input-field col s2 offset-s5">
+                  <input placeholder="1" id="itemEstimate" type="text" class="validate" style="text-align: center;">
+                </div>
+              </div>
             </div>
-            <div class="input-field calculatorInput" style="width: 40%; margin-left: 30%;">
-              <select id="itemEstimateInput" class="browser-default">
-                <option value="" disabled selected>Provide Estimate</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="7+">7+</option>
-              </select>
-            </div>
-            <p>
-              <b>
-                Estimate with confidence!
-                <br>
-                (You won't be charged anything until your pickup day.)
-              </b>
-            </p>
           </div>
-        </li>
-        <li id="monthSection" class="quoteSection">
-          <div class="collapsible-header"><i class="material-icons">today</i>Step 3: Determine Storage Term</div>
-          <div class="collapsible-body cbody-content">
-            <img src="img/icons/calendar-orange.png">
-            <div>
-              <div>
+        </div>
+      </div>
+      <!-- End Estimate Items --> 
+
+      <!-- Estimate Storage Term --> 
+      <div class="col m10 offset-m1">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+              <div class="col s12 center">
+                <img src="img/icons/calendar-orange.png">
+              </div>
+              <div class="row col s12 center">
                 <h4>For how many months do you think you will store your stuff?</h4>
                 <!-- Modal Trigger -->
                 <a class="modal-trigger" href="javascript: $('#modal3').modal('open');">Need Help?</a>
@@ -301,76 +303,99 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <div style="width: 80%; margin-left: 10%; padding: 20px 0 20px 0;">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td class="calculatorInput" id="Summer May - Aug 2017 estimate">
-                        <p>
-                          Summer
-                          <br>
-                          (May - Aug 2017)
-                        </p>
-                      </td>
-                      <td class="calculatorInput" id="Other month estimate">
-                        <p>
-                          Other
-                          <br>
-                          (There is a 3-month minimum)
-                        </p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div id="otherMonthSelections" style="display: none;margin-top: 30px;">
-                  <div style="width: 50%">
-                    <p style="color:#ff8b38;">
-                      Pickup Month
-                    </p>
-                    <div class="input-field calculatorInput" style="padding-left: 10px; padding-right: 10px;">
-                      <select id="startMonthEstimate" class="browser-default">
-                        <option value="0">April 2017</option>
-                        <option value="1">May 2017</option>
-                        <option value="2">June 2017</option>
-                        <option value="3">July 2017</option>
-                        <option value="4">August 2017</option>
-                        <option value="5">September 2017</option>
-                        <option value="6">October 2017</option>
-                        <option value="7">November 2017</option>
-                        <option value="8">December 2017</option>
-                        <option value="9">January 2018</option>
-                        <option value="10">Feburary 2018</option>
-                        <option value="11">March 2018</option>
-                      </select>
-                    </div>
+              <div class="row col s12 center">
+                <a id="summerStorageTerm" class="col m3 offset-m3 s12 collection-horizontal btn-flat-horizonatal calculatorInput">
+                  Summer (May - Aug 2017)
+                </a>
+                <a id="otherStorageTerm" class="col m3 s12 collection-horizontal btn-flat-horizonatal calculatorInput">
+                  Other (3-month minimum)
+                </a>
+              </div>
+              <div id="otherMonthSelections" class="col s12 center" style="display: none;">
+                <div class="col m6 s12">
+                  <p style="color:#ff8b38;">
+                    Pickup Month
+                  </p>
+                  <div class="input-field col m6 offset-m3 s12 calculatorInput">
+                    <select id="startMonthEstimate" class="browser-default">
+                      <option value="0">April 2017</option>
+                      <option value="1">May 2017</option>
+                      <option value="2">June 2017</option>
+                      <option value="3">July 2017</option>
+                      <option value="4">August 2017</option>
+                      <option value="5">September 2017</option>
+                      <option value="6">October 2017</option>
+                      <option value="7">November 2017</option>
+                      <option value="8">December 2017</option>
+                      <option value="9">January 2018</option>
+                      <option value="10">Feburary 2018</option>
+                      <option value="11">March 2018</option>
+                    </select>
                   </div>
-                  <div style="width: 50%">
-                    <p style="color:#ff8b38;">
-                      Return Month
-                    </p>
-                    <div class="input-field calculatorInput" style="padding-left: 10px; padding-right: 10px;">
-                      <select id="endMonthEstimate" class="browser-default">
-                        <option id="0" value="0">April 2017</option>
-                        <option id="1" value="1">May 2017</option>
-                        <option id="2" value="2">June 2017</option>
-                        <option id="3" value="3">July 2017</option>
-                        <option id="4" value="4">August 2017</option>
-                        <option id="5" value="5">September 2017</option>
-                        <option id="6" value="6">October 2017</option>
-                        <option id="7" value="7">November 2017</option>
-                        <option id="8" value="8">December 2017</option>
-                        <option id="9" value="9">January 2018</option>
-                        <option id="10" value="10">Feburary 2018</option>
-                        <option id="11" value="11">March 2018</option>
-                      </select>
-                    </div>
+                </div>
+                <div class="col m6 s12">
+                  <p style="color:#ff8b38;">
+                    Return Month
+                  </p>
+                  <div class="input-field col m6 offset-m3 s12 calculatorInput">
+                    <select id="endMonthEstimate" class="browser-default">
+                      <option id="0" value="0">April 2017</option>
+                      <option id="1" value="1">May 2017</option>
+                      <option id="2" value="2">June 2017</option>
+                      <option id="3" value="3">July 2017</option>
+                      <option id="4" value="4">August 2017</option>
+                      <option id="5" value="5">September 2017</option>
+                      <option id="6" value="6">October 2017</option>
+                      <option id="7" value="7">November 2017</option>
+                      <option id="8" value="8">December 2017</option>
+                      <option id="9" value="9">January 2018</option>
+                      <option id="10" value="10">Feburary 2018</option>
+                      <option id="11" value="11">March 2018</option>
+                    </select>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </li>
+        </div>
+      </div>
+      <!-- End Storage Term --> 
+
+      <!-- View Quote --> 
+      <div class="row col s12 center">
+        <!-- Modal Trigger -->
+        <a id="generateQuote" class="modal-trigger waves-effect waves-light btn-large disabled" href="#modal4" style="background-color: #ff8b38">Get Free Quote</a>
+
+        <!-- Modal Structure -->
+        <div id="modal4" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>Estimated Total Storage Bill*:</h4>
+            <div id="insertQuoteValue" style="color: #ff8b38;">
+            </div>
+            <div id="nextSteps" style="display: none;">
+              <div class="col s12" style="align-items: right;">
+                Add Coupon:
+                <div class="input-field inline" style="text-align: left !important; margin-left: 15px;">
+                  <input id="coupon" class="validate">
+                  <label for="coupon" data-error="wrong" data-success="right">Coupon</label>
+                </div>
+                <a id="checkCouponStatus" style="color:#ff8b38;margin-left: 20px;cursor: pointer;">Apply</a>
+              </div>
+            </div>
+            <p class="s8 offset-s2" style="font-size: 14px;">
+              *Final price dependent on how many boxes and items you actually store.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Sign Up</a>
+          </div>
+        </div>
+      </div>
+      <!-- End View Quote --> 
+
+  
+
+        <!-- Step 4: Free Quote 
         <li id="quoteSection" class="quoteSection">
           <div class="collapsible-header"><i class="material-icons">assignment</i>Step 4: View Free Quote</div>
           <div class="collapsible-body cbody-content">
@@ -391,58 +416,55 @@
                 </div>
                 <a id="checkCouponStatus" style="color:#ff8b38;margin-left: 20px;cursor: pointer;">Apply</a>
               </div>
+            </div>
               <p>
                 <a class="waves-effect waves-light btn modal-trigger" href="javascript: $('#modal6').modal('open');" style="background-color:#ff8b38;">Sign up!</a>
-                <!-- Modal Structure -->
                 <div id="modal6" class="modal modal-fixed-footer">
                   <div class="modal-content">
                     <h3>
                       Create an Account
                     </h3>
                     <div class="row">
-                      <a href="/auth/googleplus?destination_url=/manage" class="waves-effect waves-light btn-large col m8 offset-m2 s10 offset-s1" style="background-color: #dd4b39;">    <svg style="width:24px;height:24px;top: 6px; position: relative; right: 5px;" viewBox="0 0 24 24">
+                      <a onclick="model.auth.handleGoogleRegister()" class="waves-effect waves-light btn-large col m6 offset-m3 s10 offset-s1" style="background-color: #dd4b39;">    <svg style="width:24px;height:24px;top: 6px; position: relative; right: 5px;" viewBox="0 0 24 24">
                         <path fill="#ffffff" d="M19,12H17V14H16V12H14V11H16V9H17V11H19M9.07,19.2C6.27,19.2 5,17.64 5,16.18C5,15.73 5.14,14.59 6.5,13.8C7.25,13.33 8.33,13 9.62,12.89C9.43,12.64 9.28,12.34 9.28,11.9C9.28,11.75 9.3,11.59 9.34,11.44H8.95C7,11.44 5.8,9.89 5.8,8.39C5.8,6.66 7.09,4.8 9.91,4.8H14.13L13.79,5.14L13.08,5.85L13,5.91H12.3C12.71,6.33 13.2,7 13.2,8.07C13.2,9.47 12.46,10.16 11.64,10.8C11.5,10.92 11.22,11.18 11.22,11.5C11.22,11.82 11.46,12 11.61,12.14C11.74,12.25 11.9,12.36 12.08,12.5C12.89,13.05 14,13.83 14,15.36C14,17.13 12.71,19.2 9.07,19.2M20,2H4A2,2 0 0,0 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2M10.57,13.81C10.46,13.8 10.38,13.8 10.25,13.8H10.23C9.97,13.8 9.08,13.85 8.41,14.07C7.77,14.31 7,14.79 7,15.77C7,16.85 8.04,18 9.96,18C11.5,18 12.4,17 12.4,16C12.4,15.25 11.94,14.79 10.57,13.81M11.2,8.87C11.2,7.85 10.57,5.85 9.12,5.85C8.5,5.85 7.8,6.29 7.8,7.5C7.8,8.7 8.42,10.45 9.77,10.45C9.83,10.45 11.2,10.44 11.2,8.87Z"></path>
                         </svg>
                         Google
                       </a>
                     </div>
                     <div class="row">
-                      <a href="/auth/googleplus?destination_url=/manage" class="waves-effect waves-light btn-large col m8 offset-m2 s10 offset-s1" style="background-color: #3b5998;">    <svg style="width:24px;height:24px;top: 6px; position: relative; right: 5px;" viewBox="0 0 24 24">
-                        <path fill="#ffffff" d="M19,4V7H17A1,1 0 0,0 16,8V10H19V13H16V20H13V13H11V10H13V7.5C13,5.56 14.57,4 16.5,4M20,2H4A2,2 0 0,0 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z"></path>
-                        </svg>
-                        Facebook
-                      </a>
-                    </div>                      
-                    <div class="row">
                       <div class="col s4 offset-s1" style="margin-top: 8px;"><hr></div>
                       <div class="col s2"><h6>OR</h6></div>
                       <div class="col s4" style="margin-top: 8px;"><hr></div>
                     </div>
-                    <div class="row" style="text-align: left;">
-                      <div class="input-field col s8 offset-s2">
-                        <input id="email" type="email" class="validate">
-                        <label for="email">Email</label>
+                    <form>
+                      <div class="row" style="text-align: left;">
+                        <div class="input-field col s8 offset-s2">
+                          <input id="email" type="email" class="validate">
+                          <label for="email">Email</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2">
+                          <input id="password" type="password" class="validate">
+                          <label for="password">Password</label>
+                        </div>
                       </div>
-                    </div>
-                    <div class="row" style="text-align: left;">
-                      <div class="input-field col s8 offset-s2">
-                        <input id="password" type="password" class="validate">
-                        <label for="password">Password</label>
+                      <div class="row">
+                        <button id="createAccountEmailPass" class="btn waves-effect waves-light" type="submit" style="background-color:#ff8b38;">Create Account
+                          <i class="material-icons right">send</i>
+                        </button>
                       </div>
-                    </div>
-                    <div class="row">
-                      <a class="waves-effect waves-light btn modal-trigger" href="javascript: $('#modal6').modal('open');" style="background-color:#ff8b38;">Complete Sign Up</a>
-                    </div>
-                    <div class="row">
-                      <a>Forgot Password?</a>
-                    </div>
+                      <div class="row col s8 offset-s2">
+                        <p style="text-align: center;">By clicking Create Account, you agree to Storganize's 
+                        <a href="https://www.storganize.io/terms-of-service-fall-16/"> Terms of Service</a> and 
+                        <a href="https://www.storganize.io/privacy-policy/"> Privacy Policy</a>
+                        </p>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </p>
               <p>
                 <a class="modal-trigger" href="javascript: $('#modal5').modal('open');">E-mail Quote</a>
               </p>
-              <!-- Modal Structure -->
               <div id="modal5" class="modal modal-fixed-footer">
                 <div class="modal-content">
                   <h4>Modal Header</h4>
@@ -451,24 +473,28 @@
                 <div class="modal-footer">
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
                 </div>
-              </div>
-              <p style="font-size: 14px; width: 80%; margin-left: 10%;">
-                *Final price dependent on how many boxes and items you actually store.
-              </p>
-            </div>
-          </div>
-        </li>
-      </ul>
+              </div> -->
     </div>
   </div>
-  <!-- End Signup Page Desktop -->
+  <!-- End Signup Page -->
+
+  <!-- Initializing Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDaF_ZEcsi-trYUb-HvgEtgW1s8vGHQJnM",
+      authDomain: "storganize-231a8.firebaseapp.com",
+      databaseURL: "https://storganize-231a8.firebaseio.com",
+      storageBucket: "storganize-231a8.appspot.com",
+      messagingSenderId: "346538977499"
+    };
+    firebase.initializeApp(config);
+  </script>
 
   <!-- Pull in JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- End Pull in JQuery -->
-
-  <!-- Compiled and minified JavaScript 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script> -->
 
   <!-- MaterializeCss Javascript with Collapsible Code Added -->
   <script>
@@ -8519,7 +8545,7 @@
     }( jQuery ));
   </script>
 
-  <!-- Initializing Collapsible Accordion -->
+  <!-- Main Logic -->
   <script type="text/javascript">
     $(document).ready(function(){
       $('.collapsible').collapsible('open', 0);
@@ -8532,7 +8558,6 @@
         boxEstimate: null,
         itemEstimate: null,
         monthEstimate: null,
-        email: null,
         coupon: null,
         quoteValue: null,
         monthlyQuoteValue: null,
@@ -8540,6 +8565,166 @@
         priceBoxMonth: 15,
         priceItemMonth: 30,
         discount: .1
+      },
+      appState: {
+        firstLoginEmailPass: null,
+        firstLoginGoogleFacebook: null,
+        registerInfoComplete: false
+      },
+      custMeta: {
+        email: null,
+        uid: null,
+        firstName: null,
+        lastName: null
+      },
+      custLegal: {
+        acceptTerms: true
+      },
+      auth: {
+          handleCreateAcctWithEmailAndPassword: () => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Signal firstLoginEmailPass: true to Model
+            model.appState.firstLoginEmailPass = true;
+
+            model.custMeta.email = email;
+            
+            // Create Account through Firebase via Email and Password
+            const auth = firebase.auth();
+            const promise = auth.createUserWithEmailAndPassword(email,password);
+            promise.catch(e => console.log(e.message));
+          },
+          handleGoogleRegister: () => {
+            // Signal firstLoginEmailPass: false and firstLoginGoogleFacebook: true to Model.
+            model.appState.firstLoginEmailPass = false;
+            model.appState.firstLoginGoogleFacebook = true;
+
+            // Authenticate through Google
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+              
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              var token = result.credential.accessToken;
+              
+              // The signed-in user info.
+              var user = result.user;
+
+              var mystring = user.displayName;
+              var arr = mystring.split(" ", 2);
+
+              var firstName = arr[0];
+              var lastName = arr[1];
+              model.custMeta.uid = user.uid;
+              model.custMeta.email = user.email;
+              model.custMeta.firstName = firstName;
+              model.custMeta.lastName = lastName;
+              
+              // Send Google Sign-up Data to Firebase
+              firebase.database().ref('custMeta/' + model.custMeta.uid).set({
+                firstName: model.custMeta.firstName,
+                lastName: model.custMeta.lastName,
+                email: model.custMeta.email
+              });
+
+              // Send App State Info to Firebase
+              firebase.database().ref('custAppState/' + model.custMeta.uid).set({
+                registerInfoComplete: model.appState.registerInfoComplete,
+                firstLoginEmailPass: model.appState.firstLoginEmailPass,
+                firstLoginGoogleFacebook: model.appState.firstLoginGoogleFacebook
+              });
+
+              }).catch(function(error) {
+              
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              
+              // The email of the user's account used.
+              var email = error.email;
+              
+              // The firebase.auth.AuthCredential type that was used.
+              var credential = error.credential;
+              
+              console.log(errorMessage);
+              // ...
+            });
+          },
+          handleAuthStateChange: () => {
+            const user = firebase.auth().currentUser;
+
+            if (user) {
+              model.custMeta.uid = user.uid;
+              // Complete Login Flow
+              $.ajax({
+                  type: 'POST',
+                  // 'http://f4549ce0.ngrok.io/' + 'referralCandy/sign-up',
+                  url: 'https://young-plateau-13187.herokuapp.com/' + 'referralCandy/purchase',
+                  data: JSON.stringify({  
+                  email: email
+                }), 
+                  success: function(data) {
+                  if (data.message === 'Success') {
+                    console.log('It worked.');
+                    // delete data.message;
+                    // sendRegisterDataToFirebase(data, email, password, firstName, lastName);
+
+                  }
+                },
+                  contentType: "application/json",
+                  dataType: 'json'
+              });
+
+              if (model.appState.firstLoginEmailPass) {
+                // Change firstLoginEmailPass to False
+                model.appState.firstLoginEmailPass = false;
+
+                // Send Sign-up Data to Firebase
+                firebase.database().ref('custMeta/' + model.custMeta.uid).set({
+                  email: model.custMeta.email
+                }).then(function() {
+                  // Send Storage Info to Firebase
+                  firebase.database().ref('custStorage/' + model.custMeta.uid).set({
+                    storageTerm: model.calculatorInputs.monthEstimate,
+                    boxEstimate: model.calculatorInputs.boxEstimate,
+                    itemEstimate: model.calculatorInputs.itemEstimate,
+                    coupon: model.calculatorInputs.coupon,
+                    quoteValue: model.calculatorInputs.quoteValue,
+                    monthlyQuoteValue: model.calculatorInputs.monthlyQuoteValue,
+                    planEstimate: model.calculatorInputs.planEstimate,
+                    priceBoxMonth: model.calculatorInputs.priceBoxMonth,
+                    priceItemMonth: model.calculatorInputs.priceItemMonth,
+                    discount: model.calculatorInputs.discount,
+                    boxActual: null,
+                    itemActual: null
+                  }).then(function(){
+                    // Send Legal Info to Firebase
+                    firebase.database().ref('custLegal/' + model.custMeta.uid).set({
+                      acceptTerms: model.custLegal.acceptTerms
+                    }).then(function() {
+                      // Send App State Info to Firebase
+                      firebase.database().ref('custAppState/' + model.custMeta.uid).set({
+                        registerInfoComplete: model.appState.registerInfoComplete,
+                        firstLoginEmailPass: model.appState.firstLoginEmailPass,
+                        firstLoginGoogleFacebook: model.appState.firstLoginGoogleFacebook,
+                        registerInfoComplete: model.appState.registerInfoComplete
+                      }).then(function() {
+                        window.location = "https://www.storganize.io/storganize-profile";
+                      });
+                    });
+                  });
+                });
+              }
+              if (model.appState.firstLoginGoogleFacebook) {
+                model.appState.firstLoginGoogleFacebook = false;
+                window.location = "https://www.storganize.io/storganize-profile";
+              }
+            } else {
+              // No user is signed in.
+            }
+          }
       }
     }
 
@@ -8550,10 +8735,17 @@
     }
 
     // Event Listeners for Select Inputs
-    $("#boxEstimateInput").on('change', manageCalculatorInputs);
-    $("#itemEstimateInput").on('change', manageCalculatorInputs);
     $("#startMonthEstimate").on('change', updateEndMonthOptions);
     $("#endMonthEstimate").on('change', manageCalculatorInputs);
+    $("#boxEstimate").on('change', manageCalculatorInputs);
+    $("#itemEstimate").on('change', manageCalculatorInputs);
+
+
+    // Event Listeners for Create Account Section
+    // document.getElementById('createAccountEmailPass').addEventListener('click', model.auth.handleCreateAcctWithEmailAndPassword, false);
+
+    // Event Listener for Auth State Change
+    firebase.auth().onAuthStateChanged(model.auth.handleAuthStateChange);
 
     function updateEndMonthOptions() {
       var startMonth = document.getElementById('startMonthEstimate').value;
@@ -8569,67 +8761,141 @@
 
     function manageCalculatorInputs() {
       const selection = this.id;
-      if (selection === 'boxEstimateInput') {
+      if (selection === '0-10') {
+        
+        // Make sure to reset box inputs
+        var ids = ['0-10', '11+'];
+        ids.forEach(function(id) {
+            document.getElementById(id).classList.remove('active');
+        });
 
-          // Log Selection to the Model
-          model.calculatorInputs.boxEstimate = document.getElementById(selection).value;
+        // Reset boxEstimate 
+        model.calculatorInputs.boxEstimate = null;
 
-          // Calculate and Display Quote Value
-          calculateQuote();
-          
-          // Open Next Calculator Section
-          setTimeout(function(){ 
-            $('.collapsible').collapsible('close', 0);
-            $('.collapsible').collapsible('open', 1);
-          }, 1100);
+        // Highlight Selection
+        document.getElementById(selection).classList.add('active');
 
-      } else if (selection === 'itemEstimateInput') {
+        // Show Enter Box Estimate
+        document.getElementById('enterBoxEstimate').style.display = "inline";
 
-          // Log Selection to the Model
-          model.calculatorInputs.itemEstimate = document.getElementById(selection).value;
+        // Calculate and Display Quote Value
+        calculateQuote();
 
-          // Calculate and Display Quote Value
-          calculateQuote();
-          
-          // Open Next Calculator Section
-          setTimeout(function(){ 
-            $('.collapsible').collapsible('close', 1);
-            $('.collapsible').collapsible('open', 2);
-          }, 1100);
+      } else if (document.getElementById('boxEstimate').value) {
+        
+        // Log input to model
+        model.calculatorInputs.boxEstimate = document.getElementById('boxEstimate').value; 
 
-      } else if (selection === 'Summer May - Aug 2017 estimate' ||
-          selection === 'Other month estimate') {
+        // Calculate and Display Quote Value
+        calculateQuote();
 
-          document.getElementById('otherMonthSelections').style.display = 'none';
+      } else if (selection === '11+') {
 
-          // Make sure to reset box inputs
-          var ids = ['Summer May - Aug 2017 estimate',
-                      'Other month estimate'];
-          ids.forEach(function(id) {
-              document.getElementById(id).classList.remove('clicked');
-          });
+        // Make sure to reset box inputs
+        var ids = ['0-10', '11+'];
+        ids.forEach(function(id) {
+            document.getElementById(id).classList.remove('active');
+        });
 
-          // Add Clicked Class to Selection
-          document.getElementById(selection).classList.add('clicked');
+        // Hide Enter Box Estimate
+        document.getElementById('enterBoxEstimate').style.display = "none";
 
-          if (selection === 'Other month estimate') {
-            document.getElementById('otherMonthSelections').style.display = 'flex';
-            return;
-          } else {
-            // Log Selection to the Model
-            model.calculatorInputs.monthEstimate = 4;
-          }
+        // Highlight Selection
+        document.getElementById(selection).classList.add('active');
 
-          // Calculate and Display Quote Value
-          calculateQuote();
+        model.calculatorInputs.boxEstimate = 11;
 
-          // Open Next Calculator Section
-          setTimeout(function(){ 
-            $('.collapsible').collapsible('close', 2);
-            $('.collapsible').collapsible('open', 3);
-          }, 1100);
+        // Calculate and Display Quote Value
+        calculateQuote();
+
+      } else if (selection === '0-7') {
+
+        // Make sure to reset box inputs
+        var ids = ['0-7', '8+'];
+        ids.forEach(function(id) {
+            document.getElementById(id).classList.remove('active');
+        });
+
+        // Reset itemEstimate 
+        model.calculatorInputs.itemEstimate = null;
+
+        // Highlight Selection
+        document.getElementById(selection).classList.add('active');
+
+        // Show Enter Item Estimate
+        document.getElementById('enterItemEstimate').style.display = "inline";
+
+        // Calculate and Display Quote Value
+        calculateQuote();
+
+      } else if (document.getElementById('itemEstimate').value) {
+        
+        // Log input to model
+        model.calculatorInputs.itemEstimate = document.getElementById('itemEstimate').value; 
+
+        // Calculate and Display Quote Value
+        calculateQuote();
+
+      } else if (selection === '8+') {
+        
+        // Make sure to reset box inputs
+        var ids = ['0-7', '8+'];
+        ids.forEach(function(id) {
+            document.getElementById(id).classList.remove('active');
+        });
+
+        // Hide Enter Item Estimate
+        document.getElementById('enterItemEstimate').style.display = "none";
+
+        // Highlight Selection
+        document.getElementById(selection).classList.add('active');
+
+        model.calculatorInputs.itemEstimate = 8;
+
+        // Calculate and Display Quote Value
+        calculateQuote();
+
+      } else if (selection === 'summerStorageTerm') {
+
+        // Hide Other Month Selections Estimate
+        document.getElementById('otherMonthSelections').style.display = "none";
+
+        // Make sure to reset box inputs
+        var ids = ['summerStorageTerm', 'otherStorageTerm'];
+        ids.forEach(function(id) {
+            document.getElementById(id).classList.remove('active');
+        });
+
+        // Highlight Selection
+        document.getElementById(selection).classList.add('active');
+
+        model.calculatorInputs.monthEstimate = 4;
+
+        // Calculate and Display Quote Value
+        calculateQuote();
+
+      } else if (selection === 'otherStorageTerm') {
+
+        // Make sure to reset box inputs
+        var ids = ['summerStorageTerm', 'otherStorageTerm'];
+        ids.forEach(function(id) {
+            document.getElementById(id).classList.remove('active');
+        });
+
+        // Reset monthEstimate 
+        model.calculatorInputs.monthEstimate = null;
+
+        // Highlight Selection
+        document.getElementById(selection).classList.add('active');
+
+        // Show Other Month Selections Estimate
+        document.getElementById('otherMonthSelections').style.display = "inline";
+
+        // Calculate and Display Quote Value
+        calculateQuote();
 
       } else if (selection === 'endMonthEstimate') {
+          
           // Log Month Selections to the Model
           var startMonth = document.getElementById('startMonthEstimate').value;
           var endMonth = document.getElementById('endMonthEstimate').value;
@@ -8637,15 +8903,9 @@
           // Calculate Storage Duration
           var storageDuration = (endMonth - startMonth) + 1;
           model.calculatorInputs.monthEstimate = storageDuration;
-
+         
           // Calculate and Display Quote Value
           calculateQuote();
-
-          // Open Next Calculator Section
-          setTimeout(function(){ 
-            $('.collapsible').collapsible('close', 2);
-            $('.collapsible').collapsible('open', 3);
-          }, 1100);
       }
     }
 
@@ -8654,6 +8914,8 @@
       var m = model.calculatorInputs;
 
       if (m.boxEstimate && m.itemEstimate && m.monthEstimate) {
+
+        document.getElementById('generateQuote').classList.remove('disabled');
 
         // Calculate Quote Value
         m.quoteValue = (m.monthEstimate * m.boxEstimate * m.priceBoxMonth) + (m.monthEstimate * m.itemEstimate * m.priceItemMonth);
@@ -8689,11 +8951,24 @@
 
         // Show Quote Next Steps
         document.getElementById('nextSteps').style.display = 'inline';
+      } else {
+        document.getElementById('generateQuote').classList.add('disabled');
       }
     }
   </script>
-  <!-- End Initializing Collapsible Accordion -->
+  <!-- End Main Logic -->
 
+  <!-- Referral Candy -->
+  <script type='text/javascript'>
+    !function(d,s) {
+      var rc = d.location.protocol + "//go.referralcandy.com/purchase/tl0qgqekak7retn4c4yflibgy.js";
+      var js = d.createElement(s);
+      js.src = rc;
+      var fjs = d.getElementsByTagName(s)[0];
+      fjs.parentNode.insertBefore(js,fjs);
+    }(document,"script");
+  </script>
+  <!-- End Referral Candy -->
 
 </body>
 </html>

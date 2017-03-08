@@ -55,7 +55,7 @@
 	                  lastName: lastName,
 	                  email: email,
 	                  referralCandy: data
-		        })
+		        });
 		      document.getElementById("yourName").innerHTML = 'Welcome, ' + '' + firstName;
 		      document.getElementById('referralUrl').innerHTML = data.referral_link;
 			  	displayProfile();
