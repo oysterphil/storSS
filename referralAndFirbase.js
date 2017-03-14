@@ -28,13 +28,31 @@
 			$.ajax({
 			    type: 'POST',
 			    // 'http://f4549ce0.ngrok.io/' + 'referralCandy/sign-up',
+			    url: 'https://young-plateau-13187.herokuapp.com/' + 'referralCandy/sign-up',
+			    data: JSON.stringify({
+					firstName: firstName, 
+					lastName: lastName,	
+					email: email
+				}), 
+			    success: function(data) {
+					if (data.message === 'Success') {
+						sendRegisterDataToFirebase(data, email, password, firstName, lastName);
+
+					}
+				},
+			    contentType: "application/json",
+			    dataType: 'json'
+			});
+
+			$.ajax({
+			    type: 'POST',
+			    // 'http://f4549ce0.ngrok.io/' + 'referralCandy/sign-up',
 			    url: 'https://young-plateau-13187.herokuapp.com/' + 'referralCandy/invite',
 			    data: JSON.stringify({	
 					email: email
 				}), 
 			    success: function(data) {
 					if (data.message === 'Success') {
-						console.log('It worked.');
 						// delete data.message;
 						// sendRegisterDataToFirebase(data, email, password, firstName, lastName);
 
@@ -50,11 +68,11 @@
 				var user = firebase.auth().currentUser;
 	            var uid = user.uid;
 
-	            firebase.database().ref('referrers/' + user.uid).set({
+	            firebase.database().ref('referrers/' + uid).set({
 	                  firstName: firstName,
 	                  lastName: lastName,
 	                  email: email,
-	                  referralCandy: data
+	                  referralCandy: data.referral_link
 		        });
 		      document.getElementById("yourName").innerHTML = 'Welcome, ' + '' + firstName;
 		      document.getElementById('referralUrl').innerHTML = data.referral_link;

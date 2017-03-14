@@ -1,0 +1,126 @@
+<!-- Login Form -->
+<div class="card-panel">
+  <h1 class="header center orange-text">Storganize Advocate Login</h1>
+  <form class="container" id="loginForm">
+    <div class="row">
+      <div class="input-field col m6 offset-m3 s12">
+        <input id="loginEmail" type="email" class="validate">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col m6 offset-m3 s12">
+        <input id="loginPassword" type="password" class="validate">
+        <label for="password">Password</label>
+        
+      </div>
+    </div>
+    <div class="row col s12 center" id="errorMessageLogin"></div>
+    <div class="row">
+      <a class="waves-effect waves-light btn-large col s4 offset-s4 center" id="login" style="background-color:#ff8b38;">
+        Login
+      </a>
+    </div>
+    <div class="row">
+      <a class="modal-trigger col s4 offset-s4 center" id="openPasswordModal">Forgot password?</a>
+    </div>
+  </form>
+
+  <!--Forgot Password Modal-->
+  <div id="forgotPasswordModal" class="modal">
+    <div class="modal-content" id="forgotPasswordForm">
+      <h4>Forgot Your Password?</h4>
+      <input id="forgotPasswordEmail" type="email" class="validate">
+      <label for="email" data-error="wrong" data-success="right">Please enter the email address associated with your account</label>
+    </div>
+    <div class="container" id="forgotPasswordResult" style="display:none">
+    </div>
+    <div class="modal-footer">
+      <button class="waves-effect waves-green btn-flat" id="submitPasswordReset">Submit</button>
+      <button class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Bringing in Firebase -->
+
+<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDaF_ZEcsi-trYUb-HvgEtgW1s8vGHQJnM",
+    authDomain: "storganize-231a8.firebaseapp.com",
+    databaseURL: "https://storganize-231a8.firebaseio.com",
+    storageBucket: "storganize-231a8.appspot.com",
+    messagingSenderId: "346538977499"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script type="text/javascript">
+  document.getElementById("login").addEventListener("click", handleLogin);
+  document.getElementById("openPasswordModal").addEventListener("click", displayModal);
+  document.getElementById("submitPasswordReset").addEventListener("click", resetPassword);
+  // Event Listener for Auth State Change
+  firebase.auth().onAuthStateChanged(handleAuthStateChange);
+
+  function displayModal() {
+    $("#forgotPasswordModal").modal('open');
+  }
+
+  // Forgot Password Logic
+      // When the user clicks anywhere outside of the modal, close it
+      var modal = document.getElementById('forgotPassword');
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      function handleLogin() {
+        var email = document.getElementById("loginEmail").value
+        var password = document.getElementById("loginPassword").value
+        
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          
+          document.getElementById('errorMessageLogin').innerHTML = "<span style='color: red;'>" + error.message + "</span>"; 
+        });
+
+      }
+
+      function resetPassword () {
+        var auth = firebase.auth();
+        const emailAddress = document.getElementById('forgotPasswordEmail').value;
+        auth.sendPasswordResetEmail(emailAddress).then(function() {
+          // Display the result of the reset password submission
+          document.getElementById('forgotPasswordForm').style.display = "none";
+          document.getElementById('submitPasswordReset').style.display = "none";
+          document.getElementById('forgotPasswordResult').style.display = "block";
+          document.getElementById('forgotPasswordResult').innerHTML = "Thank you. Please check your email for a link to reset your password.";
+        }, function(error) {
+            // Display Error Message
+            document.getElementById('forgotPasswordResult').innerHTML = 
+            "<div class=\"alert alert-danger\" role=\"alert\" align=\"center\"> \
+            <strong>" + error.message + "</strong>\
+          </div>";
+        });
+      }
+      function handleAuthStateChange() {
+        const user = firebase.auth().currentUser;
+
+        if (user) {
+          window.location="https://www.storganize.io/advocate-profile";
+        } else {
+          // No user is signed in.
+        }
+      }
+
+      $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  })
+
+</script>
