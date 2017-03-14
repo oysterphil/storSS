@@ -258,12 +258,12 @@
       <!-- End Storage Term --> 
 
       <!-- View Quote --> 
-      <div class="row col s12 center">
+      <div class="row col m10 offset-m1 center">
         <!-- Quote Structure -->
-        <div class="col m10 offset-m1">
+        <div id="generateQuote" class="col s12 scale-transition scale-out" style="display: none;">
           <div class="card horizontal">
             <div class="card-stacked">
-              <div id="generateQuote" class="col s12 m8 offset-m2 scale-transition scale-out" style="display: none; padding:25px; margin-top: 10px;">
+              <div style="padding:25px; margin-top: 10px;">
                 <h4>Estimated Total Storage Bill*:</h4>
                 <div id="insertQuoteValue" style="color: #ff8b38;">
                 </div>
@@ -286,7 +286,7 @@
           </div>
         </div>
         <!-- Show Quote Trigger -->
-        <div class="col s12">
+        <div id="display-generateQuoteBox" class="col s12">
           <a id="display-generateQuote" class="needHelp waves-effect waves-light btn-large disabled" style="background-color: #ff8b38; margin: 15px;">
             Get Free Quote
           </a>
@@ -415,7 +415,8 @@
       appState: {
         firstLoginEmailPass: null,
         firstLoginGoogleFacebook: null,
-        registerInfoComplete: false
+        registerInfoComplete: false,
+        firstPassCalc: true
       },
       custMeta: {
         email: null,
@@ -584,18 +585,24 @@
 
     // Event Listeners for Select Inputs
     $("#startMonthEstimate").on('change', updateEndMonthOptions);
+    $("#startMonthEstimate").on('change', manageCalculatorInputs);
     $("#endMonthEstimate").on('change', manageCalculatorInputs);
     $("#boxEstimate").on('change', manageCalculatorInputs);
     $("#itemEstimate").on('change', manageCalculatorInputs);
+
+
+    // Event Listener for the Generate Quote Button
+    document.getElementById('display-generateQuote').addEventListener('click', function() {
+        // Hide Quote Button
+        document.getElementById('display-generateQuoteBox').style.display = 'none';
+        calculateQuote();
+      }, false);
 
     // Set up Event Listeners for Need Help Buttons + Show Quote Button
     var collection = Array.from(document.getElementsByClassName("needHelp")); 
     for (var i = 0; i < collection.length; i++) {
         collection[i].addEventListener('click', showHelp, false);
     }
-
-    // Event Listener for the Generate Quote Button
-    document.getElementById('display-generateQuote').addEventListener('click', calculateQuote, false);
 
     // Show Help + Show Quote Function
     function showHelp() {
@@ -621,7 +628,6 @@
       var endMonths = ['0','1','2','3','4','5','6','7','8','9','10','11'];
       var index = endMonths.indexOf(startMonth);
       endMonths.splice((index + 2), (endMonths.length - 1));
-      console.log(endMonths);
 
       endMonths.forEach(function(id) {
         document.getElementById(id).disabled='true';
@@ -630,126 +636,200 @@
 
     function manageCalculatorInputs() {
       const selection = this.id;
-      if (selection === 'boxEstimate') {
-        
-        // Log input to model
-        model.calculatorInputs.boxEstimate = document.getElementById('boxEstimate').value; 
-
-        // Calculate and Display Quote Value
-        if (document.getElementById('display-generateQuote').classList.contains('disabled')) {
-          displayGetQuoteButton();
-        } else {
-          calculateQuote();
-        }
-
-      } else if (selection === 'itemEstimate') {
-        
-        // Log input to model
-        model.calculatorInputs.itemEstimate = document.getElementById('itemEstimate').value; 
-
-        // Calculate and Display Quote Value
-        if (document.getElementById('display-generateQuote').classList.contains('disabled')) {
-          displayGetQuoteButton();
-        } else {
-          calculateQuote();
-        }
-
-      } else if (selection === 'summerStorageTerm') {
-
-        // Hide Other Month Selections Estimate
-        document.getElementById('otherMonthSelections').style.display = "none";
-
-        // Make sure to reset box inputs
-        var ids = ['summerStorageTerm', 'otherStorageTerm'];
-        ids.forEach(function(id) {
-            document.getElementById(id).classList.remove('active');
-        });
-
-        // Reset monthEstimate 
-        model.calculatorInputs.monthEstimate = null;
-
-        // Hide Estimate
-        document.getElementById('generateQuote').style.display = 'none';
-
-        // Disable Button
-        document.getElementById('display-generateQuote').classList.add('disabled');
-
-        // Highlight Selection
-        document.getElementById(selection).classList.add('active');
-
-        model.calculatorInputs.monthEstimate = 4;
-
-        // Calculate and Display Quote Value
-        if (document.getElementById('display-generateQuote').classList.contains('disabled')) {
-          displayGetQuoteButton();
-        } else {
-          calculateQuote();
-        }
-
-      } else if (selection === 'otherStorageTerm') {
-
-        // Make sure to reset box inputs
-        var ids = ['summerStorageTerm', 'otherStorageTerm'];
-        ids.forEach(function(id) {
-            document.getElementById(id).classList.remove('active');
-        });
-
-        // Reset monthEstimate 
-        model.calculatorInputs.monthEstimate = null;
-
-        // Hide Estimate
-        document.getElementById('generateQuote').style.display = 'none';
-
-        // Disable Button
-        document.getElementById('display-generateQuote').classList.add('disabled');
-      
-        
-        // Highlight Selection
-        document.getElementById(selection).classList.add('active');
-
-        // Show Other Month Selections Estimate
-        document.getElementById('otherMonthSelections').style.display = "inline";
-
-        // Calculate and Display Quote Value
-        if (document.getElementById('display-generateQuote').classList.contains('disabled')) {
-          displayGetQuoteButton();
-        } else {
-          calculateQuote();
-        }
-
-      } else if (selection === 'endMonthEstimate') {
+      if (model.appState.firstPassCalc) {
+        if (selection === 'boxEstimate') {
           
-        // Log Month Selections to the Model
-        var startMonth = document.getElementById('startMonthEstimate').value;
-        var endMonth = document.getElementById('endMonthEstimate').value;
-        
-        // Calculate Storage Duration
-        var m = model.calculatorInputs;
+          // Log input to model
+          model.calculatorInputs.boxEstimate = document.getElementById('boxEstimate').value; 
 
-        var storageDuration = (endMonth - startMonth) + 1;
-        m.monthEstimate = storageDuration;
-        m.quoteValue = (m.monthEstimate * m.boxEstimate * m.priceBoxMonth) + (m.monthEstimate * m.itemEstimate * m.priceItemMonth);
-       
-        // Calculate and Display Quote Value
-        if (document.getElementById('display-generateQuote').classList.contains('disabled')) {
           displayGetQuoteButton();
-        } else {
+
+        } else if (selection === 'itemEstimate') {
+          
+          // Log input to model
+          model.calculatorInputs.itemEstimate = document.getElementById('itemEstimate').value; 
+
+          displayGetQuoteButton();
+
+        } else if (selection === 'summerStorageTerm') {
+
+          // Hide Other Month Selections Estimate
+          document.getElementById('otherMonthSelections').style.display = "none";
+
+          // Make sure to reset box inputs
+          var ids = ['summerStorageTerm', 'otherStorageTerm'];
+          ids.forEach(function(id) {
+              document.getElementById(id).classList.remove('active');
+          });
+
+          // Reset monthEstimate 
+          model.calculatorInputs.monthEstimate = null;
+
+          // Disable Button
+          document.getElementById('display-generateQuote').classList.add('disabled');
+
+          // Highlight Selection
+          document.getElementById(selection).classList.add('active');
+
+          model.calculatorInputs.monthEstimate = 4;
+
+          displayGetQuoteButton();
+
+        } else if (selection === 'otherStorageTerm') {
+
+          // Make sure to reset box inputs
+          var ids = ['summerStorageTerm', 'otherStorageTerm'];
+          ids.forEach(function(id) {
+              document.getElementById(id).classList.remove('active');
+          });
+
+          // Reset monthEstimate 
+          model.calculatorInputs.monthEstimate = null;
+
+          // Disable Button
+          document.getElementById('display-generateQuote').classList.add('disabled');
+        
+          // Highlight Selection
+          document.getElementById(selection).classList.add('active');
+
+          // Show Other Month Selections Estimate
+          document.getElementById('otherMonthSelections').style.display = "inline";
+
+          displayGetQuoteButton();
+
+        } else if (selection === 'startMonthEstimate') {
+            
+          // Log Month Selections to the Model
+          var startMonth = document.getElementById('startMonthEstimate').value;
+          document.getElementById('endMonthEstimate').value = '';
+          
+        } else if (selection === 'endMonthEstimate') {
+            
+          // Log Month Selections to the Model
+          var startMonth = document.getElementById('startMonthEstimate').value;
+          var endMonth = document.getElementById('endMonthEstimate').value;
+          
+          if (startMonth && endMonth) {
+            // Calculate Storage Duration
+            var m = model.calculatorInputs;
+
+            var storageDuration = (endMonth - startMonth) + 1;
+            m.monthEstimate = storageDuration;
+            m.quoteValue = (m.monthEstimate * m.boxEstimate * m.priceBoxMonth) + (m.monthEstimate * m.itemEstimate * m.priceItemMonth);
+           
+            displayGetQuoteButton();
+          }
+        }
+      } else if (!model.appState.firstPassCalc) {
+        
+        if (selection === 'boxEstimate') {
+        
+          // Log input to model
+          model.calculatorInputs.boxEstimate = document.getElementById('boxEstimate').value; 
+
           calculateQuote();
+
+        } else if (selection === 'itemEstimate') {
+          
+          // Log input to model
+          model.calculatorInputs.itemEstimate = document.getElementById('itemEstimate').value; 
+
+          displayGetQuoteButton();
+
+        } else if (selection === 'summerStorageTerm') {
+
+          // Hide Other Month Selections Estimate
+          document.getElementById('otherMonthSelections').style.display = "none";
+
+          // Make sure to reset box inputs
+          var ids = ['summerStorageTerm', 'otherStorageTerm'];
+          ids.forEach(function(id) {
+              document.getElementById(id).classList.remove('active');
+          });
+
+          // Reset monthEstimate 
+          model.calculatorInputs.monthEstimate = null;
+
+          // Highlight Selection
+          document.getElementById(selection).classList.add('active');
+
+          model.calculatorInputs.monthEstimate = 4;
+
+          if (document.getElementById('generateQuote') === 'none') {
+            displayGetQuoteButton();
+          } else {
+            calculateQuote();
+          }
+
+        } else if (selection === 'otherStorageTerm') {
+
+          // Make sure to reset box inputs
+          var ids = ['summerStorageTerm', 'otherStorageTerm'];
+          ids.forEach(function(id) {
+              document.getElementById(id).classList.remove('active');
+          });
+
+          // Reset monthEstimate 
+          model.calculatorInputs.monthEstimate = null;
+
+          // Hide the Quote Form
+          document.getElementById('generateQuote').style.display = 'none';
+
+          // Disable Button
+          document.getElementById('display-generateQuote').classList.add('disabled');
+
+          // Show Button
+          document.getElementById('display-generateQuoteBox').style.display = 'inline';
+
+          // Highlight Selection
+          document.getElementById(selection).classList.add('active');
+
+          // Show Other Month Selections Estimate
+          document.getElementById('otherMonthSelections').style.display = "inline";
+
+          displayGetQuoteButton();
+
+        } else if (selection === 'startMonthEstimate') {
+            
+          // Log Month Selections to the Model
+          var startMonth = document.getElementById('startMonthEstimate').value;
+          document.getElementById('endMonthEstimate').value = '';
+          
+        } else if (selection === 'endMonthEstimate') {
+            
+          // Log Month Selections to the Model
+          var startMonth = document.getElementById('startMonthEstimate').value;
+          var endMonth = document.getElementById('endMonthEstimate').value;
+          
+          if (startMonth && endMonth) {
+            // Calculate Storage Duration
+            var m = model.calculatorInputs;
+
+            var storageDuration = (endMonth - startMonth) + 1;
+            m.monthEstimate = storageDuration;
+            m.quoteValue = (m.monthEstimate * m.boxEstimate * m.priceBoxMonth) + (m.monthEstimate * m.itemEstimate * m.priceItemMonth);
+           
+            displayGetQuoteButton();
+          }
         }
       }
     }
 
     function displayGetQuoteButton() {
       var m = model.calculatorInputs;
-
       if (m.boxEstimate && m.itemEstimate && m.monthEstimate) {
-
-       
-        document.getElementById('display-generateQuote').classList.remove('disabled');
+        if (model.appState.firstPassCalc) {
+          model.appState.firstPassCalc = false;
+          document.getElementById('display-generateQuote').classList.remove('disabled');
+        } else if (!model.appState.firstPassCalc) {
+          document.getElementById('display-generateQuote').classList.remove('disabled');
+          calculateQuote();
+        }
       }
     }
 
     function calculateQuote() {
+
       var m = model.calculatorInputs;
 
       // Calculate Quote Value
