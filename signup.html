@@ -257,6 +257,13 @@
       </div>
       <!-- End Storage Term --> 
 
+      <!-- Show Quote Trigger -->
+      <div id="display-generateQuoteBox" class="col s12 center">
+        <a id="display-generateQuote" class="needHelp waves-effect waves-light btn-large disabled" style="background-color: #ff8b38; margin: 15px;">
+          Get Free Quote
+        </a>
+      </div>
+
       <!-- View Quote --> 
       <div class="row col m10 offset-m1 center">
         <!-- Quote Structure -->
@@ -264,32 +271,28 @@
           <div class="card horizontal">
             <div class="card-stacked">
               <div style="padding:25px; margin-top: 10px;">
-                <h4>Estimated Total Storage Bill*:</h4>
+                <h4 style="margin-bottom: 0px;">Estimated Total Storage Bill*:</h4>
+                <p class="col s8 offset-s2" style="font-size: 14px;">
+                  *Final price dependent on how many boxes and items you actually store.
+                </p>
                 <div id="insertQuoteValue" style="color: #ff8b38;">
                 </div>
                 <div id="nextSteps" style="display: none;">
-                  <div class="col s12" style="align-items: right;">
+                  <div id="couponErrorMessage" class="row col s10 offset-s1 m8 offset-m2 center" style="margin-top: 15px; margin-bottom: 0px; border: solid 1px green; "></div>
+                  <div class="row col s12" style="align-items: right;">
                     Add Coupon:
                     <div class="input-field inline" style="text-align: left !important; margin-left: 15px;">
                       <input id="coupon" class="validate">
-                      <label for="coupon" data-error="wrong" data-success="right">Coupon</label>
+                      <label for="coupon" data-error="wrong" data-success="right"></label>
                     </div>
                     <a id="checkCouponStatus" style="color:#ff8b38;margin-left: 20px;cursor: pointer;">Apply</a>
                   </div>
                 </div>
-                <p class="s8 offset-s2" style="font-size: 14px;">
-                  *Final price dependent on how many boxes and items you actually store.
-                </p>
-                <a href="#!" class="waves-effect waves-green btn-flat">Sign Up</a>
+                <a id="signUp" class="row col s6 offset-s3 m4 offset-m4 waves-effect waves-green btn-flat" style="margin-bottom: 0px; background-color: #ff8b38; color: white;">Sign Up</a>
+                <p class="col s10 offset-s1 m8 offset-m2"><b>Signing up takes less than a minute and you don't have to place a card on file until your pickup day!</b></p>
               </div>
             </div>
           </div>
-        </div>
-        <!-- Show Quote Trigger -->
-        <div id="display-generateQuoteBox" class="col s12">
-          <a id="display-generateQuote" class="needHelp waves-effect waves-light btn-large disabled" style="background-color: #ff8b38; margin: 15px;">
-            Get Free Quote
-          </a>
         </div>
       </div>
       <!-- End View Quote --> 
@@ -406,10 +409,14 @@
         monthEstimate: null,
         coupon: null,
         quoteValue: null,
+        discountedQuoteValue: null,
         monthlyQuoteValue: null,
+        discountedMonthlyQuoteValue: null,
         planEstimate: null,
         priceBoxMonth: 15,
+        discountedPriceBoxMonth: 13.5,
         priceItemMonth: 30,
+        discountedPriceItemMonth: 27,
         discount: .1
       },
       appState: {
@@ -572,7 +579,9 @@
               // No user is signed in.
             }
           }
-      }
+      },
+      coupons: [
+      ]
     }
 
     // Event Listeners
@@ -590,6 +599,8 @@
     $("#boxEstimate").on('change', manageCalculatorInputs);
     $("#itemEstimate").on('change', manageCalculatorInputs);
 
+    // Coupon Event Listener
+    document.getElementById('checkCouponStatus').addEventListener('click', checkCouponStatus, false);
 
     // Event Listener for the Generate Quote Button
     document.getElementById('display-generateQuote').addEventListener('click', function() {
@@ -804,6 +815,76 @@
           '<h4>Please finish filling our how many months you plan to store for to see a quote.</h4>';
       }
     } 
+
+    function checkCouponStatus() {
+      document.getElementById('couponErrorMessage').innerHTML = '<div class=\"progress col s6 offset-s3"> \
+              <div class="indeterminate"></div> \
+          </div>';  
+      firebase.database().ref('/referrers/').once('value').then(function(snapshot) {
+
+        var referrers = (snapshot.val());
+
+        for (var prop in referrers) {
+            model.coupons.push(referrers[prop].refCode);
+        }
+
+        console.log(model.coupons);
+
+        var couponInput = document.getElementById('coupon').value;
+
+        var m = model.calculatorInputs;
+
+        model.coupons.forEach(function(coup) {
+          if (coup === couponInput) {
+
+            // Coupon = True in Model
+            m.coupon = true;
+             
+          }
+        });
+
+        if (model.calculatorInputs.coupon) {
+          m.discountedMonthlyQuoteValue = (m.monthlyQuoteValue - (m.monthlyQuoteValue * m.discount));
+          m.discountedQuoteValue = m.discountedMonthlyQuoteValue * m.monthEstimate;
+          var savings = m.monthlyQuoteValue - m.discountedMonthlyQuoteValue;
+
+          // Notify of Success
+          document.getElementById('couponErrorMessage').innerHTML = "<span style='color: green;'>" + "Success! You've just saved $" + savings + "/month! Sign up now to lock in your savings. It only takes a minute!" + "</span>";
+
+          // Insert Discount Values into the Quote Section
+          document.getElementById('insertQuoteValue').innerHTML = 
+            '<h4 style=\'text-decoration: line-through; color:red;\'>$' + m.monthlyQuoteValue + '/month' +
+            '</h4>' +
+            '<h4>$' + m.discountedMonthlyQuoteValue + '/month' +
+            '</h4>' +
+            '<h5>Includes:</h5>' +
+            '<h6>FREE Pickup</h6>' +
+            '<h6>FREE Supplies</h6>' +
+            '<h6 style=\'text-decoration: line-through; color:red;\'>$' + m.priceBoxMonth + '/box/month x ' + m.boxEstimate + ' boxes x ' +
+            m.monthEstimate + ' months = $' +
+              (m.priceBoxMonth * m.boxEstimate * m.monthEstimate) +
+            '</h6>' +
+            '<h6>$' + m.discountedPriceBoxMonth + '/box/month x ' + m.boxEstimate + ' boxes x ' +
+            m.monthEstimate + ' months = $' +
+              (m.discountedPriceBoxMonth * m.boxEstimate * m.monthEstimate) +
+            '</h6>' +
+            '<h6 style=\'text-decoration: line-through; color:red;\'>$' + m.priceItemMonth + '/item/month x ' + m.itemEstimate + ' items x ' +
+            m.monthEstimate + ' months = $' +
+              (m.priceItemMonth * m.itemEstimate * m.monthEstimate) +
+            '</h6>' +
+            '<h6>$' + m.discountedPriceItemMonth + '/item/month x ' + m.itemEstimate + ' items x ' +
+            m.monthEstimate + ' months = $' +
+              (m.discountedPriceItemMonth * m.itemEstimate * m.monthEstimate) +
+            '</h6>' +
+            '<h6>FREE Delivery</h6>' +
+            '<h6>FREE Insurance of up to $100/box or item</h6>';
+        } else {
+          document.getElementById('couponErrorMessage').style.borderColor = 'red';
+          document.getElementById('couponErrorMessage').innerHTML = "<span style='color: red;'>" + "Hmmm. Your code did not match our records. Try another?" + "</span>"; 
+        }
+
+      }); 
+    }
 
   </script>
   <!-- End Main Logic -->

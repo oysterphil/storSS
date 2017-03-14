@@ -3356,18 +3356,31 @@
 			<h4 class="header center orange-text">Storganize Advocate Registration</h4>
 			<form id="registerForm">
 				<div class="row">
-					<div class="input-field col m4 s12">
+					<div class="input-field col m6 s12">
 						<input id="firstName" type="text" class="validate" required>
 						<label data-error="Please enter a value.">First Name</label>
 					</div>
-					<div class="input-field col m4 s12">
+					<div class="input-field col m6 s12">
 						<input id="lastName" type="text" class="validate" required>
 						<label>Last Name</label>
 					</div>
-					<div class="input-field col m4 s12">
+				</div>
+				<div class="row">
+					<div class="input-field col m6 s12">
 						<input id="orgName" type="text" class="validate">
-						<label>Organization Name (if applicable)</label>
+						<label>Organization Name (optional)</label>
 					</div>
+					<div class="input-field col m6 s12">
+	                  <select id="university" class="browser-default" style="border: initial;">
+	                    <option value="" disabled selected>Select your University</option>
+							<option value="AU">American University</option>
+							<option value="CNU">Christopher Newport University</option>
+							<option value="GU">Georgetown University</option>
+							<option value="ODU">Old Dominion University</option>
+	                  </select>
+	                </div>
+	            </div>
+	            <div class="row">
 					<div class="input-field col m6 s12">
 						<input id="regEmail" type="email" class="validate" required>
 						<label for="email">Email</label>
@@ -3423,6 +3436,7 @@
 		var refCode;
 		var refCandyLink;
 		var sentInvite;
+		var university;
 
 		// Event Listeners
 		document.getElementById("register").addEventListener("click", handleRegister);
@@ -3454,6 +3468,7 @@
 			firstName = document.getElementById("firstName").value;
 			lastName = document.getElementById("lastName").value;
 			orgName = document.getElementById("orgName").value;
+			university = document.getElementById('university').value;
 			refCode = makeRefCode();
 			refCandyLink = null;
 			sentInvite = false;
@@ -3464,6 +3479,10 @@
 				document.getElementById('loading').style.display = 'none';   
 			} else if (lastName === "") {
 				document.getElementById('errorMessage').innerHTML = "<span style='color: red;'>" + "Last name is required" + "</span>";
+				document.getElementById('register').style.display = 'inline';
+				document.getElementById('loading').style.display = 'none';
+			} else if (university === "") {
+				document.getElementById('errorMessage').innerHTML = "<span style='color: red;'>" + "University is required" + "</span>";
 				document.getElementById('register').style.display = 'inline';
 				document.getElementById('loading').style.display = 'none';
 			} else if (email === "") {
@@ -3552,7 +3571,8 @@
 					email: email,
 					orgName: orgName,
 					refCode: refCode,
-					refCandyLink: refCandyLink
+					refCandyLink: refCandyLink,
+					university: university
 				}).then(function() {
 					window.location="https://www.storganize.io/advocate-profile";
 				});
