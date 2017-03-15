@@ -57,327 +57,299 @@
 
   <!-- Signup Page -->
   <div class="section no-pad-bot">
-    <h2 class="header center">
-      Get a Free Storage Quote in 30 seconds!
-    </h2>
-    <div class="row">
+    <div id="storageQuote">
+      <h2 class="header center">
+        Get a Free Storage Quote in 30 seconds!
+      </h2>
+      <div class="row">
 
-      <!-- Estimate Boxes --> 
-      <div class="col m10 offset-m1">
-        <div class="card horizontal">
-          <div class="card-stacked">
-            <div class="card-content">
-              <div class="col s12 center">
-                <img src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c751966b8f5ba6ce5f7dc0/1489457558748/open-box-orange.png">
-              </div>
-              <div class="row col s12 center">
-                <h4>How many boxes do you think you will store?</h4>
-                <h5>(most students store 4 - 6)</h5>
-                <!-- Need Help Trigger -->
-                <div class="col s12">
-                  <a id="display-boxHelp" class="needHelp" style="margin-top: 10px;">Need Help?</a>
-                </div>
-                <div id="boxHelp" class="col s12 m8 offset-m2 scale-transition scale-out" style="display: none; border: solid 1px #ff8b38; padding:15px; margin-top: 10px;">
-                  <p>
-                    Our boxes are standard, medium-sized cardboard moving boxes. The exact dimensions are 18' x 18' x 16' or 3 cubic ft. 
-                  </p>
-                  <br>
-                  <p>
-                    We provide you with our boxes for free upon request, but if you prefer to use your own boxes or bins, we’re happy to accept them. All boxes are charged at the same rate as our boxes of $15/month per box regardless of size.
-                  </p>
-                  <br>
-                  <p>
-                    Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/">FAQ.</a>
-                  </p>
-                </div>
-                <div class="input-field col m6 offset-m3 s12">
-                  <select id="boxEstimate" class="browser-default" style="border: initial;">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11+</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Estimate Boxes -->
-
-      <!-- Estimate Items --> 
-      <div class="col m10 offset-m1">
-        <div class="card horizontal">
-          <div class="card-stacked">
-            <div class="card-content">
-              <div class="col s12 center">
-                <img class="hide-on-small-only" src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c7519737c581e1410890b9/1489457559724/sofa-orange.png" style="margin-left: 10px; margin-right: 10px;">
-                <img src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c7519429687f17bf5a49ad/1489457556832/bike-orange.png" style="margin-left: 10px; margin-right: 10px;">
-                <img class="hide-on-med-only hide-on-small-only" src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c7519be3df28e446dabc2f/1489457563638/tv-stand-orange.png" style="margin-left: 10px; margin-right: 10px;">
-                <img class="hide-on-med-only hide-on-small-only" src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c75198bf629ac501be2cdd/1489457560635/table-and-chairs-orange.png" style="margin-left: 10px; margin-right: 10px;">
-              </div>
-              <div class="row col s12 center">
-                <h4>How many items do you want to store that won't fit into boxes?</h4>
-                <h5>(most students store 0 - 2)</h5>
-                
-                <!-- Need Help Trigger -->
-                <div class="col s12">
-                  <a id="display-itemHelp" class="needHelp" style="margin-top: 10px;">Need Help?</a>
-                </div>
-                <div id="itemHelp" class="col s12 m8 offset-m2 scale-transition scale-out" style="display: none; border: solid 1px #ff8b38; padding:15px; margin-top: 10px;">
-                  <p>
-                    Got something that won't fit into a box? No problem! The fee for storing an item that won't fit into a box is $30/month per item. 
-                  </p>
-                  <br>
-                  <p>
-                    Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/">FAQ.</a>
-                  </p>
-                </div>
-                <div class="input-field col m6 offset-m3 s12">
-                  <select id="itemEstimate" class="browser-default" style="border: initial;">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8+</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Estimate Items --> 
-
-      <!-- Estimate Storage Term --> 
-      <div class="col m10 offset-m1">
-        <div class="card horizontal">
-          <div class="card-stacked">
-            <div class="card-content">
-              <div class="col s12 center">
-                <img src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c7519446c3c43401ecdb05/1489457556977/calendar-orange.png">
-              </div>
-              <div class="row col s12 center">
-                <h4>For how many months do you think you will store your stuff?</h4>
-                <h5>(most students store for the summer)</h5>
-                
-                <!-- Need Help Trigger -->
-                <div class="col s12">
-                  <a id="display-schedulingHelp" class="needHelp" style="margin-top: 10px;">Need Help?</a>
-                </div>
-                <div id="schedulingHelp" class="col s12 m8 offset-m2 scale-transition scale-out" style="display: none; border: solid 1px #ff8b38; padding:15px; margin-top: 10px;">
-                  <p>
-                    Most students store for the summer, which is 4 months long from May - August. 
-                  </p>
-                  <br>
-                  <p>
-                    Students studying abroad tend to store for 9 months, from May - January.
-                  </p>
-                  <br>
-                  <p>
-                    In general, Storganize does have a 3 month minimum, but you can request your items back at any time. If you are storing for less than 3 months, you will be charged for the full 3 months for items you remove early.
-                  </p>
-                  <br>
-                  <p>
-                    Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/">FAQ.</a>
-                  </p>
-                </div>
-              </div>
-              <div class="row col s12 center">
-                <a id="summerStorageTerm" class="col m3 offset-m3 s12 collection-horizontal btn-flat-horizonatal calculatorInput">
-                  Summer (May - Aug 2017)
-                </a>
-                <a id="otherStorageTerm" class="col m3 s12 collection-horizontal btn-flat-horizonatal calculatorInput">
-                  Other (3-month minimum)
-                </a>
-              </div>
-              <div id="otherMonthSelections" class="col m6 offset-m3 s12 center" style="display: none; border: solid 1px #ff8b38; padding:15px;">
-                <div class="row col s12">
-                  <p style="color:#ff8b38;">
-                    Pickup Month
-                  </p>
-                  <div class="input-field col m8 offset-m2 s12">
-                    <select id="startMonthEstimate" class="browser-default" style="border: initial;">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="0">April 2017</option>
-                      <option value="1">May 2017</option>
-                      <option value="2">June 2017</option>
-                      <option value="3">July 2017</option>
-                      <option value="4">August 2017</option>
-                      <option value="5">September 2017</option>
-                      <option value="6">October 2017</option>
-                      <option value="7">November 2017</option>
-                      <option value="8">December 2017</option>
-                      <option value="9">January 2018</option>
-                      <option value="10">Feburary 2018</option>
-                      <option value="11">March 2018</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row col s12">
-                  <p style="color:#ff8b38;">
-                    Return Month
-                  </p>
-                  <div class="input-field col m8 offset-m2 s12">
-                    <select id="endMonthEstimate" class="browser-default" style="border: initial;">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option id="0" value="0">April 2017</option>
-                      <option id="1" value="1">May 2017</option>
-                      <option id="2" value="2">June 2017</option>
-                      <option id="3" value="3">July 2017</option>
-                      <option id="4" value="4">August 2017</option>
-                      <option id="5" value="5">September 2017</option>
-                      <option id="6" value="6">October 2017</option>
-                      <option id="7" value="7">November 2017</option>
-                      <option id="8" value="8">December 2017</option>
-                      <option id="9" value="9">January 2018</option>
-                      <option id="10" value="10">Feburary 2018</option>
-                      <option id="11" value="11">March 2018</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Storage Term --> 
-
-      <!-- Show Quote Trigger -->
-      <div id="display-generateQuoteBox" class="col s12 center">
-        <a id="display-generateQuote" class="needHelp waves-effect waves-light btn-large disabled" style="background-color: #ff8b38; margin: 15px;">
-          Get Free Quote
-        </a>
-      </div>
-
-      <!-- View Quote --> 
-      <div class="row col m10 offset-m1 center">
-        <!-- Quote Structure -->
-        <div id="generateQuote" class="col s12 scale-transition scale-out" style="display: none;">
+        <!-- Estimate Boxes --> 
+        <div class="col m10 offset-m1">
           <div class="card horizontal">
             <div class="card-stacked">
-              <div style="padding:25px; margin-top: 10px;">
-                <h4 style="margin-bottom: 0px;">Estimated Total Storage Bill*:</h4>
-                <p class="col s8 offset-s2" style="font-size: 14px;">
-                  *Final price dependent on how many boxes and items you actually store.
-                </p>
-                <div id="insertQuoteValue" style="color: #ff8b38;">
+              <div class="card-content">
+                <div class="col s12 center">
+                  <img src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c751966b8f5ba6ce5f7dc0/1489457558748/open-box-orange.png">
                 </div>
-                <div id="nextSteps" style="display: none;">
-                  <div id="couponErrorMessage" class="row col s10 offset-s1 m8 offset-m2 center" style="margin-top: 15px; margin-bottom: 0px; border: solid 1px green; "></div>
-                  <div class="row col s12" style="align-items: right;">
-                    Add Coupon:
-                    <div class="input-field inline" style="text-align: left !important; margin-left: 15px;">
-                      <input id="coupon" class="validate">
-                      <label for="coupon" data-error="wrong" data-success="right"></label>
-                    </div>
-                    <a id="checkCouponStatus" style="color:#ff8b38;margin-left: 20px;cursor: pointer;">Apply</a>
+                <div class="row col s12 center">
+                  <h4>How many boxes do you think you will store?</h4>
+                  <h5>(most students store 4 - 6)</h5>
+                  <!-- Need Help Trigger -->
+                  <div class="col s12">
+                    <a id="display-boxHelp" class="needHelp" style="margin-top: 10px;">Need Help?</a>
+                  </div>
+                  <div id="boxHelp" class="col s12 m8 offset-m2 scale-transition scale-out" style="display: none; border: solid 1px #ff8b38; padding:15px; margin-top: 10px;">
+                    <p>
+                      Our boxes are standard, medium-sized cardboard moving boxes. The exact dimensions are 18' x 18' x 16' or 3 cubic ft. 
+                    </p>
+                    <br>
+                    <p>
+                      We provide you with our boxes for free upon request, but if you prefer to use your own boxes or bins, we’re happy to accept them. All boxes are charged at the same rate as our boxes of $15/month per box regardless of size.
+                    </p>
+                    <br>
+                    <p>
+                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/">FAQ.</a>
+                    </p>
+                  </div>
+                  <div class="input-field col m6 offset-m3 s12">
+                    <select id="boxEstimate" class="browser-default" style="border: initial;">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11+</option>
+                    </select>
                   </div>
                 </div>
-                <a id="signUp" class="row col s6 offset-s3 m4 offset-m4 waves-effect waves-green btn-flat" style="margin-bottom: 0px; background-color: #ff8b38; color: white;">Sign Up</a>
-                <p class="col s10 offset-s1 m8 offset-m2"><b>Signing up takes less than a minute and you don't have to place a card on file until your pickup day!</b></p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- End View Quote --> 
+        <!-- End Estimate Boxes -->
 
-  
-
-        <!-- Step 4: Free Quote 
-        <li id="quoteSection" class="quoteSection">
-          <div class="collapsible-header"><i class="material-icons">assignment</i>Step 4: View Free Quote</div>
-          <div class="collapsible-body cbody-content">
-            <p>
-              <b>
-                Estimated Total Storage Bill*:
-              </b>
-            </p>
-            <div id="insertQuoteValue" style="color: #ff8b38;">
-              <h3>Complete the form to see the quote!</h3>
-            </div>
-            <div id="nextSteps" style="display: none;">
-              <div class="col s12" style="align-items: right;">
-                Add Coupon:
-                <div class="input-field inline" style="text-align: left !important; margin-left: 15px;">
-                  <input id="coupon" class="validate">
-                  <label for="coupon" data-error="wrong" data-success="right">Coupon</label>
+        <!-- Estimate Items --> 
+        <div class="col m10 offset-m1">
+          <div class="card horizontal">
+            <div class="card-stacked">
+              <div class="card-content">
+                <div class="col s12 center">
+                  <img class="hide-on-small-only" src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c7519737c581e1410890b9/1489457559724/sofa-orange.png" style="margin-left: 10px; margin-right: 10px;">
+                  <img src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c7519429687f17bf5a49ad/1489457556832/bike-orange.png" style="margin-left: 10px; margin-right: 10px;">
+                  <img class="hide-on-med-only hide-on-small-only" src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c7519be3df28e446dabc2f/1489457563638/tv-stand-orange.png" style="margin-left: 10px; margin-right: 10px;">
+                  <img class="hide-on-med-only hide-on-small-only" src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c75198bf629ac501be2cdd/1489457560635/table-and-chairs-orange.png" style="margin-left: 10px; margin-right: 10px;">
                 </div>
-                <a id="checkCouponStatus" style="color:#ff8b38;margin-left: 20px;cursor: pointer;">Apply</a>
-              </div>
-            </div>
-              <p>
-                <a class="waves-effect waves-light btn modal-trigger" href="javascript: $('#modal6').modal('open');" style="background-color:#ff8b38;">Sign up!</a>
-                <div id="modal6" class="modal modal-fixed-footer">
-                  <div class="modal-content">
-                    <h3>
-                      Create an Account
-                    </h3>
-                    <div class="row">
-                      <a onclick="model.auth.handleGoogleRegister()" class="waves-effect waves-light btn-large col m6 offset-m3 s10 offset-s1" style="background-color: #dd4b39;">    <svg style="width:24px;height:24px;top: 6px; position: relative; right: 5px;" viewBox="0 0 24 24">
-                        <path fill="#ffffff" d="M19,12H17V14H16V12H14V11H16V9H17V11H19M9.07,19.2C6.27,19.2 5,17.64 5,16.18C5,15.73 5.14,14.59 6.5,13.8C7.25,13.33 8.33,13 9.62,12.89C9.43,12.64 9.28,12.34 9.28,11.9C9.28,11.75 9.3,11.59 9.34,11.44H8.95C7,11.44 5.8,9.89 5.8,8.39C5.8,6.66 7.09,4.8 9.91,4.8H14.13L13.79,5.14L13.08,5.85L13,5.91H12.3C12.71,6.33 13.2,7 13.2,8.07C13.2,9.47 12.46,10.16 11.64,10.8C11.5,10.92 11.22,11.18 11.22,11.5C11.22,11.82 11.46,12 11.61,12.14C11.74,12.25 11.9,12.36 12.08,12.5C12.89,13.05 14,13.83 14,15.36C14,17.13 12.71,19.2 9.07,19.2M20,2H4A2,2 0 0,0 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2M10.57,13.81C10.46,13.8 10.38,13.8 10.25,13.8H10.23C9.97,13.8 9.08,13.85 8.41,14.07C7.77,14.31 7,14.79 7,15.77C7,16.85 8.04,18 9.96,18C11.5,18 12.4,17 12.4,16C12.4,15.25 11.94,14.79 10.57,13.81M11.2,8.87C11.2,7.85 10.57,5.85 9.12,5.85C8.5,5.85 7.8,6.29 7.8,7.5C7.8,8.7 8.42,10.45 9.77,10.45C9.83,10.45 11.2,10.44 11.2,8.87Z"></path>
-                        </svg>
-                        Google
-                      </a>
-                    </div>
-                    <div class="row">
-                      <div class="col s4 offset-s1" style="margin-top: 8px;"><hr></div>
-                      <div class="col s2"><h6>OR</h6></div>
-                      <div class="col s4" style="margin-top: 8px;"><hr></div>
-                    </div>
-                    <form>
-                      <div class="row" style="text-align: left;">
-                        <div class="input-field col s8 offset-s2">
-                          <input id="email" type="email" class="validate">
-                          <label for="email">Email</label>
-                        </div>
-                        <div class="input-field col s8 offset-s2">
-                          <input id="password" type="password" class="validate">
-                          <label for="password">Password</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <button id="createAccountEmailPass" class="btn waves-effect waves-light" type="submit" style="background-color:#ff8b38;">Create Account
-                          <i class="material-icons right">send</i>
-                        </button>
-                      </div>
-                      <div class="row col s8 offset-s2">
-                        <p style="text-align: center;">By clicking Create Account, you agree to Storganize's 
-                        <a href="https://www.storganize.io/terms-of-service-fall-16/"> Terms of Service</a> and 
-                        <a href="https://www.storganize.io/privacy-policy/"> Privacy Policy</a>
-                        </p>
-                      </div>
-                    </form>
+                <div class="row col s12 center">
+                  <h4>How many items do you want to store that won't fit into boxes?</h4>
+                  <h5>(most students store 0 - 2)</h5>
+                  
+                  <!-- Need Help Trigger -->
+                  <div class="col s12">
+                    <a id="display-itemHelp" class="needHelp" style="margin-top: 10px;">Need Help?</a>
+                  </div>
+                  <div id="itemHelp" class="col s12 m8 offset-m2 scale-transition scale-out" style="display: none; border: solid 1px #ff8b38; padding:15px; margin-top: 10px;">
+                    <p>
+                      Got something that won't fit into a box? No problem! The fee for storing an item that won't fit into a box is $30/month per item. 
+                    </p>
+                    <br>
+                    <p>
+                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/">FAQ.</a>
+                    </p>
+                  </div>
+                  <div class="input-field col m6 offset-m3 s12">
+                    <select id="itemEstimate" class="browser-default" style="border: initial;">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8+</option>
+                    </select>
                   </div>
                 </div>
-              </p>
-              <p>
-                <a class="modal-trigger" href="javascript: $('#modal5').modal('open');">E-mail Quote</a>
-              </p>
-              <div id="modal5" class="modal modal-fixed-footer">
-                <div class="modal-content">
-                  <h4>Modal Header</h4>
-                  <p>A bunch of text</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Estimate Items --> 
+
+        <!-- Estimate Storage Term --> 
+        <div class="col m10 offset-m1">
+          <div class="card horizontal">
+            <div class="card-stacked">
+              <div class="card-content">
+                <div class="col s12 center">
+                  <img src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c7519446c3c43401ecdb05/1489457556977/calendar-orange.png">
                 </div>
-                <div class="modal-footer">
-                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                <div class="row col s12 center">
+                  <h4>For how many months do you think you will store your stuff?</h4>
+                  <h5>(most students store for the summer)</h5>
+                  
+                  <!-- Need Help Trigger -->
+                  <div class="col s12">
+                    <a id="display-schedulingHelp" class="needHelp" style="margin-top: 10px;">Need Help?</a>
+                  </div>
+                  <div id="schedulingHelp" class="col s12 m8 offset-m2 scale-transition scale-out" style="display: none; border: solid 1px #ff8b38; padding:15px; margin-top: 10px;">
+                    <p>
+                      Most students store for the summer, which is 4 months long from May - August. 
+                    </p>
+                    <br>
+                    <p>
+                      Students studying abroad tend to store for 9 months, from May - January.
+                    </p>
+                    <br>
+                    <p>
+                      In general, Storganize does have a 3 month minimum, but you can request your items back at any time. If you are storing for less than 3 months, you will be charged for the full 3 months for items you remove early.
+                    </p>
+                    <br>
+                    <p>
+                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/">FAQ.</a>
+                    </p>
+                  </div>
                 </div>
-              </div> -->
+                <div class="row col s12 center">
+                  <a id="summerStorageTerm" class="col m3 offset-m3 s12 collection-horizontal btn-flat-horizonatal calculatorInput">
+                    Summer (May - Aug 2017)
+                  </a>
+                  <a id="otherStorageTerm" class="col m3 s12 collection-horizontal btn-flat-horizonatal calculatorInput">
+                    Other (3-month minimum)
+                  </a>
+                </div>
+                <div id="otherMonthSelections" class="col m6 offset-m3 s12 center" style="display: none; border: solid 1px #ff8b38; padding:15px;">
+                  <div class="row col s12">
+                    <p style="color:#ff8b38;">
+                      Pickup Month
+                    </p>
+                    <div class="input-field col m8 offset-m2 s12">
+                      <select id="startMonthEstimate" class="browser-default" style="border: initial;">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="0">April 2017</option>
+                        <option value="1">May 2017</option>
+                        <option value="2">June 2017</option>
+                        <option value="3">July 2017</option>
+                        <option value="4">August 2017</option>
+                        <option value="5">September 2017</option>
+                        <option value="6">October 2017</option>
+                        <option value="7">November 2017</option>
+                        <option value="8">December 2017</option>
+                        <option value="9">January 2018</option>
+                        <option value="10">Feburary 2018</option>
+                        <option value="11">March 2018</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row col s12">
+                    <p style="color:#ff8b38;">
+                      Return Month
+                    </p>
+                    <div class="input-field col m8 offset-m2 s12">
+                      <select id="endMonthEstimate" class="browser-default" style="border: initial;">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option id="0" value="0">April 2017</option>
+                        <option id="1" value="1">May 2017</option>
+                        <option id="2" value="2">June 2017</option>
+                        <option id="3" value="3">July 2017</option>
+                        <option id="4" value="4">August 2017</option>
+                        <option id="5" value="5">September 2017</option>
+                        <option id="6" value="6">October 2017</option>
+                        <option id="7" value="7">November 2017</option>
+                        <option id="8" value="8">December 2017</option>
+                        <option id="9" value="9">January 2018</option>
+                        <option id="10" value="10">Feburary 2018</option>
+                        <option id="11" value="11">March 2018</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Storage Term --> 
+
+        <!-- Show Quote Trigger -->
+        <div id="display-generateQuoteBox" class="col s12 center">
+          <a id="display-generateQuote" class="needHelp waves-effect waves-light btn-large disabled" style="background-color: #ff8b38; margin: 15px;">
+            Get Free Quote
+          </a>
+        </div>
+
+        <!-- View Quote --> 
+        <div class="row col m10 offset-m1 center">
+          <!-- Quote Structure -->
+          <div id="generateQuote" class="col s12 scale-transition scale-out" style="display: none;">
+            <div class="card horizontal">
+              <div class="card-stacked">
+                <div style="padding:25px; margin-top: 10px;">
+                  <h4 style="margin-bottom: 0px;">Estimated Total Storage Bill*:</h4>
+                  <p class="col s8 offset-s2" style="font-size: 14px;">
+                    *Final price dependent on how many boxes and items you actually store.
+                  </p>
+                  <div id="insertQuoteValue" style="color: #ff8b38;">
+                  </div>
+                  <div id="nextSteps" style="display: none;">
+                    <div id="couponErrorMessage" class="row col s10 offset-s1 m8 offset-m2 center" style="margin-top: 15px; margin-bottom: 0px; border: solid 1px green; "></div>
+                    <div class="row col s12" style="align-items: right;">
+                      Add Coupon:
+                      <div class="input-field inline" style="text-align: left !important; margin-left: 15px;">
+                        <input id="coupon" class="validate">
+                        <label for="coupon" data-error="wrong" data-success="right"></label>
+                      </div>
+                      <a id="checkCouponStatus" style="color:#ff8b38;margin-left: 20px;cursor: pointer;">Apply</a>
+                    </div>
+                  </div>
+                  <a id="signUp" class="row col s6 offset-s3 m4 offset-m4 waves-effect waves-green btn-flat" style="margin-bottom: 0px; background-color: #ff8b38; color: white;">Sign Up</a>
+                  <p class="col s10 offset-s1 m8 offset-m2"><b>Signing up takes less than a minute and you don't have to place a card on file until your pickup day!</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End View Quote --> 
+      </div>
+    </div>
+    <div id="signUpSection" class="row center" style="display: none;">
+      <div class="col m10 offset-m1">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+              <h3>
+                Create an Account
+              </h3>
+              <div class="row" style="margin: 20px;">
+                <a onclick="model.auth.handleGoogleRegister()" class="waves-effect waves-light btn-large col m6 offset-m3 s10 offset-s1" style="background-color: #dd4b39;">    <svg style="width:24px;height:24px;top: 6px; position: relative; right: 5px;" viewBox="0 0 24 24">
+                  <path fill="#ffffff" d="M19,12H17V14H16V12H14V11H16V9H17V11H19M9.07,19.2C6.27,19.2 5,17.64 5,16.18C5,15.73 5.14,14.59 6.5,13.8C7.25,13.33 8.33,13 9.62,12.89C9.43,12.64 9.28,12.34 9.28,11.9C9.28,11.75 9.3,11.59 9.34,11.44H8.95C7,11.44 5.8,9.89 5.8,8.39C5.8,6.66 7.09,4.8 9.91,4.8H14.13L13.79,5.14L13.08,5.85L13,5.91H12.3C12.71,6.33 13.2,7 13.2,8.07C13.2,9.47 12.46,10.16 11.64,10.8C11.5,10.92 11.22,11.18 11.22,11.5C11.22,11.82 11.46,12 11.61,12.14C11.74,12.25 11.9,12.36 12.08,12.5C12.89,13.05 14,13.83 14,15.36C14,17.13 12.71,19.2 9.07,19.2M20,2H4A2,2 0 0,0 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2M10.57,13.81C10.46,13.8 10.38,13.8 10.25,13.8H10.23C9.97,13.8 9.08,13.85 8.41,14.07C7.77,14.31 7,14.79 7,15.77C7,16.85 8.04,18 9.96,18C11.5,18 12.4,17 12.4,16C12.4,15.25 11.94,14.79 10.57,13.81M11.2,8.87C11.2,7.85 10.57,5.85 9.12,5.85C8.5,5.85 7.8,6.29 7.8,7.5C7.8,8.7 8.42,10.45 9.77,10.45C9.83,10.45 11.2,10.44 11.2,8.87Z"></path>
+                  </svg>
+                  Google
+                </a>
+              </div>
+              <div class="row">
+                <div class="col s3 offset-s2" style="margin-top: 16px;border-top: solid 1px rgba(0,0,0,.5);"></div>
+                <div class="col s2"><h6>OR</h6></div>
+                <div class="col s3" style="margin-top: 16px;border-top: solid 1px rgba(0,0,0,.5);"></div>
+              </div>
+              <form>
+                <div class="row" style="text-align: left;">
+                  <div class="input-field col s8 offset-s2">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field col s8 offset-s2">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                  </div>
+                </div>
+                <div id="authErrorMessage" class="row col s12 center"></div>
+                <div class="row">
+                  <button id="createAccountEmailPass" class="btn waves-effect waves-light" type="submit" style="background-color:#ff8b38;">Create Account
+                    <i class="material-icons right">send</i>
+                  </button>
+                  <div class="progress col s6 offset-s3" id="loading" style="display: none;">
+                      <div class="indeterminate"></div>
+                  </div>
+                </div>
+                <div class="row col s8 offset-s2">
+                  <p style="text-align: center;">By clicking Create Account, you agree to Storganize's 
+                  <a href="https://www.storganize.io/terms-of-service-fall-16/" target="_blank" > Terms of Service</a> and 
+                  <a href="https://www.storganize.io/privacy-policy/" target="_blank" > Privacy Policy</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- End Signup Page -->
@@ -407,7 +379,7 @@
         boxEstimate: null,
         itemEstimate: null,
         monthEstimate: null,
-        coupon: null,
+        coupon: false,
         quoteValue: null,
         discountedQuoteValue: null,
         monthlyQuoteValue: null,
@@ -420,9 +392,7 @@
         discount: .1
       },
       appState: {
-        firstLoginEmailPass: null,
-        firstLoginGoogleFacebook: null,
-        registerInfoComplete: false,
+        completedEstimate: false,
         firstPassCalc: true
       },
       custMeta: {
@@ -438,28 +408,39 @@
           handleCreateAcctWithEmailAndPassword: () => {
             event.preventDefault();
 
+            model.appState.completedEstimate = true;
+
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // Signal firstLoginEmailPass: true to Model
-            model.appState.firstLoginEmailPass = true;
-
             model.custMeta.email = email;
-            
-            // Create Account through Firebase via Email and Password
-            const auth = firebase.auth();
-            const promise = auth.createUserWithEmailAndPassword(email,password);
-            promise.catch(e => console.log(e.message));
+
+            if (email === "") {
+              document.getElementById('authErrorMessage').innerHTML = "<span style='color: red;'>" + "Email is required" + "</span>";
+              document.getElementById('createAccountEmailPass').style.display = 'inline';
+              document.getElementById('loading').style.display = 'none';
+            } else if (password === "") {
+              document.getElementById('authErrorMessage').innerHTML = "<span style='color: red;'>" + "Password is required" + "</span>";
+              document.getElementById('createAccountEmailPass').style.display = 'inline';
+              document.getElementById('loading').style.display = 'none';
+            } else if (password.length < 6) {
+              document.getElementById('authErrorMessage').innerHTML = "<span style='color: red;'>" + "Password must be at least 6 characters long." + "</span>";
+              document.getElementById('createAccountEmailPass').style.display = 'inline';
+              document.getElementById('loading').style.display = 'none';
+            } else {
+
+              // Create Account through Firebase via Email and Password
+              const auth = firebase.auth();
+              const promise = auth.createUserWithEmailAndPassword(email,password);
+              promise.catch(e => (document.getElementById('authErrorMessage').innerHTML = "<span style='color: red;'>" + e.message + "</span>"));
+            }
           },
           handleGoogleRegister: () => {
-            // Signal firstLoginEmailPass: false and firstLoginGoogleFacebook: true to Model.
-            model.appState.firstLoginEmailPass = false;
-            model.appState.firstLoginGoogleFacebook = true;
 
             // Authenticate through Google
             var provider = new firebase.auth.GoogleAuthProvider();
             firebase.auth().signInWithPopup(provider).then(function(result) {
-              
+            
               // This gives you a Google Access Token. You can use it to access the Google API.
               var token = result.credential.accessToken;
               
@@ -475,23 +456,9 @@
               model.custMeta.email = user.email;
               model.custMeta.firstName = firstName;
               model.custMeta.lastName = lastName;
-              
-              // Send Google Sign-up Data to Firebase
-              firebase.database().ref('custMeta/' + model.custMeta.uid).set({
-                firstName: model.custMeta.firstName,
-                lastName: model.custMeta.lastName,
-                email: model.custMeta.email
-              });
 
-              // Send App State Info to Firebase
-              firebase.database().ref('custAppState/' + model.custMeta.uid).set({
-                registerInfoComplete: model.appState.registerInfoComplete,
-                firstLoginEmailPass: model.appState.firstLoginEmailPass,
-                firstLoginGoogleFacebook: model.appState.firstLoginGoogleFacebook
-              });
-
-              }).catch(function(error) {
-              
+            }).catch(function(error) {
+            
               // Handle Errors here.
               var errorCode = error.code;
               var errorMessage = error.message;
@@ -503,67 +470,77 @@
               var credential = error.credential;
               
               console.log(errorMessage);
-              // ...
+
+              document.getElementById('authErrorMessage').innerHTML = '<span style=\'color: red;\'>There was an unexpected error. Please try again. If the problem persists, please contact <a href="mailto:info@storganize.io" target="_top">info@storganize.io</a>.</span>';
             });
           },
           handleAuthStateChange: () => {
             const user = firebase.auth().currentUser;
 
             if (user) {
-              model.custMeta.uid = user.uid;
-              // Complete Login Flow
-              $.ajax({
-                  type: 'POST',
-                  url: 'https://27952f82.ngrok.io' + 'referralCandy/purchase',
-                  // url: 'https://young-plateau-13187.herokuapp.com/' + 'referralCandy/purchase',
-                  data: JSON.stringify({  
-                  email: email
-                }), 
-                  success: function(data) {
-                  if (data.message === 'Success') {
-                    console.log('It worked.');
-                    // delete data.message;
-                    // sendRegisterDataToFirebase(data, email, password, firstName, lastName);
 
-                  }
-                },
-                  contentType: "application/json",
-                  dataType: 'json'
-              });
-
-              if (model.appState.firstLoginEmailPass) {
-                // Change firstLoginEmailPass to False
-                model.appState.firstLoginEmailPass = false;
-
-                // Send Sign-up Data to Firebase
-                firebase.database().ref('custMeta/' + model.custMeta.uid).set({
-                  email: model.custMeta.email
-                }).then(function() {
-                  // Send Storage Info to Firebase
-                  firebase.database().ref('custStorage/' + model.custMeta.uid).set({
-                    storageTerm: model.calculatorInputs.monthEstimate,
-                    boxEstimate: model.calculatorInputs.boxEstimate,
-                    itemEstimate: model.calculatorInputs.itemEstimate,
-                    coupon: model.calculatorInputs.coupon,
-                    quoteValue: model.calculatorInputs.quoteValue,
-                    monthlyQuoteValue: model.calculatorInputs.monthlyQuoteValue,
-                    planEstimate: model.calculatorInputs.planEstimate,
-                    priceBoxMonth: model.calculatorInputs.priceBoxMonth,
-                    priceItemMonth: model.calculatorInputs.priceItemMonth,
-                    discount: model.calculatorInputs.discount,
-                    boxActual: null,
-                    itemActual: null
-                  }).then(function(){
-                    // Send Legal Info to Firebase
-                    firebase.database().ref('custLegal/' + model.custMeta.uid).set({
-                      acceptTerms: model.custLegal.acceptTerms
+              // Complete Login Flow - Send Sign-up Data to Firebase
+              if (model.calculatorInputs.coupon) {
+                // Send Discounted Storage Info to Firebase
+                firebase.database().ref('custStorage/' + user.uid).set({
+                  storageTerm: model.calculatorInputs.monthEstimate,
+                  boxEstimate: model.calculatorInputs.boxEstimate,
+                  itemEstimate: model.calculatorInputs.itemEstimate,
+                  coupon: model.calculatorInputs.coupon,
+                  quoteValue: model.calculatorInputs.discountedQuoteValue,
+                  monthlyQuoteValue: model.calculatorInputs.discountedMonthlyQuoteValue,
+                  planEstimate: model.calculatorInputs.planEstimate,
+                  priceBoxMonth: model.calculatorInputs.discountedPriceBoxMonth,
+                  priceItemMonth: model.calculatorInputs.discountedPriceItemMonth,
+                  discount: model.calculatorInputs.discount,
+                  boxActual: null,
+                  itemActual: null
+                }).then(function(){
+                  // Send Legal Info to Firebase
+                  firebase.database().ref('custLegal/' + user.uid).set({
+                    acceptTerms: model.custLegal.acceptTerms
+                  }).then(function() {
+                    firebase.database().ref('custMeta/' + user.uid).set({
+                      firstName: model.custMeta.firstName,
+                      lastName: model.custMeta.lastName,
+                      email: model.custMeta.email
                     }).then(function() {
                       // Send App State Info to Firebase
-                      firebase.database().ref('custAppState/' + model.custMeta.uid).set({
-                        registerInfoComplete: model.appState.registerInfoComplete,
-                        firstLoginEmailPass: model.appState.firstLoginEmailPass,
-                        firstLoginGoogleFacebook: model.appState.firstLoginGoogleFacebook,
-                        registerInfoComplete: model.appState.registerInfoComplete
+                      firebase.database().ref('custAppState/' + user.uid).set({
+                        completedEstimate: model.appState.completedEstimate
+                      }).then(function() {
+                        window.location = "https://www.storganize.io/storganize-profile";
+                      });
+                    });
+                  });
+                });
+              } else {
+                // Send Storage Info to Firebase
+                firebase.database().ref('custStorage/' + user.uid).set({
+                  storageTerm: model.calculatorInputs.monthEstimate,
+                  boxEstimate: model.calculatorInputs.boxEstimate,
+                  itemEstimate: model.calculatorInputs.itemEstimate,
+                  coupon: model.calculatorInputs.coupon,
+                  quoteValue: model.calculatorInputs.quoteValue,
+                  monthlyQuoteValue: model.calculatorInputs.monthlyQuoteValue,
+                  planEstimate: model.calculatorInputs.planEstimate,
+                  priceBoxMonth: model.calculatorInputs.priceBoxMonth,
+                  priceItemMonth: model.calculatorInputs.priceItemMonth,
+                  boxActual: null,
+                  itemActual: null
+                }).then(function(){
+                  // Send Legal Info to Firebase
+                  firebase.database().ref('custLegal/' + user.uid).set({
+                    acceptTerms: model.custLegal.acceptTerms
+                  }).then(function() {
+                    firebase.database().ref('custMeta/' + user.uid).set({
+                      firstName: model.custMeta.firstName,
+                      lastName: model.custMeta.lastName,
+                      email: model.custMeta.email
+                    }).then(function() {
+                      // Send App State Info to Firebase
+                      firebase.database().ref('custAppState/' + user.uid).set({
+                        completedEstimate: model.appState.completedEstimate
                       }).then(function() {
                         window.location = "https://www.storganize.io/storganize-profile";
                       });
@@ -571,12 +548,9 @@
                   });
                 });
               }
-              if (model.appState.firstLoginGoogleFacebook) {
-                model.appState.firstLoginGoogleFacebook = false;
-                window.location = "https://www.storganize.io/storganize-profile";
-              }
             } else {
               // No user is signed in.
+              console.log('No one is logged in.');
             }
           }
       },
@@ -601,6 +575,12 @@
 
     // Coupon Event Listener
     document.getElementById('checkCouponStatus').addEventListener('click', checkCouponStatus, false);
+
+    // Create Account Event Listener 
+    document.getElementById('signUp').addEventListener('click', function () {
+      document.getElementById('storageQuote').style.display = 'none';
+      document.getElementById('signUpSection').style.display = 'inline';
+    }, false);
 
     // Event Listener for the Generate Quote Button
     document.getElementById('display-generateQuote').addEventListener('click', function() {
@@ -628,7 +608,7 @@
     }
 
     // Event Listeners for Create Account Section
-    // document.getElementById('createAccountEmailPass').addEventListener('click', model.auth.handleCreateAcctWithEmailAndPassword, false);
+    document.getElementById('createAccountEmailPass').addEventListener('click', model.auth.handleCreateAcctWithEmailAndPassword, false);
 
     // Event Listener for Auth State Change
     firebase.auth().onAuthStateChanged(model.auth.handleAuthStateChange);
@@ -838,7 +818,7 @@
           if (coup === couponInput) {
 
             // Coupon = True in Model
-            m.coupon = true;
+            m.coupon = couponInput;
              
           }
         });
@@ -850,6 +830,8 @@
 
           // Notify of Success
           document.getElementById('couponErrorMessage').innerHTML = "<span style='color: green;'>" + "Success! You've just saved $" + savings + "/month! Sign up now to lock in your savings. It only takes a minute!" + "</span>";
+
+          document.getElementById('couponErrorMessage').style.borderColor = 'green';
 
           // Insert Discount Values into the Quote Section
           document.getElementById('insertQuoteValue').innerHTML = 
