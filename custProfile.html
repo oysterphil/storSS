@@ -9,7 +9,8 @@
 
   <style type="text/css">
     .button-active {
-      background-color: #ff8b38;
+      background-color: #ff8b38 !important;
+      color: white !important;
     }
     .icons {
       margin-right: 10px;
@@ -110,28 +111,28 @@
 
   <div class="collapsible">
     <!-- Notifications -->
-    <button id="button1" onclick="myFunction('Demo1')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">announcement</i>Notifications</button>
+    <button id="Demo1Button" onclick="myFunction('Demo1')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">announcement</i>Notifications</button>
     <div id="Demo1" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
       <p>Some text..</p>
     </div>
     <!-- End Notifications -->
 
     <!-- Schedule a ... -->
-    <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">today</i>Schedule</button>
+    <button id="Demo2Button" onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">today</i>Schedule</button>
     <div id="Demo2" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
       <p>Some other text..</p>
     </div>
     <!-- End Schedule a ... -->
 
     <!-- View Items -->
-    <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">view_quilt</i>View Items</button>
+    <button id="Demo3Button" onclick="myFunction('Demo3')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">view_quilt</i>View Items</button>
     <div id="Demo3" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
       <p>Some other text..</p>
     </div>
     <!-- End View Items -->
 
     <!-- Account Information -->
-    <button onclick="myFunction('Demo4')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">perm_identity</i>Account Information</button>
+    <button id="Demo4Button" onclick="myFunction('Demo4')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">perm_identity</i>Account Information</button>
     <div id="Demo4" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
       <p>Some other text..</p>
     </div>
@@ -142,7 +143,7 @@
   <script>
 
     document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('button1').click();
+      document.getElementById('Demo1Button').click();
     });
 
     var count1 = 0;
@@ -165,7 +166,7 @@
           document.getElementById(id).classList.remove('w3-show');
         } else {
           document.getElementById(id).classList.add('w3-show');
-          document.getElementById(id).classList.add('button-active');
+          document.getElementById(id + 'Button').classList.add('button-active');
           ids.forEach(function(y) {
             if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
               document.getElementById(y).classList.remove('w3-show');
@@ -190,7 +191,7 @@
           document.getElementById(id).classList.remove('w3-show');
         } else {
           document.getElementById(id).classList.add('w3-show');
-          document.getElementById(id).classList.add('button-active');
+          document.getElementById(id + 'Button').classList.add('button-active');
           ids.forEach(function(y) {
             if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
               document.getElementById(y).classList.remove('w3-show');
@@ -215,7 +216,7 @@
           document.getElementById(id).classList.remove('w3-show');
         } else {
           document.getElementById(id).classList.add('w3-show');
-          document.getElementById(id).classList.add('button-active');
+          document.getElementById(id + 'Button').classList.add('button-active');
           ids.forEach(function(y) {
             if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
               document.getElementById(y).classList.remove('w3-show');
@@ -240,7 +241,7 @@
           document.getElementById(id).classList.remove('w3-show');
         } else {
           document.getElementById(id).classList.add('w3-show');
-          document.getElementById(id).classList.add('button-active');
+          document.getElementById(id + 'Button').classList.add('button-active');
           ids.forEach(function(y) {
             if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
               document.getElementById(y).classList.remove('w3-show');
@@ -255,11 +256,6 @@
           });
         }
       }
-
-      console.log(count1);
-      console.log(count2);
-      console.log(count3);
-
     }
 
     // function myFunction(id) {
