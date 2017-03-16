@@ -111,29 +111,29 @@
 
   <div class="collapsible">
     <!-- Notifications -->
-    <button id="Demo1Button" onclick="myFunction('Demo1')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">announcement</i>Notifications</button>
-    <div id="Demo1" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
+    <button id="notificationsButton" onclick="myFunction('notifications')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">announcement</i>Notifications</button>
+    <div id="notifications" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
       <p>Some text..</p>
     </div>
     <!-- End Notifications -->
 
     <!-- Schedule a ... -->
-    <button id="Demo2Button" onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">today</i>Schedule</button>
-    <div id="Demo2" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
+    <button id="scheduleButton" onclick="myFunction('schedule')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">today</i>Schedule</button>
+    <div id="schedule" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
       <p>Some other text..</p>
     </div>
     <!-- End Schedule a ... -->
 
     <!-- View Items -->
-    <button id="Demo3Button" onclick="myFunction('Demo3')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">view_quilt</i>View Items</button>
-    <div id="Demo3" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
+    <button id="viewItemsButton" onclick="myFunction('viewItems')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">view_quilt</i>View Items</button>
+    <div id="viewItems" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
       <p>Some other text..</p>
     </div>
     <!-- End View Items -->
 
     <!-- Account Information -->
-    <button id="Demo4Button" onclick="myFunction('Demo4')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">perm_identity</i>Account Information</button>
-    <div id="Demo4" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
+    <button id="acctInfoButton" onclick="myFunction('acctInfo')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">perm_identity</i>Account Information</button>
+    <div id="acctInfo" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
       <p>Some other text..</p>
     </div>
     <!-- End Account Information -->
@@ -143,7 +143,7 @@
   <script>
 
     document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('Demo1Button').click();
+      document.getElementById('notificationsButton').click();
     });
 
     var count1 = 0;
@@ -153,11 +153,15 @@
 
     function myFunction(id) {
 
-      var ids = ['Demo1', 'Demo2', 'Demo3', 'Demo4'];
+      var ids = ['notifications', 'schedule', 'viewItems', 'acctInfo'];
 
-      if (id === 'Demo1'){
+      ids.forEach(function(a) {
+        document.getElementById(a + 'Button').classList.remove('button-active');
+      });
+
+      if (id === 'notifications'){
         for (var i = 0; i < ids.length; i++) {
-          if (ids[i] === 'Demo1') {
+          if (ids[i] === 'notifications') {
               ids.splice(i, 1);
           }
         }
@@ -170,19 +174,19 @@
           ids.forEach(function(y) {
             if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
               document.getElementById(y).classList.remove('w3-show');
-              if (y.indexOf('2') !== -1) {
+              if (y.indexOf('sch') !== -1) {
                 count2 += 1;
-              } else if (y.indexOf('3') !== -1) {
+              } else if (y.indexOf('vie') !== -1) {
                 count3 += 1;
-              } else if (y.indexOf('4') !== -1) {
+              } else if (y.indexOf('acc') !== -1) {
                 count4 += 1;
               }
             }
           });
         }
-      } else if (id === 'Demo2'){
+      } else if (id === 'schedule'){
         for (var i = 0; i < ids.length; i++) {
-          if (ids[i] === 'Demo2') {
+          if (ids[i] === 'schedule') {
               ids.splice(i, 1);
           }
         }
@@ -195,19 +199,19 @@
           ids.forEach(function(y) {
             if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
               document.getElementById(y).classList.remove('w3-show');
-              if (y.indexOf('1') !== -1) {
+              if (y.indexOf('not') !== -1) {
                 count1 += 1;
-              } else if (y.indexOf('3') !== -1) {
+              } else if (y.indexOf('vie') !== -1) {
                 count3 += 1;
-              } else if (y.indexOf('4') !== -1) {
+              } else if (y.indexOf('acc') !== -1) {
                 count4 += 1;
               }
             }
           });
         }
-      } else if (id === 'Demo3'){
+      } else if (id === 'viewItems'){
         for (var i = 0; i < ids.length; i++) {
-          if (ids[i] === 'Demo3') {
+          if (ids[i] === 'viewItems') {
               ids.splice(i, 1);
           }
         }
@@ -220,19 +224,19 @@
           ids.forEach(function(y) {
             if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
               document.getElementById(y).classList.remove('w3-show');
-              if (y.indexOf('2') !== -1) {
+              if (y.indexOf('sch') !== -1) {
                 count2 += 1;
-              } else if (y.indexOf('1') !== -1) {
+              } else if (y.indexOf('not') !== -1) {
                 count1 += 1;
-              } else if (y.indexOf('4') !== -1) {
+              } else if (y.indexOf('acc') !== -1) {
                 count4 += 1;
               }
             }
           });
         }
-      } else if (id === 'Demo4'){
+      } else if (id === 'acctInfo'){
         for (var i = 0; i < ids.length; i++) {
-          if (ids[i] === 'Demo4') {
+          if (ids[i] === 'acctInfo') {
               ids.splice(i, 1);
           }
         }
@@ -245,32 +249,19 @@
           ids.forEach(function(y) {
             if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
               document.getElementById(y).classList.remove('w3-show');
-              if (y.indexOf('2') !== -1) {
+              if (y.indexOf('sch') !== -1) {
                 count2 += 1;
-              } else if (y.indexOf('1') !== -1) {
+              } else if (y.indexOf('not') !== -1) {
                 count1 += 1;
-              } else if (y.indexOf('3') !== -1) {
+              } else if (y.indexOf('vie') !== -1) {
                 count3 += 1;
               }
             }
           });
         }
       }
+      window.scrollTo(0,0);
     }
-
-    // function myFunction(id) {
-    //   var ids = ['Demo1', 'Demo2', 'Demo3'];
-    //   ids.forEach(function(y) {
-    //     document.getElementById(y).classList.remove('w3-show');
-    //   });
-    //   var x = document.getElementById(id);
-    //   if (x.className.indexOf("w3-show") == -1) {
-    //     x.className += " w3-show";
-    //   } else { 
-    //     x.className = x.classList.remove("w3-show");
-    //   }
-    //   window.scrollTo(0, 0);
-    // }
   </script>
 
 </body>
