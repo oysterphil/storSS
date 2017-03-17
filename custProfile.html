@@ -4003,7 +4003,7 @@
           <!-- End Select Schedule Type -->
 
           <!-- Schedule Free Box Delivery -->
-          <div class="row">
+          <div id="boxDelivery" class="row" style="display: none;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
                 <div class="card-stacked">
@@ -4021,7 +4021,7 @@
           <!-- End Schedule Free Box Delivery -->
 
           <!-- Schedule Pickup -->
-          <div class="row">
+          <div id="pickup" class="row" style="display: none;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
                 <div class="card-stacked">
@@ -4039,6 +4039,9 @@
                         <div class="col m6 s12">
                           <i class="material-icons" style="font-size: 72px;color: #ff8b38;">schedule</i>
                           <h6>Select Pickup Time</h6>
+                          <div class="progress col m8 offset-m2 s10 offset-s1 center" id="loadingPickup" style="display: none;">
+                              <div class="indeterminate"></div>
+                          </div>
                           <div class="input-field">
                             <select id="pickupTime" class="browser-default col m8 offset-m2 s10 offset-s1 center" style="border: initial;border-bottom: 1px solid black">
                               <option value="" disabled selected>Pickup Time</option>
@@ -4059,7 +4062,7 @@
                 <div class="card-stacked">
                   <div class="card-content">
                     <div class="col s12 center">
-                      <h4>Step 2: Storage Info</h4>
+                      <h4>Step 2: Confirm Storage Info</h4>
                       <div class="row">
                         <div class="col m6 s12">
                           <img src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/58c75170440243bdb179e693/58c751966b8f5ba6ce5f7dc0/1489457558748/open-box-orange.png">
@@ -4145,6 +4148,7 @@
                           <label for="firstName">First Name</label>
                         </div>
                         <div class="input-field col s12 m6">
+                          <i class="material-icons prefix">account_circle</i>
                           <input id="lastName" type="text" class="validate">
                           <label for="lastName">Last Name</label>
                         </div>
@@ -4152,13 +4156,39 @@
                       <div class="row">
                         <div class="input-field col s12 m6">
                           <i class="material-icons prefix">phone</i>
-                          <input id="mobileNumber" type="text" class="validate">
-                          <label for="mobileNumber">Mobile Number</label>
+                          <input id="phoneNumber" type="text" class="validate">
+                          <label for="phoneNumber">Mobile Number</label>
                         </div>
                         <div class="input-field col s12 m6">
                           <i class="material-icons prefix">email</i>
                           <input id="email" type="text" class="validate">
                           <label for="email">Confirmation Email</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <h6 class="col s12">Do you live in a dorm, apartment, or house?</h6>
+                        <div class="input-field">
+                          <select id="housingType" class="browser-default col s12 m6 offset-m3" style="border: initial;">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="dorm">Dorm</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div id="housingTypeDorm" class="row" style="display: none;">
+                        <h6 class="col s12">Which Dorm?</h6>
+                        <div class="input-field">
+                          <select id="dormSelection" class="browser-default col s12 m6 offset-m3" style="border: initial;">
+                            <option value="" disabled selected>Choose your option</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div id="housingTypeApt" class="row" style="display: none;">
+                        <div class="input-field col s12 m6 offset-m3">
+                          <i class="material-icons prefix">phone</i>
+                          <input id="phoneNumber" type="text" class="validate">
+                          <label for="phoneNumber">Mobile Number</label>
                         </div>
                       </div>
                     </div>
@@ -4170,7 +4200,7 @@
           <!-- End Schedule Pickup -->
 
           <!-- Schedule Delivery -->
-          <div class="row">
+          <div id="delivery" class="row" style="display: none;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
                 <div class="card-stacked">
@@ -4188,7 +4218,7 @@
           <!-- End Schedule Delivery -->
 
           <!-- Schedule Donation -->
-          <div class="row">
+          <div id="donation" class="row" style="display: none;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
                 <div class="card-stacked">
@@ -4206,7 +4236,7 @@
           <!-- End Schedule Donation -->
 
           <!-- Schedule Junk Run -->
-          <div class="row">
+          <div id="junkRun" class="row" style="display: none;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
                 <div class="card-stacked">
@@ -4246,21 +4276,227 @@
     <script>
 
       var model = {
-        custLocation: {
-          university: 'American University',
-          acuityCalendarId: '529146',
-        },
         appointments: {
           boxDropOff: '1199172',
           pickup: '1199181',
           delivery: '1430200'
-        }
+        },
+        appState: {
+          mobileNavRequestsOn: false,
+          mobileNavAcctInfoOn: false,
+          navRequestsOn: false,
+          navAcctInfoOn: false,
+          registrationProgress: null,
+          firstLoginEmailPass: null,
+          firstLoginGoogleFacebook: null,
+          registerInfoComplete: null,
+          scheduledPickup: false,
+          determinedBoxPreference: false,
+          cardOnFile: false,
+          addCardOn: false
+        },
+        user: {
+          user: undefined,
+          signedIn: false,
+          userToken: null,
+          signupComplete: null
+        },
+        custMeta: {
+          uid: null,
+          firstName: null,
+          lastName: null,
+          email: 'test@gmail.com',
+          phoneNumber: null
+        },
+        custLocation: {
+          university: 'American University',
+          dorms: [
+            'Anderson Hall',
+            'Cassell Hall',
+            'Centennial Hall',
+            'Clark Hall',
+            'Hughes Hall',
+            'Leonard Hall',
+            'Letts Hall',
+            'McDowell Hall',
+            'Nebraska Hall',
+            'Roper Hall'
+          ],
+          acuityCalendarId: '529146',
+          housingType: null,
+          dorm: null,
+          dormSelection: null,
+          addressStreet1: null,
+          addressStreet2: null,
+          addressCity: null,
+          addressState: null,
+          addressZip: null
+        },
+        custStorage: {
+          boxEstimate: 3,
+          itemEstimate: 4,
+          monthEstimate: null,
+          coupon: false,
+          quoteValue: null,
+          discountedQuoteValue: null,
+          monthlyQuoteValue: null,
+          discountedMonthlyQuoteValue: null,
+          planEstimate: null,
+          priceBoxMonth: 15,
+          discountedPriceBoxMonth: 13.5,
+          priceItemMonth: 30,
+          discountedPriceItemMonth: 27,
+          discount: .1
+        },
+        custLegal: {
+          acceptTerms: null,
+          specialInstructions: null
+        },
+        custSupplies: {
+          shipSupplies: null
+        },
+        custScheduleTransfer: {
+          scheduleNow: null
+        },
+        custPaymentInfo: {
+            totalCharged: null,
+            stripeCcId: null,
+            stripeCustomerId: null,
+            ccExpMonth: null,
+            ccExpYear: null,
+            ccBrand: null,
+            ccLast4: null,
+            cardCharged: null,
+            placedOnFileUnixDate: null
+        },
+        custCharges: [
+          {
+            chargeId: 'ksdjhfsho323r',
+            chargeDate: '9/17/2015',
+            chargeAmount: 100,
+            chargeCardLast4: 5843,
+            success: true,
+            chargeReason: 'September Storage Bill for 5 boxes'
+          },
+          {
+            chargeId: 'safsdfnjek32',
+            chargeDate: '10/17/2015',
+            chargeAmount: 100,
+            chargeCardLast4: 5843,
+            success: true,
+            chargeReason: 'October Storage Bill for 5 boxes'
+          }
+        ],
+        numberOfItems: null,
+        items: [
+          {
+            customerId: null,
+            itemTagNumber: 1,
+            itemPhoto: 'img/img1.jpg',
+            itemDescription: 'Item1',
+            itemType: 'box',
+            greaterThanFiftyLbs: false
+          }
+        ],
+        numberOfTransfers: null,
+        transfers: [
+          {
+            transferId: 21312414,
+            transferType: 'Delivery',
+            transferDate: '1/15/2016',
+            transferFromAddress: '123 Example St',
+            transferToAddress: '3378 Stephenon',
+            transferStartTime: '2 pm',
+            transferEndTime: '2:30 pm',
+            transferFee: 0,
+            transferItems: [
+              {
+                itemTagNumber: 1,
+                itemDescription: 'Item1'
+              },
+              {
+                itemTagNumber: 2,
+                itemDescription: 'Item2'
+              }
+            ],
+            completed: true
+          },
+          {
+            transferId: 4756745645634,
+            transferType: 'Delivery',
+            transferDate: '3/13/2016',
+            transferFromAddress: '123 Example St',
+            transferToAddress: 'Hughes Hall',
+            transferStartTime: '4 pm',
+            transferEndTime: '4:30 pm',
+            transferFee: 0,
+            transferItems: [
+              {
+
+                itemTagNumber: 1,
+                itemDescription: 'Item1'
+              },
+              {
+                itemTagNumber: 2,
+                itemDescription: 'Item2'
+              }
+            ],
+            completed: true
+          },
+          {
+            transferId: 34645767434,
+            transferType: 'Delivery',
+            transferDate: '12/2/2017',
+            transferFromAddress: '123 Example St',
+            transferToAddress: 'Some Random Place',
+            transferStartTime: '11 am',
+            transferEndTime: '11:30 am',
+            transferFee: 0,
+            transferItems: [
+              {
+                itemTagNumber: 34,
+                itemDescription: 'Item34'
+              },
+              {
+                itemTagNumber: 432,
+                itemDescription: 'Item432'
+              }
+            ],
+            completed: false
+          }
+        ]
       }
 
       $("#pickupDate").on('change', vetDateDisplayTimes);
+      $("#scheduleType").on('change', displayScheduleType);
+
+      function displayScheduleType() {
+        var ids = ['boxDelivery', 'pickup', 'delivery', 'donation', 'junkRun'];
+        ids.forEach(function(id) {
+          document.getElementById(id).style.display = 'none';
+          if (id === document.getElementById('scheduleType').value) {
+            var reformattedId = id.charAt(0).toUpperCase() + id.slice(1);
+            var func = window['seed' + reformattedId];
+            func();
+          }
+        });
+        document.getElementById(document.getElementById('scheduleType').value).style.display = 'inline';
+      }
+
+      function seedPickup() {
+        document.getElementById('boxEstimate').value = model.custStorage.boxEstimate;
+        document.getElementById('itemEstimate').value = model.custStorage.itemEstimate;
+        document.getElementById('firstName').value = model.custMeta.firstName;
+        document.getElementById('lastName').value = model.custMeta.lastName;
+        document.getElementById('phoneNumber').value = model.custMeta.phoneNumber;
+        document.getElementById('email').value = model.custMeta.email;
+      }
+
+
 
       function vetDateDisplayTimes() {
-        console.log(document.getElementById('pickupDate').value);
+        document.getElementById('pickupTime').style.display = 'none';
+        document.getElementById('loadingPickup').style.display = 'inline';
         // Grab Chosen Date Value
         var date = document.getElementById('pickupDate').value;
         // Year in Date
@@ -4313,23 +4549,24 @@
                           if (times.indexOf(respTime) === -1) {
                             times.push(respTime + ' am');
                           }
-                        } else if (respTime.substring(0,2) === '12') {
-                          // Put in p.m. to 12
-                          if (times.indexOf(respTime) === -1) {
-                            times.push(respTime + ' pm');
-                          }
-                        } else if (respTime.substring(0,2).indexOf(time) === -1) {
-                          // Put in reformatted times after 12 pm
-                          var toReformat = Number(respTime.substring(0,2));
-                          if ((toReformat -12) > 0) {
-                            var reformattedHour = (toReformat - 12).toString();
-                            var reformattedTime = reformattedHour + respTime.substring(respTime.length - 3);
-                            if (times.indexOf(reformattedTime) === -1) {  
-                              times.push(reformattedTime + ' pm');
-                            }
-                          }
                         }
                       });
+                      if (respTime.substring(0,2) === '12') {
+                        // Put in p.m. to 12
+                        if (times.indexOf(respTime) === -1) {
+                          times.push(respTime + ' pm');
+                        }
+                      } else if (Number(respTime.substring(0,2)) > 12) {
+                        // Put in reformatted times after 12 pm
+                        var toReformat = Number(respTime.substring(0,2));
+                        if ((toReformat -12) > 0) {
+                          var reformattedHour = (toReformat - 12).toString();
+                          var reformattedTime = reformattedHour + respTime.substring(respTime.length - 3);
+                          if (times.indexOf(reformattedTime) === -1) {  
+                            times.push(reformattedTime + ' pm');
+                          }
+                        }
+                      }
                     });
 
                     for (var i = 0; i < times.length; i++) {
@@ -4339,6 +4576,8 @@
                     }
 
                     document.getElementById('pickupTimeErrorMessage').style.display = 'none';
+                    document.getElementById('pickupTime').style.display = 'inline';
+                    document.getElementById('loadingPickup').style.display = 'none';
                   },
                   error: function(err) {
                     document.getElementById('pickupTimeErrorMessage').style.color = 'red';
