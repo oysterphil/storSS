@@ -204,7 +204,7 @@
         font-weight: 300;
         font-size: 0.8rem;
         color: #fff;
-        background-color: #26a69a;
+        background-color: #ff8b38;
         border-radius: 2px;
       }
 
@@ -232,12 +232,12 @@
         top: 0;
         left: 0;
         bottom: 0;
-        background-color: #26a69a;
+        background-color: #ff8b38;
         transition: width .3s linear;
       }
 
       .progress .indeterminate {
-        background-color: #26a69a;
+        background-color: #ff8b38;
       }
 
       .progress .indeterminate:before {
@@ -1783,7 +1783,7 @@
         height: 40px;
         line-height: 40px;
         padding: 0;
-        background-color: #26a69a;
+        background-color: #ff8b38;
         border-radius: 50%;
         transition: .3s;
         cursor: pointer;
@@ -1800,7 +1800,7 @@
       }
 
       .btn-floating:hover {
-        background-color: #26a69a;
+        background-color: #ff8b38;
       }
 
       .btn-floating:before {
@@ -1923,7 +1923,7 @@
         z-index: -1;
         width: 40px;
         height: 40px;
-        background-color: #26a69a;
+        background-color: #ff8b38;
         border-radius: 50%;
         -webkit-transform: scale(0);
         transform: scale(0);
@@ -2008,7 +2008,7 @@
 
       .dropdown-content li > a, .dropdown-content li > span {
         font-size: 16px;
-        color: #26a69a;
+        color: #ff8b38;
         display: block;
         line-height: 22px;
         padding: 14px 16px;
@@ -2192,7 +2192,7 @@
       }
 
       select:focus {
-        outline: 1px solid #c9f3ef;
+        outline: 1px solid #fafafa;
       }
 
       label {
@@ -2317,8 +2317,8 @@
       input[type=number]:focus:not([readonly]),
       input[type=search]:focus:not([readonly]),
       textarea.materialize-textarea:focus:not([readonly]) {
-        border-bottom: 1px solid #26a69a;
-        box-shadow: 0 1px 0 0 #26a69a;
+        border-bottom: 1px solid #ff8b38;
+        box-shadow: 0 1px 0 0 #ff8b38;
       }
 
       input:not([type]):focus:not([readonly]) + label,
@@ -2334,7 +2334,7 @@
       input[type=number]:focus:not([readonly]) + label,
       input[type=search]:focus:not([readonly]) + label,
       textarea.materialize-textarea:focus:not([readonly]) + label {
-        color: #26a69a;
+        color: #ff8b38;
       }
 
       input:not([type]).valid, input:not([type]):focus.valid,
@@ -2544,7 +2544,7 @@
       }
 
       .input-field .prefix.active {
-        color: #26a69a;
+        color: #ff8b38;
       }
 
       .input-field .prefix ~ input,
@@ -2720,12 +2720,12 @@
       [type="radio"]:checked + label:after,
       [type="radio"].with-gap:checked + label:before,
       [type="radio"].with-gap:checked + label:after {
-        border: 2px solid #26a69a;
+        border: 2px solid #ff8b38;
       }
 
       [type="radio"]:checked + label:after,
       [type="radio"].with-gap:checked + label:after {
-        background-color: #26a69a;
+        background-color: #ff8b38;
       }
 
       [type="radio"]:checked + label:after {
@@ -2855,8 +2855,8 @@
         height: 22px;
         border-top: 2px solid transparent;
         border-left: 2px solid transparent;
-        border-right: 2px solid #26a69a;
-        border-bottom: 2px solid #26a69a;
+        border-right: 2px solid #ff8b38;
+        border-bottom: 2px solid #ff8b38;
         -webkit-transform: rotate(40deg);
         transform: rotate(40deg);
         -webkit-backface-visibility: hidden;
@@ -2878,7 +2878,7 @@
         height: 22px;
         border-top: none;
         border-left: none;
-        border-right: 2px solid #26a69a;
+        border-right: 2px solid #ff8b38;
         border-bottom: none;
         -webkit-transform: rotate(90deg);
         transform: rotate(90deg);
@@ -2947,8 +2947,8 @@
         top: 0;
         width: 20px;
         height: 20px;
-        border: 2px solid #26a69a;
-        background-color: #26a69a;
+        border: 2px solid #ff8b38;
+        background-color: #ff8b38;
         z-index: 0;
       }
 
@@ -2960,8 +2960,8 @@
 
       [type="checkbox"].filled-in.tabbed:checked:focus + label:after {
         border-radius: 2px;
-        background-color: #26a69a;
-        border-color: #26a69a;
+        background-color: #ff8b38;
+        border-color: #ff8b38;
       }
 
       [type="checkbox"].filled-in:disabled:not(:checked) + label:before {
@@ -3006,7 +3006,7 @@
       }
 
       .switch label input[type=checkbox]:checked + .lever:after {
-        background-color: #26a69a;
+        background-color: #ff8b38;
         left: 24px;
       }
 
@@ -3893,7 +3893,7 @@
         border-bottom: 1px solid #ddd;
         box-sizing: border-box;
         padding: 2rem;
-        background-color: #f5f5f5;
+        background-color: #eee;
       }
       .w3-left-align{
         text-align:left!important;
@@ -3975,11 +3975,25 @@
 
   <body>
 
-    <div class="collapsible">
+    <div class="row" id="checkingAuth" style="display: none;">
+      <h1 class="s12 center">
+        Loading...
+      </h1>
+      <div class="progress col s6 offset-s3">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+
+    <div id="unathenticated" style="display: none;">
+      <h5>You need to be a Storganize customer in order to log in. Please <a href="https://www.storganize.io/signupsummer2017">sign up</a> first.</h5>
+      <a class="waves-effect waves-light btn-large" id="testUpload" style="background-color: #ff8b38; margin-top:30px:">Test</a>
+    </div>
+
+    <div id="profile" class="collapsible" style="display: inline;">
       <!-- Notifications -->
       <button id="notificationsButton" onclick="myFunction('notifications')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">announcement</i>Notifications</button>
       <div id="notifications" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
-        <p>Some text..</p>
+        <p>Don't forget to schedule your pick up and request boxes if you need them!</p>
       </div>
       <!-- End Notifications -->
 
@@ -4043,14 +4057,14 @@
                               <div class="indeterminate"></div>
                           </div>
                           <div class="input-field">
-                            <select id="pickupTime" class="browser-default col m8 offset-m2 s10 offset-s1 center" style="border: initial;border-bottom: 1px solid black">
+                            <select id="pickupTime" class="browser-default col m8 offset-m2 s10 offset-s1 center" style="border: initial;border-bottom: 1px solid #9e9e9e">
                               <option value="" disabled selected>Pickup Time</option>
                             </select>
                           </div>
+                          <div class="row">
+                            <div id="pickupTimeErrorMessage" class="row col s10 offset-s1 m8 offset-m2 center" style="display: none;margin-top: 15px; margin-bottom: 0px; border: solid 1px green; "><p>Please select a pickup date before selecting a pickup time.</p></div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div id="pickupTimeErrorMessage" class="row col s10 offset-s1 m8 offset-m2 center" style="margin-top: 15px; margin-bottom: 0px; border: solid 1px green; "><p>Please select a pickup date before selecting a pickup time.</p></div>
                       </div>
                     </div>
                   </div>
@@ -4185,16 +4199,89 @@
                         </div>
                       </div>
                       <div id="housingTypeApt" class="row" style="display: none;">
-                        <div class="input-field col s12 m6 offset-m3">
-                          <i class="material-icons prefix">phone</i>
-                          <input id="phoneNumber" type="text" class="validate">
-                          <label for="phoneNumber">Mobile Number</label>
+                        <div class="input-field col s12 m8 offset-m2">
+                          <i class="material-icons prefix">business</i>
+                          <input id="addressStreet1" type="text" class="validate">
+                          <label for="addressStreet1">Address Line 1</label>
+                        </div>
+                        <div class="input-field col s12 m8 offset-m2">
+                          <input id="addressStreet2" type="text" class="validate">
+                          <label for="addressStreet2">Address Line 2</label>
+                        </div>
+                        <div class="input-field col s12 m3 offset-m2">
+                          <input id="addressCity" type="text" class="validate">
+                          <label for="addressCity">City</label>
+                        </div>
+                        <div class="input-field">
+                          <select id="addressState" class="input-field col s12 m2 browser-default">
+                            <option value="" disabled selected>State</option>
+                              <option value="AL">AL</option>
+                              <option value="AK">AK</option>
+                              <option value="AZ">AZ</option>
+                              <option value="AR">AR</option>
+                              <option value="CA">CA</option>
+                              <option value="CO">CO</option>
+                              <option value="CT">CT</option>
+                              <option value="DE">DE</option>
+                              <option value="DC">DC</option>
+                              <option value="FL">FL</option>
+                              <option value="GA">GA</option>
+                              <option value="HI">HI</option>
+                              <option value="ID">ID</option>
+                              <option value="IL">IL</option>
+                              <option value="IN">IN</option>
+                              <option value="IA">IA</option>
+                              <option value="KS">KS</option>
+                              <option value="KY">KY</option>
+                              <option value="LA">LA</option>
+                              <option value="ME">ME</option>
+                              <option value="MD">MD</option>
+                              <option value="MA">MA</option>
+                              <option value="MI">MI</option>
+                              <option value="MN">MN</option>
+                              <option value="MS">MS</option>
+                              <option value="MO">MO</option>
+                              <option value="MT">MT</option>
+                              <option value="NE">NE</option>
+                              <option value="NV">NV</option>
+                              <option value="NH">NH</option>
+                              <option value="NJ">NJ</option>
+                              <option value="NM">NM</option>
+                              <option value="NY">NY</option>
+                              <option value="NC">NC</option>
+                              <option value="ND">ND</option>
+                              <option value="OH">OH</option>
+                              <option value="OK">OK</option>
+                              <option value="OR">OR</option>
+                              <option value="PA">PA</option>
+                              <option value="RI">RI</option>
+                              <option value="SC">SC</option>
+                              <option value="SD">SD</option>
+                              <option value="TN">TN</option>
+                              <option value="TX">TX</option>
+                              <option value="UT">UT</option>
+                              <option value="VT">VT</option>
+                              <option value="VA">VA</option>
+                              <option value="WA">WA</option>
+                              <option value="WV">WV</option>
+                              <option value="WI">WI</option>
+                              <option value="WY">WY</option>
+                          </select>
+                        </div>
+                        <div class="input-field col s12 m3">
+                          <input id="addressZip" type="text" class="validate">
+                          <label for="addressZip">Zipcode</label>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="row">
+              <a class="waves-effect waves-light btn-large col s4 offset-s4" id="submitPickupForm" style="background-color: #ff8b38">
+                Submit
+              </a>
             </div>
           </div>
           <!-- End Schedule Pickup -->
@@ -4257,24 +4344,58 @@
       </div>
       <!-- End Schedule a ... -->
 
+      <!-- Box Drop Off Request -->
+      <button id="acctInfoButton" onclick="myFunction('acctInfo')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">perm_identity</i>Request (FREE) Boxes</button>
+      <div id="acctInfo" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
+        <iframe src="https://app.acuityscheduling.com/schedule.php?owner=11393255&appointmentType=1199172" width="100%" height="800" frameBorder="0"></iframe>
+        <script src="https://d3gxy7nm8y4yjr.cloudfront.net/js/embed.js" type="text/javascript"></script>
+      </div>
+      <!-- End Box Drop Off Request -->
+
       <!-- View Items -->
       <button id="viewItemsButton" onclick="myFunction('viewItems')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">view_quilt</i>View Items</button>
       <div id="viewItems" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
-        <p>Some other text..</p>
+        <p>You have no items. Schedule a pickup first!</p>
       </div>
       <!-- End View Items -->
-
-      <!-- Account Information -->
-      <button id="acctInfoButton" onclick="myFunction('acctInfo')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">perm_identity</i>Account Information</button>
-      <div id="acctInfo" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
-        <p>Some other text..</p>
+      <div class="center">
+        <br>
+        <a class="waves-effect waves-light btn-large" onclick="handleSignout()" style="background-color: #ff8b38; margin-top:30px:">Log Out</a>
       </div>
-      <!-- End Account Information -->
-
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
     <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDaF_ZEcsi-trYUb-HvgEtgW1s8vGHQJnM",
+        authDomain: "storganize-231a8.firebaseapp.com",
+        databaseURL: "https://storganize-231a8.firebaseio.com",
+        storageBucket: "storganize-231a8.appspot.com",
+        messagingSenderId: "346538977499"
+      };
+      firebase.initializeApp(config);
+    </script>
 
+    <script>
+      document.getElementById('testUpload').addEventListener('click', testUpload);
+      function testUpload() {
+        var foo ={};
+        var uid = '12345';
+        foo[uid] = true;
+        var custsRef = firebase.database().ref("roles/customers");
+        custsRef.update(newCust);
+      }
+
+      // Needed for this page
+      var count1 = 0;
+      var count2 = 0;
+      var count3 = 0;
+      var count4 = 0;
+      var times = [];
+      var acuityDateWithDay;
+
+      // For interaction with Firebase
       var model = {
         appointments: {
           boxDropOff: '1199172',
@@ -4323,9 +4444,9 @@
             'Roper Hall'
           ],
           acuityCalendarId: '529146',
-          housingType: null,
+          housingType: 'dorm',
           dorm: null,
-          dormSelection: null,
+          dormSelection: 'Anderson Hall',
           addressStreet1: null,
           addressStreet2: null,
           addressCity: null,
@@ -4467,8 +4588,175 @@
         ]
       }
 
+      function addRefs() {
+        var refUids;
+        referrers = {};
+
+        firebase.database().ref('/referrers/').once('value').then(function(snapshot) {
+
+          var loadReferrers = (snapshot.val());
+
+          console.log(loadReferrers);
+
+          refUids = Object.keys(loadReferrers);
+        
+          console.log(refUids);
+          
+          refUids.forEach(function(id) {
+            referrers[id] = true;
+          });
+
+        }).then(function() {
+          firebase.database().ref('roles/').set({
+            referrers
+          });
+        });
+      }
+
       $("#pickupDate").on('change', vetDateDisplayTimes);
       $("#scheduleType").on('change', displayScheduleType);
+      $("#housingType").on('change', housingTypePt2);
+      document.getElementById('submitPickupForm').addEventListener('click', submitPickupForm);
+      document.getElementById('pickupTime').addEventListener('click', function() {
+        if (!document.getElementById('pickupDate').value) {
+          Materialize.toast('Please select a pickup date before selecting a pickup time.', 4000)
+        }
+      });
+
+
+      //Event Listener for Auth State Change
+      firebase.auth().onAuthStateChanged(handleAuthStateChange);
+
+      function handleAuthStateChange() {
+        const user = firebase.auth().currentUser;
+
+        if (user) {
+
+          firebase.database().ref('/roles/customers').once('value').then(function(snapshot) {
+
+            var loadCustomers = (snapshot.val());
+            console.log(loadCustomers.hasOwnProperty(user.uid));
+            if (loadCustomers.hasOwnProperty(user.uid)) {
+              document.getElementById('profile').style.display = 'inline';
+              document.getElementById('checkingAuth').style.display = 'none';
+            }
+
+          });
+
+          warmUpApi();
+
+          console.log('in');
+
+        } else {
+
+          warmUpApi();
+          // document.getElementById('unathenticated').style.display = 'inline';
+          // document.getElementById('checkingAuth').style.display = 'none';
+        }
+      }
+
+      function handleSignout() {
+        event.preventDefault();
+        // Logout User
+        firebase.auth().signOut().then(function() {
+          window.location = "https://www.storganize.io/";
+        }, function(error) {
+          console.error('Sign Out Error', error);
+        });
+      }
+
+
+      function submitPickupForm() {
+        document.getElementById('pickup').style.display = 'none';
+        document.getElementById('confirmingRequest').style.display = 'inline';
+
+        // Log Selections to the Model
+        
+        // Box/Item Estimate
+        model.custStorage.boxEstimate = document.getElementById('boxEstimate').value;
+        model.custStorage.itemEstimate = document.getElementById('itemEstimate').value;
+        
+        // Personal Info
+        model.custMeta.firstName = document.getElementById('firstName').value;
+        model.custMeta.lastName = document.getElementById('lastName').value;
+        model.custMeta.phoneNumber = document.getElementById('phoneNumber').value;
+        model.custMeta.email = document.getElementById('email').value;
+        
+        // Housing Type
+        model.custLocation.housingType = document.getElementById('housingType').value;
+        
+        // Dorm
+        model.custLocation.dormSelection = document.getElementById('dormSelection').value;
+        
+        // Address
+        model.custLocation.addressStreet1 = document.getElementById('addressStreet1').value;
+        model.custLocation.addressStreet2 = document.getElementById('addressStreet2').value;
+        model.custLocation.addressCity = document.getElementById('addressCity').value;
+        model.custLocation.addressState = document.getElementById('addressState').value;
+        model.custLocation.addressZip = document.getElementById('addressZip').value;
+
+        // Get Acuity Date Time
+
+        // Get Time Selection
+        var selectionHumanTime = document.getElementById('pickupTime').value;
+        
+        // Convert Human Hour Time Selection into Acuity Format
+        var acuityHour;
+        var hour = Number(selectionHumanTime.substr(0,2));
+        if (hour > 0 && hour < 9) {
+          hour += 12;
+          acuityHour = hour.toString();
+        } else {
+          acuityHour = selectionHumanTime.substr(0,2);
+        }
+
+        // Get Minutes
+        var acuityMinutes = selectionHumanTime.substr(3,2);
+
+        // Finish Formatting Time/Date Selections into Acuity Format
+        var acuityDateTime;
+        acuityDateTime = acuityDateWithDay + 'T' + acuityHour + ':' + acuityMinutes + ':00-0400';
+
+        var payload = {
+          datetime: acuityDateTime,
+          appointmentTypeID: '1199181',
+          calendarID: '529146',
+          firstName: model.custMeta.firstName,
+          lastName: model.custMeta.lastName,
+          email: model.custMeta.email,
+          phone: model.custMeta.phoneNumber
+        };
+
+        $.post('https://young-plateau-13187.herokuapp.com/' + 'acuity/appointments', payload)
+          .done((data) => {
+            console.log(data);
+            success(data);
+          })
+          .fail((data) => {
+            console.log(data);
+            error(data);
+          });
+
+      }
+
+
+      function housingTypePt2() {
+        // Hide Selections 
+        document.getElementById('housingTypeDorm').style.display = 'none';
+        document.getElementById('housingTypeApt').style.display = 'none';
+
+        // Make Selection
+        if (document.getElementById('housingType').value === 'dorm') {
+          model.custLocation.dorms.forEach(function(dorm) {
+            var option = document.createElement("option");
+            option.text = dorm;
+            document.getElementById('dormSelection').appendChild(option);
+          });
+          document.getElementById('housingTypeDorm').style.display = 'inline';
+        } else if (document.getElementById('housingType').value === 'apartment' || document.getElementById('housingType').value === 'house') {
+          document.getElementById('housingTypeApt').style.display = 'inline';
+        }
+      }
 
       function displayScheduleType() {
         var ids = ['boxDelivery', 'pickup', 'delivery', 'donation', 'junkRun'];
@@ -4490,9 +4778,30 @@
         document.getElementById('lastName').value = model.custMeta.lastName;
         document.getElementById('phoneNumber').value = model.custMeta.phoneNumber;
         document.getElementById('email').value = model.custMeta.email;
+        document.getElementById('housingType').value = model.custLocation.housingType;
+        if (model.custLocation.dormSelection) {
+          housingTypePt2();
+          document.getElementById('dormSelection').value = model.custLocation.dormSelection;
+        } else if (true) {
+
+        }
+
+        // Activate the input fields that are filled in
+        Materialize.updateTextFields();
       }
 
-
+      function warmUpApi() {
+        $.ajax({
+          url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/dates/1199181/529146/2017-02',
+          type: "GET",
+          success: function(response) {
+            console.log('API ready');
+          },
+          error: function(err) {
+            console.log('Warm up failed.');
+          }
+        });
+      }
 
       function vetDateDisplayTimes() {
         document.getElementById('pickupTime').style.display = 'none';
@@ -4528,6 +4837,8 @@
 
         acuityDate = year + '-' + month;
 
+        acuityDateWithDay = acuityDate + '-' + day;
+
         $.ajax({
           url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/dates/' + model.appointments.pickup + '/' + model.custLocation.acuityCalendarId + '/' + acuityDate,
           type: "GET",
@@ -4539,7 +4850,8 @@
                   url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/times/' + model.appointments.pickup + '/' + model.custLocation.acuityCalendarId + '/' + acuityDate + '-' + day,
                   type: "GET",
                   success: function(response) {
-                    var times = [];
+                    console.log(response);
+                    times = [];
                     var normTimes = ['09','10','11'];
                     response.forEach(function(obj) {
                       var respTime = obj.time.substring(11,16);
@@ -4547,14 +4859,20 @@
                         if (respTime.substring(0,2) === time) {
                           // Put in times before 9 am
                           if (times.indexOf(respTime) === -1) {
-                            times.push(respTime + ' am');
+                            times.push({
+                              humanTime: respTime + ' am',
+                              acuityTime: obj.time
+                            });
                           }
                         }
                       });
                       if (respTime.substring(0,2) === '12') {
                         // Put in p.m. to 12
                         if (times.indexOf(respTime) === -1) {
-                          times.push(respTime + ' pm');
+                          times.push({
+                            humanTime: respTime + ' pm',
+                            acuityTime: obj.time
+                          });
                         }
                       } else if (Number(respTime.substring(0,2)) > 12) {
                         // Put in reformatted times after 12 pm
@@ -4563,15 +4881,23 @@
                           var reformattedHour = (toReformat - 12).toString();
                           var reformattedTime = reformattedHour + respTime.substring(respTime.length - 3);
                           if (times.indexOf(reformattedTime) === -1) {  
-                            times.push(reformattedTime + ' pm');
+                            times.push({
+                              humanTime: '0' + reformattedTime + ' pm',
+                              acuityTime: obj.time
+                            });
                           }
                         }
                       }
                     });
 
+                    document.getElementById('pickupTime').innerHTML = '';
+                    document.getElementById('pickupTime').innerHTML = '<option value="" disabled selected>' +
+                        'Pickup Time' +
+                      '</option>';
+
                     for (var i = 0; i < times.length; i++) {
                       var option = document.createElement("option");
-                      option.text = times[i];
+                      option.text = times[i].humanTime;
                       document.getElementById('pickupTime').appendChild(option);
                     }
 
@@ -4615,21 +4941,6 @@
         }
       }
 
-      function run() {
-        console.log(document.getElementById('pickupDate').value);
-
-        // $.ajax({
-        //   url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/dates/1199181/529146/2017-04',
-        //   type: "GET",
-        //   success: function(response) {
-        //     console.log(response);
-        //   },
-        //   error: function(err) {
-        //     console.log(err.message);
-        //   }
-        // });
-      }
-
       document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('notificationsButton').click();
         $('.datepicker').pickadate({
@@ -4637,11 +4948,6 @@
           selectYears: 1 // Creates a dropdown of 15 years to control year
         });
       });
-
-      var count1 = 0;
-      var count2 = 0;
-      var count3 = 0;
-      var count4 = 0;
 
       function myFunction(id) {
 
@@ -4758,3 +5064,5 @@
 
   </body>
 </html>
+
+

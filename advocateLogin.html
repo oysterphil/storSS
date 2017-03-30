@@ -1,6 +1,6 @@
 <!-- Login Form -->
 <div class="card-panel">
-  <h1 class="header center orange-text">Storganize Advocate Login</h1>
+  <h1 class="header center orange-text">Storganize Customer Login</h1>
   <form class="container" id="loginForm">
     <div class="row">
       <div class="input-field col m6 offset-m3 s12">
@@ -112,7 +112,7 @@
         const user = firebase.auth().currentUser;
 
         if (user) {
-          window.location="https://www.storganize.io/advocate-profile";
+          window.location="https://www.storganize.io/storganize-profile";
         } else {
           // No user is signed in.
         }

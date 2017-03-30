@@ -144,6 +144,17 @@
 		const user = firebase.auth().currentUser;
 
 		if (user) {
+				firebase.database().ref('/customers/').once('value').then(function(snapshot) {
+
+	            var loadReferrers = (snapshot.val());
+
+	            if (loadCustomers.hasOwnProperty(user.uid)) {
+	              document.getElementById('profile').style.display = 'inline';
+	              document.getElementById('checkingAuth').style.display = 'none';
+	            }
+
+	          });
+
 			firebase.database().ref('/referrers/' + user.uid).once('value').then(function(snapshot) {
 
 				var referrerInfo = (snapshot.val());

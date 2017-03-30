@@ -481,7 +481,9 @@
           handleAuthStateChange: () => {
             const user = firebase.auth().currentUser;
 
+
             if (user) {
+              const uid = user.uid;
 
               // Complete Login Flow - Send Sign-up Data to Firebase
               if (model.calculatorInputs.coupon) {
@@ -517,7 +519,14 @@
                       firebase.database().ref('custAppState/' + user.uid).set({
                         completedEstimate: model.appState.completedEstimate
                       }).then(function() {
-                        window.location = "https://www.storganize.io/storganize-profile";
+                        
+                        var newCust ={};
+                        newCust[uid] = true;
+                        console.log(newCust);
+                        var custsRef = firebase.database().ref("roles/customers");
+                        custsRef.update(newCust).then(function() {
+                          window.location = "https://www.storganize.io/storganize-profile";
+                        });
                       });
                     });
                   });
@@ -550,7 +559,14 @@
                       firebase.database().ref('custAppState/' + user.uid).set({
                         completedEstimate: model.appState.completedEstimate
                       }).then(function() {
-                        window.location = "https://www.storganize.io/storganize-profile";
+                        
+                        var newCust ={};
+                        newCust[uid] = true;
+                        console.log(newCust);
+                        var custsRef = firebase.database().ref("roles/customers");
+                        custsRef.update(newCust).then(function() {
+                          window.location = "https://www.storganize.io/storganize-profile";
+                        });
                       });
                     });
                   });
