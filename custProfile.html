@@ -4338,6 +4338,47 @@
           </div>
           <!-- End Schedule Junk Run -->
 
+          <!-- Confirming Request -->
+          <div id="confirmingRequest" class="row" style="display: none;">
+            <div class="col m10 offset-m1">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <div class="col s12 center">
+                      <div class="col s10 offset-s1 m6 offset-m3">
+                        <h3>Confirming Request</h3>
+                        <div class="progress col m8 offset-m2 s10 offset-s1 center">
+                            <div class="indeterminate"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Confirming Request -->
+
+          <!-- Request Confirmed -->
+          <div id="requestConfirmed" class="row" style="display: none;">
+            <div class="col m10 offset-m1">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <div class="col s12 center">
+                      <div class="col s10 offset-s1 m6 offset-m3">
+                        <i class="large material-icons green accent-3" style="font-size: 150px;color: #00e676">done</i>
+                        <h3 style="margin-top: 0px;">Success!</h3>
+                        <h6>You can view and edit your request details in the Notifications section above.</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Request Confirmed -->
+
         </div>
       </div>
       <!-- End Schedule a ... -->
@@ -4362,12 +4403,6 @@
       </div>
     </div>
 
-    <div class="row">
-      <a class="waves-effect waves-light btn-large col s4 offset-s4" id="reformatCustomers" style="background-color: #ff8b38">
-        Re-format
-      </a>
-    </div>
-
     <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -4382,46 +4417,25 @@
     </script>
 
     <script>
-      document.getElementById('reformatCustomers').addEventListener('click', reformatCustomers);
-      function reformatCustomers() {
+      // document.getElementById('reformatCustomers').addEventListener('click', reformatCustomers);
+      // function reformatCustomers() {
         
-        var customers;
+      //   var customers;
 
-        firebase.database().ref('/custSupplies/').once('value').then(function(snapshot) {
-          var custAppState = (snapshot.val());
-          customers = custAppState;
+      //   firebase.database().ref('/custSupplies/').once('value').then(function(snapshot) {
+      //     var custAppState = (snapshot.val());
+      //     customers = custAppState;
 
-          console.log(customers);
-          for (cust in customers) {
-            var obj = customers[cust];
-            console.log(obj);
-            var custsRef = firebase.database().ref("/customers/" + cust);
-            custsRef.update(obj);
-          }
-        });
+      //     console.log(customers);
+      //     for (cust in customers) {
+      //       var obj = customers[cust];
+      //       console.log(obj);
+      //       var custsRef = firebase.database().ref("/customers/" + cust);
+      //       custsRef.update(obj);
+      //     }
+      //   });
 
-
-        // firebase.database().ref('/custLegal/').once('value').then(function(snapshot) {
-        //   var custLegal = (snapshot.val());
-          
-        // }
-
-        // firebase.database().ref('/custLocation/').once('value').then(function(snapshot) {
-        //   var custLocation = (snapshot.val());
-          
-        // }
-
-        // firebase.database().ref('/custMeta/').once('value').then(function(snapshot) {
-        //   var custMeta = (snapshot.val());
-          
-        // }
-
-        // firebase.database().ref('/custStorage/').once('value').then(function(snapshot) {
-        //   var custStorage = (snapshot.val());
-          
-        // }
-
-      }
+      // }
 
       document.getElementById('testUpload').addEventListener('click', testUpload);
       function testUpload() {
@@ -4444,7 +4458,8 @@
         appointments: {
           boxDropOff: '1199172',
           pickup: '1199181',
-          delivery: '1430200'
+          delivery: '1430200',
+          type: null
         },
         appState: {
           mobileNavRequestsOn: false,
@@ -4716,8 +4731,9 @@
 
 
       function submitPickupForm() {
-        // document.getElementById('pickup').style.display = 'none';
-        // document.getElementById('confirmingRequest').style.display = 'inline';
+        document.getElementById('pickup').style.display = 'none';
+        document.getElementById('confirmingRequest').style.display = 'inline';
+        model.appointments.type = 'Pickup';
 
         // Log Selections to the Model
         
@@ -4761,6 +4777,26 @@
         $.post('https://young-plateau-13187.herokuapp.com/' + 'acuity/appointments', payload)
           .done((data) => {
             console.log(data);
+            document.getElementById('confirmingRequest').style.display = 'none';
+            document.getElementById('requestConfirmed').style.display = 'inline';
+
+            var transfer = {};
+            transfer[data.id] = {
+              dateCreated: data.dateCreated,
+              transferType: model.appointments.type,
+              transferDate: document.getElementById('pickupDate').value,
+              transferFromUniversity: model.custLocation.university,
+              transferFromDorm: model.custLocation.dormSelection,
+              transferFromAddress: document.getElementById('addressStreet1').value + ' ' + document.getElementById('addressStreet2').value + ' ' + document.getElementById('addressCity').value + ' ' + document.getElementById('addressState').value + ' ' + document.getElementById('addressZip').value,
+              transferToAddress: 'Storage',
+              transferStartTime: data.time,
+              transferEndTime: data.endTime,
+              transferFee: 0,
+              transferLink: data.confirmationPage,
+              completed: false
+            };
+            var transfersRef = firebase.database().ref("transfers/tXJuoyUFAPbacpY0GsQZRF8OcW82");
+            transfersRef.update(transfer);
           })
           .fail((data) => {
             console.log(data);
