@@ -1994,7 +1994,7 @@
       }
 
       .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
-        background-color: #eee;
+        background-color: #f5f5f5;
       }
 
       .dropdown-content li.active.selected {
@@ -3166,7 +3166,7 @@
       }
 
       .select-dropdown li.optgroup {
-        border-top: 1px solid #eee;
+        border-top: 1px solid #f5f5f5;
       }
 
       .select-dropdown li.optgroup.selected > span {
@@ -3876,8 +3876,6 @@
       }
       .collapsible {
         border-top: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        border-left: 1px solid #ddd;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
       }
       .collapsibleHeader {
@@ -3893,7 +3891,7 @@
         border-bottom: 1px solid #ddd;
         box-sizing: border-box;
         padding: 2rem;
-        background-color: #eee;
+        background-color: #f5f5f5;
       }
       .w3-left-align{
         text-align:left!important;
@@ -4093,7 +4091,7 @@
                             </p>
                             <br>
                             <p>
-                              Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/" target="_blank">FAQ.</a>
+                              Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-1-1/" target="_blank">FAQ.</a>
                             </p>
                           </div>
                           <div class="input-field">
@@ -4125,7 +4123,7 @@
                             </p>
                             <br>
                             <p>
-                              Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/" target="_blank">FAQ.</a>
+                              Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-1-1/" target="_blank">FAQ.</a>
                             </p>
                           </div>
                           <div class="input-field">
@@ -4364,6 +4362,12 @@
       </div>
     </div>
 
+    <div class="row">
+      <a class="waves-effect waves-light btn-large col s4 offset-s4" id="reformatCustomers" style="background-color: #ff8b38">
+        Re-format
+      </a>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -4378,6 +4382,47 @@
     </script>
 
     <script>
+      document.getElementById('reformatCustomers').addEventListener('click', reformatCustomers);
+      function reformatCustomers() {
+        
+        var customers;
+
+        firebase.database().ref('/custSupplies/').once('value').then(function(snapshot) {
+          var custAppState = (snapshot.val());
+          customers = custAppState;
+
+          console.log(customers);
+          for (cust in customers) {
+            var obj = customers[cust];
+            console.log(obj);
+            var custsRef = firebase.database().ref("/customers/" + cust);
+            custsRef.update(obj);
+          }
+        });
+
+
+        // firebase.database().ref('/custLegal/').once('value').then(function(snapshot) {
+        //   var custLegal = (snapshot.val());
+          
+        // }
+
+        // firebase.database().ref('/custLocation/').once('value').then(function(snapshot) {
+        //   var custLocation = (snapshot.val());
+          
+        // }
+
+        // firebase.database().ref('/custMeta/').once('value').then(function(snapshot) {
+        //   var custMeta = (snapshot.val());
+          
+        // }
+
+        // firebase.database().ref('/custStorage/').once('value').then(function(snapshot) {
+        //   var custStorage = (snapshot.val());
+          
+        // }
+
+      }
+
       document.getElementById('testUpload').addEventListener('click', testUpload);
       function testUpload() {
         var foo ={};
@@ -4393,7 +4438,6 @@
       var count3 = 0;
       var count4 = 0;
       var times = [];
-      var acuityDateWithDay;
 
       // For interaction with Firebase
       var model = {
@@ -4613,14 +4657,19 @@
         });
       }
 
+      // Disable all days before today on calendar
+      $('#pickupDate').pickadate({
+        min: true
+      });
+
       $("#pickupDate").on('change', vetDateDisplayTimes);
       $("#scheduleType").on('change', displayScheduleType);
       $("#housingType").on('change', housingTypePt2);
       document.getElementById('submitPickupForm').addEventListener('click', submitPickupForm);
       document.getElementById('pickupTime').addEventListener('click', function() {
         if (!document.getElementById('pickupDate').value) {
-          Materialize.toast('Please select a pickup date before selecting a pickup time.', 4000)
-        }
+          Materialize.toast('Please select a pickup date before selecting a pickup time.', 4000);
+        } 
       });
 
 
@@ -4667,8 +4716,8 @@
 
 
       function submitPickupForm() {
-        document.getElementById('pickup').style.display = 'none';
-        document.getElementById('confirmingRequest').style.display = 'inline';
+        // document.getElementById('pickup').style.display = 'none';
+        // document.getElementById('confirmingRequest').style.display = 'inline';
 
         // Log Selections to the Model
         
@@ -4695,31 +4744,13 @@
         model.custLocation.addressState = document.getElementById('addressState').value;
         model.custLocation.addressZip = document.getElementById('addressZip').value;
 
-        // Get Acuity Date Time
+        // Acuity Date Time
 
-        // Get Time Selection
-        var selectionHumanTime = document.getElementById('pickupTime').value;
-        
-        // Convert Human Hour Time Selection into Acuity Format
-        var acuityHour;
-        var hour = Number(selectionHumanTime.substr(0,2));
-        if (hour > 0 && hour < 9) {
-          hour += 12;
-          acuityHour = hour.toString();
-        } else {
-          acuityHour = selectionHumanTime.substr(0,2);
-        }
-
-        // Get Minutes
-        var acuityMinutes = selectionHumanTime.substr(3,2);
-
-        // Finish Formatting Time/Date Selections into Acuity Format
-        var acuityDateTime;
-        acuityDateTime = acuityDateWithDay + 'T' + acuityHour + ':' + acuityMinutes + ':00-0400';
+        var dateTime = document.getElementById('pickupTime').value;
 
         var payload = {
-          datetime: acuityDateTime,
-          appointmentTypeID: '1199181',
+          datetime: dateTime,
+          appointmentTypeID: '2815015',
           calendarID: '529146',
           firstName: model.custMeta.firstName,
           lastName: model.custMeta.lastName,
@@ -4730,11 +4761,9 @@
         $.post('https://young-plateau-13187.herokuapp.com/' + 'acuity/appointments', payload)
           .done((data) => {
             console.log(data);
-            success(data);
           })
           .fail((data) => {
             console.log(data);
-            error(data);
           });
 
       }
@@ -4783,7 +4812,7 @@
           housingTypePt2();
           document.getElementById('dormSelection').value = model.custLocation.dormSelection;
         } else if (true) {
-
+          // TO DO: seed Address info if live in apt/house
         }
 
         // Activate the input fields that are filled in
@@ -4837,12 +4866,16 @@
 
         acuityDate = year + '-' + month;
 
-        acuityDateWithDay = acuityDate + '-' + day;
-
         $.ajax({
           url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/dates/' + model.appointments.pickup + '/' + model.custLocation.acuityCalendarId + '/' + acuityDate,
           type: "GET",
           success: function(response) {
+            console.log(response);
+            if (response.length === 0) {
+              Materialize.toast('There are no available pickup times on this day. Please select another pickup day.', 4000);
+              document.getElementById('pickupTime').style.display = 'inline';
+              document.getElementById('loadingPickup').style.display = 'none';
+            }
             response.forEach(function(obj) {
               var respDate = obj.date.substr(obj.date.length - 2);
               if (day === respDate) {
@@ -4850,7 +4883,6 @@
                   url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/times/' + model.appointments.pickup + '/' + model.custLocation.acuityCalendarId + '/' + acuityDate + '-' + day,
                   type: "GET",
                   success: function(response) {
-                    console.log(response);
                     times = [];
                     var normTimes = ['09','10','11'];
                     response.forEach(function(obj) {
@@ -4898,6 +4930,7 @@
                     for (var i = 0; i < times.length; i++) {
                       var option = document.createElement("option");
                       option.text = times[i].humanTime;
+                      option.value = times[i].acuityTime;
                       document.getElementById('pickupTime').appendChild(option);
                     }
 

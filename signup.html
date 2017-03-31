@@ -53,7 +53,7 @@
     }
   </style>
 </head>
-<body style="background-color: #bbdefb;">
+<body style="background-color: #f5f5f5;">
 
   <!-- Signup Page -->
   <div class="section no-pad-bot">
@@ -88,7 +88,7 @@
                     </p>
                     <br>
                     <p>
-                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/" target="_blank">FAQ.</a>
+                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-1-1/" target="_blank">FAQ.</a>
                     </p>
                   </div>
                   <div class="input-field col m6 offset-m3 s12">
@@ -140,7 +140,7 @@
                     </p>
                     <br>
                     <p>
-                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/" target="_blank">FAQ.</a>
+                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-1-1/" target="_blank">FAQ.</a>
                     </p>
                   </div>
                   <div class="input-field col m6 offset-m3 s12">
@@ -194,7 +194,7 @@
                     </p>
                     <br>
                     <p>
-                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-fall16/" target="_blank">FAQ.</a>
+                      Want more information? Feel free to check out our <a href="https://www.storganize.io/faq-1-1/" target="_blank">FAQ.</a>
                     </p>
                   </div>
                 </div>
@@ -384,6 +384,7 @@
         itemEstimate: null,
         monthEstimate: null,
         coupon: false,
+        couponCode: null,
         quoteValue: null,
         discountedQuoteValue: null,
         monthlyQuoteValue: null,
@@ -393,7 +394,8 @@
         discountedPriceBoxMonth: 13.5,
         priceItemMonth: 30,
         discountedPriceItemMonth: 27,
-        discount: .1
+        discount: .1,
+        signUpDate: null
       },
       appState: {
         completedEstimate: false,
@@ -488,11 +490,12 @@
               // Complete Login Flow - Send Sign-up Data to Firebase
               if (model.calculatorInputs.coupon) {
                 // Send Discounted Storage Info to Firebase
-                firebase.database().ref('custStorage/' + user.uid).set({
+                firebase.database().ref('customers/' + user.uid).set({
                   storageTerm: model.calculatorInputs.monthEstimate,
                   boxEstimate: model.calculatorInputs.boxEstimate,
                   itemEstimate: model.calculatorInputs.itemEstimate,
                   coupon: model.calculatorInputs.coupon,
+                  couponCode: model.calculatorInputs.couponCode,
                   quoteValue: model.calculatorInputs.quoteValue,
                   monthlyQuoteValue: model.calculatorInputs.monthlyQuoteValue,
                   discountedQuoteValue: model.calculatorInputs.discountedQuoteValue,
@@ -503,37 +506,24 @@
                   discountedPriceBoxMonth: model.calculatorInputs.discountedPriceBoxMonth,
                   discountedPriceItemMonth: model.calculatorInputs.discountedPriceItemMonth,
                   discount: model.calculatorInputs.discount,
-                  boxActual: null,
-                  itemActual: null
-                }).then(function(){
-                  // Send Legal Info to Firebase
-                  firebase.database().ref('custLegal/' + user.uid).set({
-                    acceptTerms: model.custLegal.acceptTerms
-                  }).then(function() {
-                    firebase.database().ref('custMeta/' + user.uid).set({
-                      firstName: model.custMeta.firstName,
-                      lastName: model.custMeta.lastName,
-                      email: model.custMeta.email
-                    }).then(function() {
-                      // Send App State Info to Firebase
-                      firebase.database().ref('custAppState/' + user.uid).set({
-                        completedEstimate: model.appState.completedEstimate
-                      }).then(function() {
-                        
-                        var newCust ={};
-                        newCust[uid] = true;
-                        console.log(newCust);
-                        var custsRef = firebase.database().ref("roles/customers");
-                        custsRef.update(newCust).then(function() {
-                          window.location = "https://www.storganize.io/storganize-profile";
-                        });
-                      });
+                  acceptTerms: model.custLegal.acceptTerms,
+                  firstName: model.custMeta.firstName,
+                  lastName: model.custMeta.lastName,
+                  email: model.custMeta.email,
+                  completedEstimate: model.appState.completedEstimate,
+                  signUpDate: model.calculatorInputs.signUpDate
+                }).then(function() {        
+                    var newCust ={};
+                    newCust[uid] = true;
+                    console.log(newCust);
+                    var custsRef = firebase.database().ref("roles/customers");
+                    custsRef.update(newCust).then(function() {
+                      window.location = "https://www.storganize.io/storganize-profile";
                     });
                   });
-                });
               } else {
                 // Send Storage Info to Firebase
-                firebase.database().ref('custStorage/' + user.uid).set({
+                firebase.database().ref('customers/' + user.uid).set({
                   storageTerm: model.calculatorInputs.monthEstimate,
                   boxEstimate: model.calculatorInputs.boxEstimate,
                   itemEstimate: model.calculatorInputs.itemEstimate,
@@ -543,34 +533,21 @@
                   planEstimate: model.calculatorInputs.planEstimate,
                   priceBoxMonth: model.calculatorInputs.priceBoxMonth,
                   priceItemMonth: model.calculatorInputs.priceItemMonth,
-                  boxActual: null,
-                  itemActual: null
-                }).then(function(){
-                  // Send Legal Info to Firebase
-                  firebase.database().ref('custLegal/' + user.uid).set({
-                    acceptTerms: model.custLegal.acceptTerms
-                  }).then(function() {
-                    firebase.database().ref('custMeta/' + user.uid).set({
-                      firstName: model.custMeta.firstName,
-                      lastName: model.custMeta.lastName,
-                      email: model.custMeta.email
-                    }).then(function() {
-                      // Send App State Info to Firebase
-                      firebase.database().ref('custAppState/' + user.uid).set({
-                        completedEstimate: model.appState.completedEstimate
-                      }).then(function() {
-                        
-                        var newCust ={};
-                        newCust[uid] = true;
-                        console.log(newCust);
-                        var custsRef = firebase.database().ref("roles/customers");
-                        custsRef.update(newCust).then(function() {
-                          window.location = "https://www.storganize.io/storganize-profile";
-                        });
-                      });
+                  acceptTerms: model.custLegal.acceptTerms,
+                  firstName: model.custMeta.firstName,
+                  lastName: model.custMeta.lastName,
+                  email: model.custMeta.email,
+                  completedEstimate: model.appState.completedEstimate,
+                  signUpDate: model.calculatorInputs.signUpDate
+                }).then(function() {        
+                    var newCust ={};
+                    newCust[uid] = true;
+                    console.log(newCust);
+                    var custsRef = firebase.database().ref("roles/customers");
+                    custsRef.update(newCust).then(function() {
+                      window.location = "https://www.storganize.io/storganize-profile";
                     });
                   });
-                });
               }
             } else {
               // No user is signed in.
@@ -609,6 +586,8 @@
 
     // Event Listener for the Generate Quote Button
     document.getElementById('display-generateQuote').addEventListener('click', function() {
+        var date = new Date();
+        model.calculatorInputs.signUpDate = date.toString();
         document.getElementById('display-generateQuote').style.display = 'none';
         calculateQuote();
       }, false);
@@ -843,7 +822,8 @@
           if (coup === couponInput) {
 
             // Coupon = True in Model
-            m.coupon = couponInput;
+            m.coupon = true;
+            m.couponCode = couponInput;
              
           }
         });
