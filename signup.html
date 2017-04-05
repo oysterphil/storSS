@@ -258,6 +258,34 @@
         </div>
         <!-- End Storage Term --> 
 
+        <!-- University --> 
+        <div class="col m10 offset-m1" id="universitySelection" style="display: none;">
+          <div class="card horizontal">
+            <div class="card-stacked">
+              <div class="card-content">
+                <div class="col s12 center">
+                  <img src="https://static1.squarespace.com/static/54f739b1e4b016a7c95a390f/t/58e4fddb440243b9b7ee131e/1491402203937/graduation-cap.png">
+                </div>
+                <div class="row col s12 center">
+                  <h4>What University do you go to?</h4>
+                  <div class="input-field col m6 offset-m3 s12">
+                    <select id="university" class="browser-default" style="border: initial;">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="au">American University</option>
+                      <option value="cnu">Christopher Newport University</option>
+                      <option value="gu">Georgetown University</option>
+                      <option value="gwu">George Washington University</option>
+                      <option value="odu">Old Dominion University</option>
+                      <option value="umd">University of Maryland</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Estimate Boxes -->
+
         <!-- Show Quote Trigger -->
         <div id="display-generateQuoteBox" class="col s12 center">
           <a id="display-generateQuote" class="needHelp waves-effect waves-light btn-large disabled" style="background-color: #ff8b38; margin: 15px;">
@@ -395,7 +423,12 @@
         priceItemMonth: 30,
         discountedPriceItemMonth: 27,
         discount: .1,
-        signUpDate: null
+        signUpDate: null,
+        university: null,
+        calendarId: null,
+        itemPlanId: '1199181',
+        aptPlanId: '2772376',
+        specialPlanId: null
       },
       appState: {
         completedEstimate: false,
@@ -511,7 +544,12 @@
                   lastName: model.custMeta.lastName,
                   email: model.custMeta.email,
                   completedEstimate: model.appState.completedEstimate,
-                  signUpDate: model.calculatorInputs.signUpDate
+                  signUpDate: model.calculatorInputs.signUpDate,
+                  university: model.calculatorInputs.university,
+                  calendarId: model.calculatorInputs.calendarId,
+                  itemPlanId: model.calculatorInputs.itemPlanId,
+                  aptPlanId: model.calculatorInputs.aptPlanId,
+                  specialPlanId: model.calculatorInputs.specialPlanId
                 }).then(function() {        
                     var newCust ={};
                     newCust[uid] = true;
@@ -538,7 +576,12 @@
                   lastName: model.custMeta.lastName,
                   email: model.custMeta.email,
                   completedEstimate: model.appState.completedEstimate,
-                  signUpDate: model.calculatorInputs.signUpDate
+                  signUpDate: model.calculatorInputs.signUpDate,
+                  university: model.calculatorInputs.university,
+                  calendarId: model.calculatorInputs.calendarId,
+                  itemPlanId: model.calculatorInputs.itemPlanId,
+                  aptPlanId: model.calculatorInputs.aptPlanId,
+                  specialPlanId: model.calculatorInputs.specialPlanId
                 }).then(function() {        
                     var newCust ={};
                     newCust[uid] = true;
@@ -554,6 +597,14 @@
               console.log('No one is logged in.');
             }
           }
+      },
+      acuity: {
+        auCalendarID: '1095505',
+        cnuCalendarID: '1095625',
+        oduCalendarID: '1095661',
+        guUmdGwucalendarID: '1095697',
+        itemPlanPickupAuMay9May10Id: '2772538',
+        itemPlanPickupOduCnuMay2Id: '2772811'
       },
       coupons: [
       ]
@@ -573,6 +624,7 @@
     $("#endMonthEstimate").on('change', manageCalculatorInputs);
     $("#boxEstimate").on('change', manageCalculatorInputs);
     $("#itemEstimate").on('change', manageCalculatorInputs);
+    $("#university").on('change', manageCalculatorInputs);
 
     // Coupon Event Listener
     document.getElementById('checkCouponStatus').addEventListener('click', checkCouponStatus, false);
@@ -645,6 +697,32 @@
         
         // Log input to model
         model.calculatorInputs.itemEstimate = document.getElementById('itemEstimate').value; 
+
+        if (document.getElementById('generateQuote').style.display === 'none') {
+          displayGetQuoteButton();
+        } else {
+          calculateQuote();
+        }
+      } else if (selection === 'university') {
+        
+        // Log input to model
+        model.calculatorInputs.university = document.getElementById('university').value; 
+
+        var uni = model.calculatorInputs.university;
+        var a = model.acuity;
+
+        if (uni === 'au') {
+          model.calculatorInputs.calendarId = a.auCalendarID;
+          model.calculatorInputs.specialPlanId = a.itemPlanPickupAuMay9May10Id;
+        } else if (uni === 'cnu') {
+          model.calculatorInputs.calendarId = a.cnuCalendarID;
+          model.calculatorInputs.specialPlanId = a.itemPlanPickupOduCnuMay2Id;
+        } else if (uni === 'odu') {
+          model.calculatorInputs.calendarId = oduCalendarID;
+          model.calculatorInputs.specialPlanId = a.itemPlanPickupOduCnuMay2Id;
+        } else {
+          model.calculatorInputs.calendarId = a.guUmdGwucalendarID;
+        }
 
         if (document.getElementById('generateQuote').style.display === 'none') {
           displayGetQuoteButton();
@@ -747,7 +825,7 @@
 
     function displayGetQuoteButton() {
       var m = model.calculatorInputs;
-      if (m.boxEstimate && m.itemEstimate && m.monthEstimate) {
+      if (m.boxEstimate && m.itemEstimate && m.monthEstimate && m.university) {
           document.getElementById('display-generateQuote').classList.remove('disabled');
       }
     }
@@ -812,8 +890,6 @@
             model.coupons.push(referrers[prop].refCode);
         }
 
-        console.log(model.coupons);
-
         var couponInput = document.getElementById('coupon').value;
 
         var m = model.calculatorInputs;
@@ -872,6 +948,34 @@
 
       }); 
     }
+
+    function grabUniversity() {
+      var link = window.location.href;
+      var startOfUniversity = link.indexOf("=") + 1;
+      var uni = link.slice(startOfUniversity, link.length);
+      var a = model.acuity;
+
+      if (uni === 'au') {
+        model.calculatorInputs.calendarId = a.auCalendarID;
+        model.calculatorInputs.specialPlanId = a.itemPlanPickupAuMay9May10Id;
+      } else if (uni === 'cnu') {
+        model.calculatorInputs.calendarId = a.cnuCalendarID;
+        model.calculatorInputs.specialPlanId = a.itemPlanPickupOduCnuMay2Id;
+      } else if (uni === 'odu') {
+        model.calculatorInputs.calendarId = a.oduCalendarID;
+        model.calculatorInputs.specialPlanId = a.itemPlanPickupOduCnuMay2Id;
+      } else {
+        model.calculatorInputs.calendarId = a.guUmdGwucalendarID;
+      }
+      
+      if (uni === 'au' || uni === 'cnu' || uni === 'odu' || uni === 'umd' || uni === 'gu' || uni === 'gwu') {
+        model.calculatorInputs.university = uni;
+      } else {
+        document.getElementById('universitySelection').style.display = 'inline';
+      }
+    }
+
+    grabUniversity();
 
   </script>
   <!-- End Main Logic -->
