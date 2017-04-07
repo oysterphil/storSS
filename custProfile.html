@@ -4452,14 +4452,44 @@
 
       // }
 
-      document.getElementById('testUpload').addEventListener('click', testUpload);
-      function testUpload() {
-        var foo ={};
-        var uid = '12345';
-        foo[uid] = true;
-        var custsRef = firebase.database().ref("roles/customers");
-        custsRef.update(newCust);
-      }
+      // document.getElementById('testUpload').addEventListener('click', testUpload);
+      // function testUpload() {
+      //   var dorms = {};
+      //   model.universities.forEach(function(uni) {
+      //     var obj = {};
+      //     for (var i = 0; i < uni.dorms.length; i++) {
+      //       obj[i] = uni.dorms[i];
+      //     }
+      //     dorms[uni.name] = obj;
+      //   });
+      //   var dormsRef = firebase.database().ref('dorms/');
+      //     dormsRef.set(dorms);
+      // }
+
+            // function addRefs() {
+      //   var refUids;
+      //   referrers = {};
+
+      //   firebase.database().ref('/referrers/').once('value').then(function(snapshot) {
+
+      //     var loadReferrers = (snapshot.val());
+
+      //     console.log(loadReferrers);
+
+      //     refUids = Object.keys(loadReferrers);
+        
+      //     console.log(refUids);
+          
+      //     refUids.forEach(function(id) {
+      //       referrers[id] = true;
+      //     });
+
+      //   }).then(function() {
+      //     firebase.database().ref('roles/').set({
+      //       referrers
+      //     });
+      //   });
+      // }
 
       // Needed for this page
       var count1 = 0;
@@ -4470,221 +4500,14 @@
 
       // For interaction with Firebase
       var model = {
+        customer: null,
+        transfers: null,
         appointments: {
-          boxDropOff: '1199172',
-          pickup: '1199181',
-          delivery: '1430200',
           type: null
         },
-        appState: {
-          mobileNavRequestsOn: false,
-          mobileNavAcctInfoOn: false,
-          navRequestsOn: false,
-          navAcctInfoOn: false,
-          registrationProgress: null,
-          firstLoginEmailPass: null,
-          firstLoginGoogleFacebook: null,
-          registerInfoComplete: null,
-          scheduledPickup: false,
-          determinedBoxPreference: false,
-          cardOnFile: false,
-          addCardOn: false
-        },
-        user: {
-          user: undefined,
-          signedIn: false,
-          userToken: null,
-          signupComplete: null
-        },
-        custMeta: {
-          uid: null,
-          firstName: null,
-          lastName: null,
-          email: 'test@gmail.com',
-          phoneNumber: null
-        },
-        custLocation: {
-          university: 'American University',
-          dorms: [
-            'Anderson Hall',
-            'Cassell Hall',
-            'Centennial Hall',
-            'Clark Hall',
-            'Hughes Hall',
-            'Leonard Hall',
-            'Letts Hall',
-            'McDowell Hall',
-            'Nebraska Hall',
-            'Roper Hall'
-          ],
-          acuityCalendarId: '529146',
-          housingType: 'dorm',
-          dorm: null,
-          dormSelection: 'Anderson Hall',
-          addressStreet1: null,
-          addressStreet2: null,
-          addressCity: null,
-          addressState: null,
-          addressZip: null
-        },
-        custStorage: {
-          boxEstimate: 3,
-          itemEstimate: 4,
-          monthEstimate: null,
-          coupon: false,
-          quoteValue: null,
-          discountedQuoteValue: null,
-          monthlyQuoteValue: null,
-          discountedMonthlyQuoteValue: null,
-          planEstimate: null,
-          priceBoxMonth: 15,
-          discountedPriceBoxMonth: 13.5,
-          priceItemMonth: 30,
-          discountedPriceItemMonth: 27,
-          discount: .1
-        },
-        custLegal: {
-          acceptTerms: null,
-          specialInstructions: null
-        },
-        custSupplies: {
-          shipSupplies: null
-        },
-        custScheduleTransfer: {
-          scheduleNow: null
-        },
-        custPaymentInfo: {
-            totalCharged: null,
-            stripeCcId: null,
-            stripeCustomerId: null,
-            ccExpMonth: null,
-            ccExpYear: null,
-            ccBrand: null,
-            ccLast4: null,
-            cardCharged: null,
-            placedOnFileUnixDate: null
-        },
-        custCharges: [
-          {
-            chargeId: 'ksdjhfsho323r',
-            chargeDate: '9/17/2015',
-            chargeAmount: 100,
-            chargeCardLast4: 5843,
-            success: true,
-            chargeReason: 'September Storage Bill for 5 boxes'
-          },
-          {
-            chargeId: 'safsdfnjek32',
-            chargeDate: '10/17/2015',
-            chargeAmount: 100,
-            chargeCardLast4: 5843,
-            success: true,
-            chargeReason: 'October Storage Bill for 5 boxes'
-          }
-        ],
-        numberOfItems: null,
-        items: [
-          {
-            customerId: null,
-            itemTagNumber: 1,
-            itemPhoto: 'img/img1.jpg',
-            itemDescription: 'Item1',
-            itemType: 'box',
-            greaterThanFiftyLbs: false
-          }
-        ],
-        numberOfTransfers: null,
-        transfers: [
-          {
-            transferId: 21312414,
-            transferType: 'Delivery',
-            transferDate: '1/15/2016',
-            transferFromAddress: '123 Example St',
-            transferToAddress: '3378 Stephenon',
-            transferStartTime: '2 pm',
-            transferEndTime: '2:30 pm',
-            transferFee: 0,
-            transferItems: [
-              {
-                itemTagNumber: 1,
-                itemDescription: 'Item1'
-              },
-              {
-                itemTagNumber: 2,
-                itemDescription: 'Item2'
-              }
-            ],
-            completed: true
-          },
-          {
-            transferId: 4756745645634,
-            transferType: 'Delivery',
-            transferDate: '3/13/2016',
-            transferFromAddress: '123 Example St',
-            transferToAddress: 'Hughes Hall',
-            transferStartTime: '4 pm',
-            transferEndTime: '4:30 pm',
-            transferFee: 0,
-            transferItems: [
-              {
-
-                itemTagNumber: 1,
-                itemDescription: 'Item1'
-              },
-              {
-                itemTagNumber: 2,
-                itemDescription: 'Item2'
-              }
-            ],
-            completed: true
-          },
-          {
-            transferId: 34645767434,
-            transferType: 'Delivery',
-            transferDate: '12/2/2017',
-            transferFromAddress: '123 Example St',
-            transferToAddress: 'Some Random Place',
-            transferStartTime: '11 am',
-            transferEndTime: '11:30 am',
-            transferFee: 0,
-            transferItems: [
-              {
-                itemTagNumber: 34,
-                itemDescription: 'Item34'
-              },
-              {
-                itemTagNumber: 432,
-                itemDescription: 'Item432'
-              }
-            ],
-            completed: false
-          }
-        ]
-      }
-
-      function addRefs() {
-        var refUids;
-        referrers = {};
-
-        firebase.database().ref('/referrers/').once('value').then(function(snapshot) {
-
-          var loadReferrers = (snapshot.val());
-
-          console.log(loadReferrers);
-
-          refUids = Object.keys(loadReferrers);
-        
-          console.log(refUids);
-          
-          refUids.forEach(function(id) {
-            referrers[id] = true;
-          });
-
-        }).then(function() {
-          firebase.database().ref('roles/').set({
-            referrers
-          });
-        });
+        dorms: null,
+        date: null,
+        uid: null
       }
 
       // Disable all days before today on calendar
@@ -4703,11 +4526,12 @@
       });
 
 
-      //Event Listener for Auth State Change
+      // Event Listener for Auth State Change
       firebase.auth().onAuthStateChanged(handleAuthStateChange);
 
       function handleAuthStateChange() {
         const user = firebase.auth().currentUser;
+        model.uid = user.uid;
 
         if (user) {
 
@@ -4716,10 +4540,15 @@
             var loadCustomers = (snapshot.val());
             console.log(loadCustomers.hasOwnProperty(user.uid));
             if (loadCustomers.hasOwnProperty(user.uid)) {
+              firebase.database().ref('/customers/' + user.uid).once('value').then(function(snapshot) {
+                model.customer = (snapshot.val());
+                firebase.database().ref('/dorms/' + model.customer.university + 'Dorms/').once('value').then(function(snapshot) {
+                  model.dorms = (snapshot.val());
+                });
+              });
               document.getElementById('profile').style.display = 'inline';
               document.getElementById('checkingAuth').style.display = 'none';
             }
-
           });
 
           warmUpApi();
@@ -4729,8 +4558,8 @@
         } else {
 
           warmUpApi();
-          // document.getElementById('unathenticated').style.display = 'inline';
-          // document.getElementById('checkingAuth').style.display = 'none';
+          document.getElementById('unathenticated').style.display = 'inline';
+          document.getElementById('checkingAuth').style.display = 'none';
         }
       }
 
@@ -4753,40 +4582,63 @@
         // Log Selections to the Model
         
         // Box/Item Estimate
-        model.custStorage.boxEstimate = document.getElementById('boxEstimate').value;
-        model.custStorage.itemEstimate = document.getElementById('itemEstimate').value;
+        model.customer.boxEstimate = document.getElementById('boxEstimate').value;
+        model.customer.itemEstimate = document.getElementById('itemEstimate').value;
         
         // Personal Info
-        model.custMeta.firstName = document.getElementById('firstName').value;
-        model.custMeta.lastName = document.getElementById('lastName').value;
-        model.custMeta.phoneNumber = document.getElementById('phoneNumber').value;
-        model.custMeta.email = document.getElementById('email').value;
+        model.customer.firstName = document.getElementById('firstName').value;
+        model.customer.lastName = document.getElementById('lastName').value;
+        model.customer.phoneNumber = document.getElementById('phoneNumber').value;
+        model.customer.email = document.getElementById('email').value;
         
         // Housing Type
-        model.custLocation.housingType = document.getElementById('housingType').value;
+        model.customer.housingType = document.getElementById('housingType').value;
         
         // Dorm
-        model.custLocation.dormSelection = document.getElementById('dormSelection').value;
+        model.customer.dormSelection = document.getElementById('dormSelection').value;
         
         // Address
-        model.custLocation.addressStreet1 = document.getElementById('addressStreet1').value;
-        model.custLocation.addressStreet2 = document.getElementById('addressStreet2').value;
-        model.custLocation.addressCity = document.getElementById('addressCity').value;
-        model.custLocation.addressState = document.getElementById('addressState').value;
-        model.custLocation.addressZip = document.getElementById('addressZip').value;
+        model.customer.addressStreet1 = document.getElementById('addressStreet1').value;
+        model.customer.addressStreet2 = document.getElementById('addressStreet2').value;
+        model.customer.addressCity = document.getElementById('addressCity').value;
+        model.customer.addressState = document.getElementById('addressState').value;
+        model.customer.addressZip = document.getElementById('addressZip').value;
 
         // Acuity Date Time
 
         var dateTime = document.getElementById('pickupTime').value;
 
+        var apptId;
+
+        if (model.customer.university === 'au') {
+          if (model.date === '2017-05-09' || model.date === '2017-05-10') {
+            apptId = model.customer.specialPlanId;
+          } else {
+            apptId = model.customer.itemPlanId;
+          }
+        }
+
+        if (model.customer.university === 'cnu' || model.customer.university === 'odu') {
+          if (model.date === '2017-05-02') {
+            apptId = model.customer.specialPlanId;
+          } else {
+            apptId = model.customer.itemPlanId;
+          }
+        }
+
+        if (model.customer.boxEstimate > 10 || model.customer.itemEstimate > 7) {
+          apptId = model.customer.aptPlanId;
+        }
+        
+
         var payload = {
           datetime: dateTime,
-          appointmentTypeID: '2815015',
-          calendarID: '529146',
-          firstName: model.custMeta.firstName,
-          lastName: model.custMeta.lastName,
-          email: model.custMeta.email,
-          phone: model.custMeta.phoneNumber
+          appointmentTypeID: apptId,
+          calendarID: model.customer.calendarID,
+          firstName: model.customer.firstName,
+          lastName: model.customer.lastName,
+          email: model.customer.email,
+          phone: model.customer.phoneNumber
         };
 
         $.post('https://young-plateau-13187.herokuapp.com/' + 'acuity/appointments', payload)
@@ -4800,8 +4652,8 @@
               dateCreated: data.dateCreated,
               transferType: model.appointments.type,
               transferDate: document.getElementById('pickupDate').value,
-              transferFromUniversity: model.custLocation.university,
-              transferFromDorm: model.custLocation.dormSelection,
+              transferFromUniversity: model.customer.university,
+              transferFromDorm: model.customer.dormSelection,
               transferFromAddress: document.getElementById('addressStreet1').value + ' ' + document.getElementById('addressStreet2').value + ' ' + document.getElementById('addressCity').value + ' ' + document.getElementById('addressState').value + ' ' + document.getElementById('addressZip').value,
               transferToAddress: 'Storage',
               transferStartTime: data.time,
@@ -4810,8 +4662,27 @@
               transferLink: data.confirmationPage,
               completed: false
             };
-            var transfersRef = firebase.database().ref("transfers/tXJuoyUFAPbacpY0GsQZRF8OcW82");
+            var transfersRef = firebase.database().ref("transfers/" + model.uid);
             transfersRef.update(transfer);
+
+            var updateCust = {
+              boxEstimate: model.customer.boxEstimate,
+              itemEstimate: model.customer.itemEstimate,
+              firstName: model.customer.firstName,
+              lastName: model.customer.lastName,
+              phoneNumber: model.customer.phoneNumber,
+              email: model.customer.email,
+              housingType: model.customer.housingType,
+              dormSelection: model.customer.dormSelection,
+              addressStreet1: model.customer.addressStreet1,
+              addressStreet2: model.customer.addressStreet2,
+              addressCity: model.customer.addressCity,
+              addressState: model.customer.addressState,
+              addressZip: model.customer.addressZip
+            };
+            var custRef = firebase.database().ref("customers/" + model.uid);
+            custRef.update(updateCust);
+
           })
           .fail((data) => {
             console.log(data);
@@ -4827,7 +4698,7 @@
 
         // Make Selection
         if (document.getElementById('housingType').value === 'dorm') {
-          model.custLocation.dorms.forEach(function(dorm) {
+          model.dorms.forEach(function(dorm) {
             var option = document.createElement("option");
             option.text = dorm;
             document.getElementById('dormSelection').appendChild(option);
@@ -4852,18 +4723,36 @@
       }
 
       function seedPickup() {
-        document.getElementById('boxEstimate').value = model.custStorage.boxEstimate;
-        document.getElementById('itemEstimate').value = model.custStorage.itemEstimate;
-        document.getElementById('firstName').value = model.custMeta.firstName;
-        document.getElementById('lastName').value = model.custMeta.lastName;
-        document.getElementById('phoneNumber').value = model.custMeta.phoneNumber;
-        document.getElementById('email').value = model.custMeta.email;
-        document.getElementById('housingType').value = model.custLocation.housingType;
-        if (model.custLocation.dormSelection) {
+        if (model.customer.boxEstimate) {
+          document.getElementById('boxEstimate').value = model.customer.boxEstimate;
+        }
+        if (model.customer.itemEstimate) {
+          document.getElementById('itemEstimate').value = model.customer.itemEstimate;
+        }
+        if (model.customer.firstName) {
+          document.getElementById('firstName').value = model.customer.firstName;
+        }
+        if (model.customer.lastName) {
+          document.getElementById('lastName').value = model.customer.lastName;
+        }
+        if (model.customer.phoneNumber) {
+          document.getElementById('phoneNumber').value = model.customer.phoneNumber;
+        }
+        if (model.customer.email) {
+          document.getElementById('email').value = model.customer.email;
+        }
+        if (model.customer.housingType) {
+          document.getElementById('housingType').value = model.customer.housingType;
+        }
+        if (model.customer.dormSelection) {
           housingTypePt2();
-          document.getElementById('dormSelection').value = model.custLocation.dormSelection;
-        } else if (true) {
-          // TO DO: seed Address info if live in apt/house
+          document.getElementById('dormSelection').value = model.customer.dormSelection;
+        } else if (model.customer.addressStreet1) {
+          document.getElementById('addressStreet1').value = model.customer.addressStreet1;
+          document.getElementById('addressStreet2').value = model.customer.addressStreet2;
+          document.getElementById('addressCity').value = model.customer.addressCity;
+          document.getElementById('addressState').value = model.customer.addressState;
+          document.getElementById('addressZip').value = model.customer.addressZip;
         }
 
         // Activate the input fields that are filled in
@@ -4917,10 +4806,12 @@
 
         acuityDate = year + '-' + month;
 
+        model.date = acuityDate + '-' + day;
+
         var foundDateMatch = false;
 
         $.ajax({
-          url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/dates/' + model.appointments.pickup + '/' + model.custLocation.acuityCalendarId + '/' + acuityDate,
+          url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/dates/' + model.customer.itemPlanId + '/' + model.customer.calendarId + '/' + acuityDate,
           type: "GET",
           success: function(response) {
             response.forEach(function(obj) {
@@ -4928,7 +4819,7 @@
               if (day === respDate) {
                 foundDateMatch = true;
                 $.ajax({
-                  url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/times/' + model.appointments.pickup + '/' + model.custLocation.acuityCalendarId + '/' + acuityDate + '-' + day,
+                  url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/times/' + model.customer.itemPlanId + '/' + model.customer.calendarId + '/' + acuityDate + '-' + day,
                   type: "GET",
                   success: function(response) {
                     times = [];

@@ -524,6 +524,7 @@
               if (model.calculatorInputs.coupon) {
                 // Send Discounted Storage Info to Firebase
                 firebase.database().ref('customers/' + user.uid).set({
+                  uid: user.uid,
                   storageTerm: model.calculatorInputs.monthEstimate,
                   boxEstimate: model.calculatorInputs.boxEstimate,
                   itemEstimate: model.calculatorInputs.itemEstimate,
