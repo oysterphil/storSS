@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+    <!-- Bringing in jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+          
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- End CSS -->
+  </head>
+
+  <body>
+  <div>
+    <div class="row" id="checkingAuth" style="display: inline;">
+      <h1 class="s12 center">
+        Loading...
+      </h1>
+      <div class="progress col s6 offset-s3">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+    <div id="unathenticated" style="display: none;">
+      <h5>You need to be a Storganize admin in order to log in.</h5>
+    </div>
+
+    <div id="profile" style="display: none;">
+     
+      <div class="row col s12 center">
+        <h4 class="col s6">Estimated Gross Rev:</h4>
+        <h4 class="col s6" id="estGross"></h4>
+        <h4 class="col s6">Estimated Net:</h4>
+        <h4 class="col s6" id="estNet"></h4>
+      </div>
+
+      <h1 class="col s6 offset-s3 center">Customers</h1>
+
+      <table class="responsive-table striped">
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>University</th>
+              <th>Housing Type</th>
+              <th>Coupon</th>
+              <th>Box Estimate</th>
+              <th>Item Estimate</th> 
+              <th>Storage Term</th>
+              <th>Quote Value</th>             
+          </tr>
+        </thead>
+
+        <tbody id="body">
+        </tbody>
+      </table>
+
+      <div class="center">
+        <br>
+        <a class="waves-effect waves-light btn-large" onclick="handleSignout()" style="background-color: #ff8b38; margin-top:30px:">Log Out</a>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDaF_ZEcsi-trYUb-HvgEtgW1s8vGHQJnM",
+        authDomain: "storganize-231a8.firebaseapp.com",
+        databaseURL: "https://storganize-231a8.firebaseio.com",
+        storageBucket: "storganize-231a8.appspot.com",
+        messagingSenderId: "346538977499"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script>
+
+      var count = 1;
+      var estimatedGross = 0;
+
+      // Event Listener for Auth State Change
+      firebase.auth().onAuthStateChanged(handleAuthStateChange);
+
+      function handleAuthStateChange() {
+        const user = firebase.auth().currentUser;
+
+        if (user) {
+
+          firebase.database().ref('/roles/admins').once('value').then(function(snapshot) {
+
+            var loadAdmins = (snapshot.val());
+            console.log(loadAdmins.hasOwnProperty(user.uid));
+            if (loadAdmins.hasOwnProperty(user.uid)) {
+              firebase.database().ref('/customers/').once('value').then(function(snapshot) {
+                customers = (snapshot.val());
+                
+                for (var cust in customers) {
+
+                  if (customers[cust].discountedMonthlyQuoteValue) {
+                    var quoteValue = customers[cust].discountedQuoteValue;
+                  } else {
+                    var quoteValue = customers[cust].quoteValue;
+                  }
+
+                  if (customers[cust].email && 
+                    customers[cust].email.indexOf('test') === -1 &&
+                    customers[cust].email.indexOf('storganize') === -1 &&
+                    customers[cust].email.indexOf('philipmolive') === -1 &&
+                    customers[cust].email.indexOf('brendandoh') === -1) {
+                    $('#body').after(' \
+                      <tr> \
+                        <td>' + count + '</td> \
+                        <td>' + customers[cust].email + '</td> \
+                        <td>' + customers[cust].university + '</td> \
+                        <td>' + customers[cust].housingType + '</td> \
+                        <td>' + customers[cust].coupon + '</td> \
+                        <td>' + customers[cust].boxEstimate + '</td> \
+                        <td>' + customers[cust].itemEstimate  + '</td> \
+                        <td>' + customers[cust].storageTerm  + '</td> \
+                        <td>' + quoteValue  + '</td> \
+                      </tr>');
+
+                    count += 1;
+                    estimatedGross += quoteValue;
+                  }
+
+                  if (!customers[cust].email && 
+                    customers[cust].university &&
+                    quoteValue) {
+                    $('#body').after(' \
+                      <tr> \
+                        <td>' + count + '</td> \
+                        <td>' + customers[cust].email + '</td> \
+                        <td>' + customers[cust].university + '</td> \
+                        <td>' + customers[cust].housingType + '</td> \
+                        <td>' + customers[cust].coupon + '</td> \
+                        <td>' + customers[cust].boxEstimate + '</td> \
+                        <td>' + customers[cust].itemEstimate  + '</td> \
+                        <td>' + customers[cust].storageTerm  + '</td> \
+                        <td>' + quoteValue  + '</td> \
+                      </tr>');
+
+                    count += 1;
+                    estimatedGross += quoteValue;
+                  }
+                }
+
+                estimatedNet = parseInt(estimatedGross * 0.45);
+                document.getElementById('estGross').innerHTML = '$' + estimatedGross;
+                document.getElementById('estNet').innerHTML = '$' + estimatedNet;
+
+                document.getElementById('profile').style.display = 'inline';
+                document.getElementById('checkingAuth').style.display = 'none';
+          
+              });
+            }
+          });
+
+        } else {
+          document.getElementById('checkingAuth').style.display = 'none';
+          document.getElementById('unathenticated').style.display = 'inline';
+        }
+      }
+
+      function handleSignout() {
+        event.preventDefault();
+        // Logout User
+        firebase.auth().signOut().then(function() {
+          window.location = "https://www.storganize.io/";
+        }, function(error) {
+          console.error('Sign Out Error', error);
+        });
+      }
+
+    </script>
+  </div>
+  </body>
+</html>

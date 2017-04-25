@@ -4432,14 +4432,15 @@
     </script>
 
     <script>
+
       // document.getElementById('reformatCustomers').addEventListener('click', reformatCustomers);
       // function reformatCustomers() {
         
-      //   var customers;
+      //   var customers = [];
 
-      //   firebase.database().ref('/custSupplies/').once('value').then(function(snapshot) {
-      //     var custAppState = (snapshot.val());
-      //     customers = custAppState;
+      //   firebase.database().ref('/roles/customers').once('value').then(function(snapshot) {
+      //     var custs = (snapshot.val());
+      //     customers = custs;
 
       //     console.log(customers);
       //     for (cust in customers) {
@@ -4466,7 +4467,7 @@
       //     dormsRef.set(dorms);
       // }
 
-            // function addRefs() {
+      // function addRefs() {
       //   var refUids;
       //   referrers = {};
 
@@ -4496,6 +4497,8 @@
       var count2 = 0;
       var count3 = 0;
       var count4 = 0;
+      var count5 = 0;
+      var count6 = 0;
       var times = [];
 
       // For interaction with Firebase
@@ -4510,9 +4513,10 @@
         uid: null
       }
 
-      // Disable all days before today on calendar
+
       $('#pickupDate').pickadate({
-        min: true
+        min: [2017,3,22],
+        max: [2017,5,15]
       });
 
       $("#pickupDate").on('change', vetDateDisplayTimes);
@@ -4545,6 +4549,30 @@
                 firebase.database().ref('/dorms/' + model.customer.university + 'Dorms/').once('value').then(function(snapshot) {
                   model.dorms = (snapshot.val());
                 });
+
+                // Disable all days we are not at various universities
+                if (model.customer.university === 'au') {
+                  $('#pickupDate').pickadate({
+                    min: [2017,3,22],
+                    max: [2017,5,15]
+                  });
+                } else if (model.customer.university === 'cnu') {
+                  $('#pickupDate').pickadate({
+                    min: [2017,3,24],
+                    max: [2017,4,2]
+                  });
+                } else if (model.customer.university === 'odu') {
+                  $('#pickupDate').pickadate({
+                    min: [2017,3,25],
+                    max: [2017,4,5]
+                  });
+                } else {
+                  $('#pickupDate').pickadate({
+                    min: [2017,4,12],
+                    max: [2017,5,15]
+                  });
+                }
+
               });
               document.getElementById('profile').style.display = 'inline';
               document.getElementById('checkingAuth').style.display = 'none';
@@ -4933,7 +4961,7 @@
 
       function myFunction(id) {
 
-        var ids = ['notifications', 'schedule', 'viewItems', 'acctInfo'];
+        var ids = ['notifications', 'schedule', 'creditCard', 'boxRequest', 'viewItems', 'acctInfo'];
 
         ids.forEach(function(a) {
           document.getElementById(a + 'Button').classList.remove('button-active');
@@ -4956,10 +4984,14 @@
                 document.getElementById(y).classList.remove('w3-show');
                 if (y.indexOf('sch') !== -1) {
                   count2 += 1;
-                } else if (y.indexOf('vie') !== -1) {
+                } else if (y.indexOf('cre') !== -1) {
                   count3 += 1;
-                } else if (y.indexOf('acc') !== -1) {
+                } else if (y.indexOf('box') !== -1) {
                   count4 += 1;
+                } else if (y.indexOf('vie') !== -1) {
+                  count5 += 1;
+                } else if (y.indexOf('acc') !== -1) {
+                  count6 += 1;
                 }
               }
             });
@@ -4972,6 +5004,60 @@
           }
           count2 += 1;
           if (count2 % 2 === 0) {
+            document.getElementById(id).classList.remove('w3-show');
+          } else {
+            document.getElementById(id).classList.add('w3-show');
+            document.getElementById(id + 'Button').classList.add('button-active');
+            ids.forEach(function(y) {
+              if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
+                document.getElementById(y).classList.remove('w3-show');
+                if (y.indexOf('not') !== -1) {
+                  count1 += 1;
+                } else if (y.indexOf('cre') !== -1) {
+                  count3 += 1;
+                } else if (y.indexOf('box') !== -1) {
+                  count4 += 1;
+                } else if (y.indexOf('vie') !== -1) {
+                  count5 += 1;
+                } else if (y.indexOf('acc') !== -1) {
+                  count6 += 1;
+                }
+              }
+            });
+          }
+        } else if (id === 'creditCard'){
+          for (var i = 0; i < ids.length; i++) {
+            if (ids[i] === 'creditCard') {
+                ids.splice(i, 1);
+            }
+          }
+          count3 += 1;
+          if (count3 % 2 === 0) {
+            document.getElementById(id).classList.remove('w3-show');
+          } else {
+            document.getElementById(id).classList.add('w3-show');
+            document.getElementById(id + 'Button').classList.add('button-active');
+            ids.forEach(function(y) {
+              if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
+                document.getElementById(y).classList.remove('w3-show');
+                if (y.indexOf('not') !== -1) {
+                  count1 += 1;
+                } else if (y.indexOf('vie') !== -1) {
+                  count3 += 1;
+                } else if (y.indexOf('acc') !== -1) {
+                  count4 += 1;
+                }
+              }
+            });
+          }
+        } else if (id === 'boxRequest'){
+          for (var i = 0; i < ids.length; i++) {
+            if (ids[i] === 'boxRequest') {
+                ids.splice(i, 1);
+            }
+          }
+          count4 += 1;
+          if (count4 % 2 === 0) {
             document.getElementById(id).classList.remove('w3-show');
           } else {
             document.getElementById(id).classList.add('w3-show');
@@ -4995,8 +5081,8 @@
                 ids.splice(i, 1);
             }
           }
-          count3 += 1;
-          if (count3 % 2 === 0) {
+          count5 += 1;
+          if (count5 % 2 === 0) {
             document.getElementById(id).classList.remove('w3-show');
           } else {
             document.getElementById(id).classList.add('w3-show');
@@ -5020,8 +5106,8 @@
                 ids.splice(i, 1);
             }
           }
-          count4 += 1;
-          if (count4 % 2 === 0) {
+          count6 += 1;
+          if (count6 % 2 === 0) {
             document.getElementById(id).classList.remove('w3-show');
           } else {
             document.getElementById(id).classList.add('w3-show');
