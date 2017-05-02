@@ -6,19 +6,9 @@
     <!-- Bringing in jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-
     <!-- Compiled and minified W3-CSS -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-          
-
-    <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- End CSS -->
   </head>
 
   <body>
@@ -27,39 +17,76 @@
     <div>
       
       <!-- Loading Bar -->
-      <div class="w3-row" id="checkingAuth" style="display: inline;">
-        <h1 class="w3-content">
+      <div class="row" id="checkingAuth" style="display: inline;">
+        <h1 class="s12 center">
           Loading...
         </h1>
-        <div class="progress col s6 offset-s3">
-          <div class="indeterminate"></div>
-        </div>
       </div>
       <!-- End Loading Bar -->
 
       <!-- Unathenticated Notice -->
       <div id="unathenticated" style="display: none;">
-        <h5>You need to be a Storganize admin in order to log in.</h5>
+        <h5>You need to be a Storganize operator in order to log in.</h5>
       </div>
       <!-- End Unathenticated Notice -->
 
       <!-- Profile -->
-      <div id="profile" style="display: none;">
+      <div id="profile" style="display: inline;">
 
-        <!-- Est. Rev. + Custs w/ Quotes -->
-        <div id="estRevAndCusts">
-          <!-- Estimated Revenue -->
-          <div class="w3-row">
-            <h4 class="w3-half">Estimated Gross Rev:</h4>
-            <h4 class="w3-half" id="estGross"></h4>
-            <h4 class="w3-half">Estimated Net:</h4>
-            <h4 class="w3-half" id="estNet"></h4>
+        <!-- Upload Photos Section -->
+        <div id="uploadCustPhotos">
+          <div id="fileInput1">
+            <input type="file" class="file" id="1" multiple size="50">
+            <span id="prog1"></span> 
           </div>
-          <!-- End Estimated Revenue -->
+          <div id="fileInput2">
+            <input type="file" class="file" id="2" multiple size="50">
+            <span id="prog2"></span> 
+          </div>
+          <div id="fileInput3">
+            <input type="file" class="file" id="3" multiple size="50">
+            <span id="prog3"></span> 
+          </div>
+          <div id="fileInput4">
+            <input type="file" class="file" id="4" multiple size="50">
+            <span id="prog4"></span> 
+          </div>
+          <div id="fileInput5">
+            <input type="file" class="file" id="5" multiple size="50">
+            <span id="prog5"></span> 
+          </div>
+          <div id="fileInput6">
+            <input type="file" class="file" id="6" multiple size="50">
+            <span id="prog6"></span> 
+          </div>
+          <div id="fileInput7">
+            <input type="file" class="file" id="7" multiple size="50">
+            <span id="prog7"></span> 
+          </div>
+          <div id="fileInput8">
+            <input type="file" class="file" id="8" multiple size="50">
+            <span id="prog8"></span> 
+          </div>
+          <div id="fileInput9">
+            <input type="file" class="file" id="9" multiple size="50">
+            <span id="prog9"></span> 
+          </div>
+          <div id="fileInput10">
+            <input type="file" class="file" id="10" multiple size="50">
+            <span id="prog10"></span> 
+          </div>
 
-          <h1>Customers</h1>
+          
 
-          <!-- Customers who have filled out quotes -->
+        </div>
+        <!-- End Upload Photos Section -->
+
+        <!-- Cust Info Section -->
+        <div id="custInfo">
+
+          <h1 class="col s6 offset-s3 center">Customers</h1>
+
+          <!-- Customers who have transfers -->
           <div class="w3-responsive">
             <table id="myTable" class="w3-table-all">
               <thead>
@@ -79,12 +106,12 @@
               </tbody>
             </table>
           </div>
-          <!-- End Customers who have filled out quotes -->
+          <!-- End Customers who have transfers -->
         </div>
-        <!-- End Est. Rev. + Custs w/ Quotes -->
+        <!-- End Cust Info Section -->
 
         <!-- Logout -->
-        <div class="w3-content">
+        <div class="center">
           <br>
           <a class="waves-effect waves-light btn-large" onclick="handleSignout()" style="background-color: #ff8b38; margin-top:30px:">Log Out</a>
         </div>
@@ -96,6 +123,7 @@
     </div>
     <!-- Profile Container -->
 
+    <!-- Pull in Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -108,6 +136,7 @@
       };
       firebase.initializeApp(config);
     </script>
+    <!-- End Pull in Firebase -->
 
     <script>
 
@@ -140,12 +169,10 @@
 
                   if (customers[cust].email && 
                     customers[cust].email.indexOf('test') === -1 &&
-                    !isNaN(customers[cust].quoteValue) &&
                     customers[cust].email.indexOf('storganize') === -1 &&
                     customers[cust].email.indexOf('philipmolive') === -1 &&
                     customers[cust].email.indexOf('brendandoh') === -1) {
-                    
-                    $('#myTable > tbody:last-child').append(' \
+                    $('#body').after(' \
                       <tr> \
                         <td>' + count + '</td> \
                         <td>' + customers[cust].email + '</td> \
@@ -165,7 +192,7 @@
                   if (!customers[cust].email && 
                     customers[cust].university &&
                     quoteValue) {
-                    $('#myTable > tbody:last-child').append(' \
+                    $('#body').after(' \
                       <tr> \
                         <td>' + count + '</td> \
                         <td>' + customers[cust].email + '</td> \
@@ -210,6 +237,71 @@
         });
       }
 
+      function uploadPhotos() {
+        // Create a root reference
+        var storageRef = firebase.storage().ref();
+
+        // File or Blob named mountains.jpg
+        var x = document.getElementById("myFile");
+        var file = x.files[0];
+
+        // Create the file metadata
+        var metadata = {
+          contentType: 'image/jpeg'
+        };
+
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+          function(snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+              case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+            }
+          }, function(error) {
+            console.log(error);
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          // switch (error.code) {
+          //   case 'storage/unauthorized':
+          //     // User doesn't have permission to access the object
+          //     break;
+
+          //   case 'storage/canceled':
+          //     // User canceled the upload
+          //     break;
+
+          //   ...
+
+          //   case 'storage/unknown':
+          //     // Unknown error occurred, inspect error.serverResponse
+          //     break;
+          // }
+        }, function() {
+          // Upload completed successfully, now we can get the download URL
+          var downloadURL = uploadTask.snapshot.downloadURL;
+          var obj = {};
+          obj['downloadLink'] = downloadURL;
+
+          var newPostKey = firebase.database().ref().child('images').push().key;
+
+            var updates = {};
+            updates['/images/' + newPostKey] = obj;
+
+            return firebase.database().ref().update(updates);
+        });
+      }
+
     </script>
+
   </body>
 </html>

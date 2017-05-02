@@ -188,6 +188,227 @@
         }
       }
 
+      table, th, td {
+        border: none;
+      }
+
+      table {
+        width: 100%;
+        display: table;
+      }
+
+      table.bordered > thead > tr,
+      table.bordered > tbody > tr {
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      table.striped > tbody > tr:nth-child(odd) {
+        background-color: #f2f2f2;
+      }
+
+      table.striped > tbody > tr > td {
+        border-radius: 0;
+      }
+
+      table.highlight > tbody > tr {
+        transition: background-color .25s ease;
+      }
+
+      table.highlight > tbody > tr:hover {
+        background-color: #f2f2f2;
+      }
+
+      table.centered thead tr th, table.centered tbody tr td {
+        text-align: center;
+      }
+
+      thead {
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      td, th {
+        padding: 15px 5px;
+        display: table-cell;
+        text-align: left;
+        vertical-align: middle;
+        border-radius: 2px;
+      }
+
+      @media only screen and (max-width: 992px) {
+        table.responsive-table {
+          width: 100%;
+          border-collapse: collapse;
+          border-spacing: 0;
+          display: block;
+          position: relative;
+          /* sort out borders */
+        }
+        table.responsive-table td:empty:before {
+          content: '\00a0';
+        }
+        table.responsive-table th,
+        table.responsive-table td {
+          margin: 0;
+          vertical-align: top;
+        }
+        table.responsive-table th {
+          text-align: left;
+        }
+        table.responsive-table thead {
+          display: block;
+          float: left;
+        }
+        table.responsive-table thead tr {
+          display: block;
+          padding: 0 10px 0 0;
+        }
+        table.responsive-table thead tr th::before {
+          content: "\00a0";
+        }
+        table.responsive-table tbody {
+          display: block;
+          width: auto;
+          position: relative;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+        table.responsive-table tbody tr {
+          display: inline-block;
+          vertical-align: top;
+        }
+        table.responsive-table th {
+          display: block;
+          text-align: right;
+        }
+        table.responsive-table td {
+          display: block;
+          min-height: 1.25em;
+          text-align: left;
+        }
+        table.responsive-table tr {
+          padding: 0 10px;
+        }
+        table.responsive-table thead {
+          border: 0;
+          border-right: 1px solid #d0d0d0;
+        }
+        table.responsive-table.bordered th {
+          border-bottom: 0;
+          border-left: 0;
+        }
+        table.responsive-table.bordered td {
+          border-left: 0;
+          border-right: 0;
+          border-bottom: 0;
+        }
+        table.responsive-table.bordered tr {
+          border: 0;
+        }
+        table.responsive-table.bordered tbody tr {
+          border-right: 1px solid #d0d0d0;
+          }
+        }
+
+        .collection {
+          margin: 0.5rem 0 1rem 0;
+          border: 1px solid #e0e0e0;
+          border-radius: 2px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .collection .collection-item {
+          background-color: #fff;
+          line-height: 1.5rem;
+          padding: 10px 20px;
+          margin: 0;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        .collection .collection-item.avatar {
+          min-height: 84px;
+          padding-left: 72px;
+          position: relative;
+        }
+
+        .collection .collection-item.avatar .circle {
+          position: absolute;
+          width: 42px;
+          height: 42px;
+          overflow: hidden;
+          left: 15px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        .collection .collection-item.avatar i.circle {
+          font-size: 18px;
+          line-height: 42px;
+          color: #fff;
+          background-color: #999;
+          text-align: center;
+        }
+
+        .collection .collection-item.avatar .title {
+          font-size: 16px;
+        }
+
+        .collection .collection-item.avatar p {
+          margin: 0;
+        }
+
+        .collection .collection-item.avatar .secondary-content {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+        }
+
+        .collection .collection-item:last-child {
+          border-bottom: none;
+        }
+
+        .collection .collection-item.active {
+          background-color: #26a69a;
+          color: #eafaf9;
+        }
+
+        .collection .collection-item.active .secondary-content {
+          color: #fff;
+        }
+
+        .collection a.collection-item {
+          display: block;
+          transition: .25s;
+        }
+
+        .collection a.collection-item:not(.active):hover {
+          background-color: #ddd;
+        }
+
+        .collection.with-header .collection-header {
+          background-color: #fff;
+          border-bottom: 1px solid #e0e0e0;
+          padding: 10px 20px;
+        }
+
+        .collection.with-header .collection-item {
+          padding-left: 30px;
+        }
+
+        .collection.with-header .collection-item.avatar {
+          padding-left: 72px;
+        }
+
+        .secondary-content {
+          float: right;
+          color: #26a69a;
+        }
+
+        .collapsible .collection {
+          margin: 0;
+          border: none;
+        }
+
       span.badge {
         min-width: 3rem;
         padding: 0 6px;
@@ -3858,6 +4079,44 @@
           margin-bottom: 5em;
         }
       }
+
+      /* Tables
+   ========================================================================== */
+      /**
+       * Remove most spacing between table cells.
+       */
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      td,
+      th {
+        padding: 0;
+      }
+
+      html {
+        box-sizing: border-box;
+      }
+
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+
+      ul:not(.browser-default) {
+        padding-left: 0;
+        list-style-type: none;
+      }
+
+      ul:not(.browser-default) li {
+        list-style-type: none;
+      }
+
+      a {
+        color: #039be5;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
     </style>
 
     <!-- CSS  -->
@@ -3984,15 +4243,33 @@
 
     <div id="unathenticated" style="display: none;">
       <h5>You need to be a Storganize customer in order to log in. Please <a href="https://www.storganize.io/signupsummer2017">sign up</a> first.</h5>
-      <a class="waves-effect waves-light btn-large" id="testUpload" style="background-color: #ff8b38; margin-top:30px:">Test</a>
     </div>
 
     <div id="profile" class="collapsible" style="display: inline;">
+      
       <!-- Notifications -->
       <button id="notificationsButton" onclick="myFunction('notifications')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">announcement</i>Notifications</button>
       <div id="notifications" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
-        <p>Don't forget to schedule your pick up and request boxes if you need them!</p>
+        <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
+          <div class=class="col m10 offset-m1">
+            <div class="col s12 m6">
+              <ul id="toDoList" class="collection with-header">
+                <li class="collection-header"><h4>To Do</h4></li>
+              </ul> 
+            </div>  
+          </div> 
+          <div class="col s12 m6">
+              <ul id="upcomingEventsCalendar" class="collection with-header">
+                <li class="collection-header"><h4>Events Calendar</h4></li>
+                <li class="collection-header"><b>Upcoming Events</b></li>
+              </ul> 
+              <ul id="pastEventsCalendar" class="collection with-header">
+                <li class="collection-header"><b>Past Events</b></li>
+              </ul> 
+          </div>  
+        </div>
       </div>
+
       <!-- End Notifications -->
 
       <!-- Schedule a ... -->
@@ -4000,40 +4277,21 @@
       <div id="schedule" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
         <div class="row center">
           
-          <!-- Select Schedule Type -->
+          <!-- Select Schedule Type
           <h5>I would like to schedule a ...</h5>
           <div class="input-field col m6 offset-m3 s12">
             <select id="scheduleType" class="browser-default" style="border: initial;">
               <option value="" disabled selected>Choose your option</option>
-              <option value="boxDelivery">Free Box Delivery</option>
               <option value="pickup">Pickup</option>
               <option value="delivery">Delivery</option>
               <option value="donation">Donation</option>
               <option value="junkRun">Junk Run</option>
             </select>
           </div>
-          <!-- End Select Schedule Type -->
-
-          <!-- Schedule Free Box Delivery -->
-          <div id="boxDelivery" class="row" style="display: none;">
-            <div class="col m10 offset-m1">
-              <div class="card horizontal">
-                <div class="card-stacked">
-                  <div class="card-content #fafafa">
-                    <div class="col s12 center">
-                      <div class="col s10 offset-s1 m6 offset-m3">
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- End Schedule Free Box Delivery -->
+          End Select Schedule Type -->
 
           <!-- Schedule Pickup -->
-          <div id="pickup" class="row" style="display: none;">
+          <div id="pickup" class="row" style="margin-top:20px;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
                 <div class="card-stacked">
@@ -4284,7 +4542,8 @@
           </div>
           <!-- End Schedule Pickup -->
 
-          <!-- Schedule Delivery -->
+          <!-- TO DO: Add other delivery types -->
+          <!-- Schedule Delivery
           <div id="delivery" class="row" style="display: none;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
@@ -4300,9 +4559,9 @@
               </div>
             </div>
           </div>
-          <!-- End Schedule Delivery -->
+          End Schedule Delivery -->
 
-          <!-- Schedule Donation -->
+          <!-- Schedule Donation 
           <div id="donation" class="row" style="display: none;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
@@ -4318,9 +4577,9 @@
               </div>
             </div>
           </div>
-          <!-- End Schedule Donation -->
+          End Schedule Donation -->
 
-          <!-- Schedule Junk Run -->
+          <!-- Schedule Junk Run
           <div id="junkRun" class="row" style="display: none;">
             <div class="col m10 offset-m1">
               <div class="card horizontal">
@@ -4336,7 +4595,7 @@
               </div>
             </div>
           </div>
-          <!-- End Schedule Junk Run -->
+          End Schedule Junk Run -->
 
           <!-- Confirming Request -->
           <div id="confirmingRequest" class="row" style="display: none;">
@@ -4386,16 +4645,317 @@
       <!-- Credit Card -->
       <button id="creditCardButton" onclick="myFunction('creditCard')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">credit_card</i>Add a Payment Method</button>
       <div id="creditCard" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
-        <p>You have no items. Schedule a pickup first!</p>
+        
+        <!-- Grab Card Details -->
+        <div id="creditCardForm" class="col m10 offset-m1" style="margin-top: 20px; margin-bottom: 20px;">
+          <div class="card horizontal">
+            <div class="card-stacked">
+              <div class="card-content">
+                <div class="col s12 center">
+                  <h4>Add Credit or Debit Card</h4>
+                  <form id="paymentForm"> 
+                    <div class="row">
+                      <div class="input-field col s8 m8 offset-m2">
+                        <i class="material-icons prefix">payment</i>
+                        <input id="cardNumber" type="text" class="validate" data-stripe="number" autocomplete="off">
+                        <label for="cardNumber">Card Number</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s3 m3 offset-m2">
+                        <i class="material-icons prefix">event</i>
+                        <input id="cardExpiryMonth" type="text" class="validate" data-stripe="exp_month" autocomplete="off">
+                        <label for="cardExpiryMonth">Exp (MM)</label>
+                      </div>
+                      <div class="input-field col s3 m3">
+                        <i class="material-icons prefix">event</i>
+                        <input id="cardExpiryYear" type="text" class="validate" data-stripe="exp_year" autocomplete="off">
+                        <label for="cardExpiryYear">Exp (YY)</label>
+                      </div>
+                      <div class="input-field col s2 m2">
+                        <i class="material-icons prefix">lock_outline</i>
+                        <input id="cardCvc" type="text" class="validate">
+                        <label for="cardCvc">CVC</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <span id="paymentErrors" style="font-color:red; padding: 10px;"></span>
+                      <a class="waves-effect waves-light btn-large col s4 offset-s4 disabled" id="submitPaymentForm" style="background-color: #ff8b38">
+                        Submit
+                      </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Grab Card Details -->
+        
+        <!-- Display cards already on file -->
+        <div id="displayCustCardsOnFile">
+          <div class="col m10 offset-m1">
+            <div class="card horizontal">
+              <div class="card-stacked">
+                <div class="card-content">
+                  <div class="col s12 center">
+                    <h4>Card on File</h4>
+                    <div class="row">
+                        <table class="striped centered col s12" id="displayCustCardsOnFileTable">
+                          <thead>
+                            <tr>
+                              <th>Card Type:</th>
+                              <th>Last 4 Digits:</th>
+                              <th>Total Charged to Card:</th>
+                            </tr>
+                          </thead>
+                          <tbody>   
+                            <tr>
+                              <th>{{custPaymentInfo.ccBrand}}</th>
+                              <th>{{custPaymentInfo.ccLast4}}</th>
+                              <th>${{custPaymentInfo.totalCharged}}</th>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                          <a class="waves-effect waves-light btn-small col s4 offset-s4" id="deleteCard" style="background-color: #ff8b38">
+                            Delete Card
+                          </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Display cards already on file -->
+          
+        <!-- Add Payment Confirmed -->
+        <div id="addPaymentConfirmed" class="row">
+          <div class="col m10 offset-m1">
+            <div class="card horizontal">
+              <div class="card-stacked">
+                <div class="card-content">
+                  <div class="col s12 center">
+                    <div class="col s10 offset-s1 m6 offset-m3">
+                      <i class="large material-icons green accent-3" style="font-size: 150px;color: #00e676">done</i>
+                      <h3 style="margin-top: 0px;">Thanks! Your card has been added.</h3>
+                      <h6>You won't be charged until after we pick up your things for storage.</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Add Payment Confirmed -->
+
       </div>
       <!-- End Credit Card -->
 
       <!-- Box Drop Off Request -->
       <button id="boxRequestButton" onclick="myFunction('boxRequest')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">perm_identity</i>Request Free Boxes (Optional)</button>
-      <div id="boxRequest" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
-        <iframe src="https://app.acuityscheduling.com/schedule.php?owner=11393255&appointmentType=1199172" width="100%" height="800" frameBorder="0"></iframe>
-        <script src="https://d3gxy7nm8y4yjr.cloudfront.net/js/embed.js" type="text/javascript"></script>
+      <div id="boxRequest" class="w3-hide w3-container collapsibleBody w3-animate-opacity" style="display: inline;"> 
+        <div id="boxDeliveryRequest" style="display: none;">
+          <iframe src="https://app.acuityscheduling.com/schedule.php?owner=11393255&appointmentType=1199172" width="100%" height="800" frameBorder="0"></iframe>
+          <script src="https://d3gxy7nm8y4yjr.cloudfront.net/js/embed.js" type="text/javascript"></script>
+        </div>
+      <div id="boxShipRequest" style="display: none;">
+        <div id="boxRequestForm" class="row center">
+            <div class="col m10 offset-m1">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <div class="col s12 center">
+                      <div class="row">
+                        <h4>Step 1: How many boxes would you like?</h4>
+                        <p>Our boxes ship in packs of 8</p>
+                      </div>
+                      <div class="row">
+                      <div class="col s2 m2"> 
+                      </div>
+                        <div class="input-field">
+                          <select id="boxNumber" class="input-field col s12 m4 offset-m2 browser-default">
+                            <option value="" disabled selected></option>
+                              <option value="8 boxes">8 boxes</option>
+                              <option value="16 boxes">16 boxes</option>
+                              <option value="24 boxes">24 boxes</option>
+                          </select>
+                        </div>
+                      <div class="col s2 m2"> 
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col m10 offset-m1">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <div class="col s12 center">
+                      <h4>Step 2: Please Provide Your Shipping Information</h4>
+
+                      <div class="row">
+                        <div class="input-field col s12 m6">
+                          <i class="material-icons prefix">account_circle</i>
+                          <input id="boxFirstName" type="text" class="validate">
+                          <label for="boxFirstName">First Name</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                          <i class="material-icons prefix">account_circle</i>
+                          <input id="boxLastName" type="text" class="validate">
+                          <label for="boxLastName">Last Name</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12 m6">
+                          <i class="material-icons prefix">phone</i>
+                          <input id="boxPhoneNumber" type="text" class="validate">
+                          <label for="boxPhoneNumber">Mobile Number</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                          <i class="material-icons prefix">email</i>
+                          <input id="boxEmail" type="text" class="validate">
+                          <label for="boxEmail">Confirmation Email</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <h6 class="col s12">Do you live in a dorm, apartment, or house?</h6>
+                        <div class="input-field">
+                          <select id="boxHousingType" class="browser-default col s12 m6 offset-m3" style="border: initial;">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="dorm">Dorm</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div id="boxHousingTypeDorm" class="row" style="display: none;">
+                        <h6 class="col s12">Which Dorm?</h6>
+                        <div class="input-field">
+                          <select id="boxDormSelection" class="browser-default col s12 m6 offset-m3" style="border: initial;">
+                            <option value="" disabled selected>Choose your option</option>
+                          </select>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m8 offset-m2">
+                              <input id="roomNumber" type="text" class="validate">
+                              <label for="roomNumber">Room Number</label>
+                            </div>
+                        </div>
+                      </div>
+                      <div id="boxHousingTypeApt" class="row" style="display: none">
+                        <div class="input-field col s12 m8 offset-m2">
+                          <input id="boxAddressStreet1" type="text" class="validate">
+                          <label for="boxAddressStreet1">Address Line 1</label>
+                        </div>
+                        <div class="input-field col s12 m8 offset-m2">
+                          <input id="boxAddressStreet2" type="text" class="validate">
+                          <label for="boxAddressStreet2">Address Line 2</label>
+                        </div>
+                        <div class="input-field col s12 m3 offset-m2">
+                          <input id="boxAddressCity" type="text" class="validate">
+                          <label for="boxAddressCity">City</label>
+                        </div>
+                        <div class="input-field">
+                          <select id="boxAddressState" class="input-field col s12 m2 browser-default">
+                            <option value="" disabled selected>State</option>
+                              <option value="AL">AL</option>
+                              <option value="AK">AK</option>
+                              <option value="AZ">AZ</option>
+                              <option value="AR">AR</option>
+                              <option value="CA">CA</option>
+                              <option value="CO">CO</option>
+                              <option value="CT">CT</option>
+                              <option value="DE">DE</option>
+                              <option value="DC">DC</option>
+                              <option value="FL">FL</option>
+                              <option value="GA">GA</option>
+                              <option value="HI">HI</option>
+                              <option value="ID">ID</option>
+                              <option value="IL">IL</option>
+                              <option value="IN">IN</option>
+                              <option value="IA">IA</option>
+                              <option value="KS">KS</option>
+                              <option value="KY">KY</option>
+                              <option value="LA">LA</option>
+                              <option value="ME">ME</option>
+                              <option value="MD">MD</option>
+                              <option value="MA">MA</option>
+                              <option value="MI">MI</option>
+                              <option value="MN">MN</option>
+                              <option value="MS">MS</option>
+                              <option value="MO">MO</option>
+                              <option value="MT">MT</option>
+                              <option value="NE">NE</option>
+                              <option value="NV">NV</option>
+                              <option value="NH">NH</option>
+                              <option value="NJ">NJ</option>
+                              <option value="NM">NM</option>
+                              <option value="NY">NY</option>
+                              <option value="NC">NC</option>
+                              <option value="ND">ND</option>
+                              <option value="OH">OH</option>
+                              <option value="OK">OK</option>
+                              <option value="OR">OR</option>
+                              <option value="PA">PA</option>
+                              <option value="RI">RI</option>
+                              <option value="SC">SC</option>
+                              <option value="SD">SD</option>
+                              <option value="TN">TN</option>
+                              <option value="TX">TX</option>
+                              <option value="UT">UT</option>
+                              <option value="VT">VT</option>
+                              <option value="VA">VA</option>
+                              <option value="WA">WA</option>
+                              <option value="WV">WV</option>
+                              <option value="WI">WI</option>
+                              <option value="WY">WY</option>
+                          </select>
+                        </div>
+                        <div class="input-field col s12 m3">
+                          <input id="boxAddressZip" type="text" class="validate">
+                          <label for="boxAddressZip">Zipcode</label>
+                        </div>
+                      </div>
+                        <div class="row">
+                          <a class="waves-effect waves-light btn-large col s4 offset-s4 disabled" id="submitBoxForm" style="background-color: #ff8b38">
+                            Submit
+                          </a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <!-- Box Request Confirmed -->
+          <div id="boxRequestConfirmed" class="row" style="display: none;">
+            <div class="col m10 offset-m1">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <div class="col s12 center">
+                      <div class="col s10 offset-s1 m6 offset-m3">
+                        <i class="large material-icons green accent-3" style="font-size: 150px;color: #00e676">done</i>
+                        <h3 style="margin-top: 0px;">Thanks! Your box request has been completed.</h3>
+                        <h6>You should receive your boxes in the mail via Amazon Prime within 3-4 days.</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Box Request Confirmed -->
       </div>
+      </div>
+
+
       <!-- End Box Drop Off Request -->
 
       <!-- View Items -->
@@ -4408,16 +4968,57 @@
       <!-- Account Info -->
       <button id="acctInfoButton" onclick="myFunction('acctInfo')" class="w3-button w3-block w3-left-align collapsibleHeader"><i class="material-icons icons">credit_card</i>Account Settings</button>
       <div id="acctInfo" class="w3-hide w3-container collapsibleBody w3-animate-opacity">
-        <p>You have no items. Schedule a pickup first!</p>
+        <div id="displayAccountInformation" class="col m10 offset-m1" style="display: inline">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <div class="col s12 center">
+                      <h4>Account Information</h4>   
+                      <div class="row">
+                          <a class="waves-effect waves-light btn-large col s4 offset-s4" id="resetPasswordButton" style="background-color: #ff8b38">
+                            Reset Password 
+                          </a>
+                      </div>
+                      <div class="row">
+                        <a data-target="deleteAccountModal" class="modal-trigger" id="deleteAccountLink" href="#">Delete Account</a>
+                        <!--Delete Account Modal-->
+                        <div id="deleteAccountModal" class="modal" style="display: none">
+                          <div class="modal-content">
+                            <h4>Are you sure you want to delete your account?</h4>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="waves-effect waves-green btn-flat" id="deleteAccountButton">Delete</button>
+                            <button class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div id="resetPasswordConfirmation" class="col m10 offset-m1" style="display: none">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <div class="col s12 center">
+                      <p>Please check your email for instructions on how to reset your password</p>   
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
       </div>
+
+      
+
+
       <!-- End Account Info -->
 
       <div class="center">
         <br>
         <a class="waves-effect waves-light btn-large" onclick="handleSignout()" style="background-color: #ff8b38; margin-top:30px:">Log Out</a>
-        <input type="file" id="myFile" multiple size="50" onchange="upload()">
       </div>
-      
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
@@ -4433,185 +5034,15 @@
       firebase.initializeApp(config);
     </script>
 
+    <!-- Import Stripe -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/">
+      Stripe.setPublishableKey('pk_test_PNHDYzynpslrFV84lXzoTTCc');
+    </script>
+
+
     <script>
 
-      function upload() {
-        // Create a root reference
-        var storageRef = firebase.storage().ref();
-
-        // File or Blob named mountains.jpg
-        var x = document.getElementById("myFile");
-        var file = x.files[0];
-
-        // Create the file metadata
-        var metadata = {
-          contentType: 'image/jpeg'
-        };
-
-        // Upload file and metadata to the object 'images/mountains.jpg'
-        var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
-
-        // Listen for state changes, errors, and completion of the upload.
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-          function(snapshot) {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-              case firebase.storage.TaskState.PAUSED: // or 'paused'
-                console.log('Upload is paused');
-                break;
-              case firebase.storage.TaskState.RUNNING: // or 'running'
-                console.log('Upload is running');
-                break;
-            }
-          }, function(error) {
-            console.log(error);
-          // A full list of error codes is available at
-          // https://firebase.google.com/docs/storage/web/handle-errors
-          // switch (error.code) {
-          //   case 'storage/unauthorized':
-          //     // User doesn't have permission to access the object
-          //     break;
-
-          //   case 'storage/canceled':
-          //     // User canceled the upload
-          //     break;
-
-          //   ...
-
-          //   case 'storage/unknown':
-          //     // Unknown error occurred, inspect error.serverResponse
-          //     break;
-          // }
-        }, function() {
-          // Upload completed successfully, now we can get the download URL
-          var downloadURL = uploadTask.snapshot.downloadURL;
-        });
-      }
-
-      // document.getElementById('addReferrers').addEventListener('click', addReferrers);
-      // function addReferrers() {
-        
-      //   firebase.database().ref('/customers').once('value').then(function(snapshot) {
-      //     var custs = (snapshot.val());
-
-      //     firebase.database().ref('/roles/customers').once('value').then(function(snapshot) {
-      //       var custIds = (snapshot.val());
-      //       console.log(custs);
-      //       console.log(custIds);
-
-      //       for (cust in custs) {
-      //         if (custIds.hasOwnProperty(cust)) {
-      //           console.log('Yes!');
-      //           console.log(cust);
-      //           console.log(custIds[cust]);
-
-      //         } else {
-      //           console.log('No!');
-      //           console.log(cust);
-      //         }
-              // var obj = {};
-              // refs[ref];
-              // console.log(obj);
-              // var custsRef = firebase.database().ref("/customers/" + cust);
-              // custsRef.update(obj);
-        //     }
-        //   });
-        // });
-      //   var referrers = [];
-
-        // firebase.database().ref('/referrers').once('value').then(function(snapshot) {
-        //   var refs = (snapshot.val());
-
-        //   firebase.database().ref('/customers').once('value').then(function(snapshot) {
-        //     var custs = (snapshot.val());
-        
-        //     console.log(refs);
-        //     console.log(custs);
-
-        //     for (ref in refs) {
-        //       if (custs.hasOwnProperty(ref)) {
-        //         console.log('Yes!');
-        //         console.log(ref);
-        //         console.log(custs[ref]);
-
-        //       } else {
-        //         console.log('No!');
-        //       }
-        //       // var obj = {};
-        //       // refs[ref];
-        //       // console.log(obj);
-        //       // var custsRef = firebase.database().ref("/customers/" + cust);
-        //       // custsRef.update(obj);
-        //     }
-
-        //   });
-        
-        // });
-
-      // }
-
-      // document.getElementById('reformatCustomers').addEventListener('click', reformatCustomers);
-      // function reformatCustomers() {
-        
-      //   var customers = [];
-
-      //   firebase.database().ref('/roles/customers').once('value').then(function(snapshot) {
-      //     var custs = (snapshot.val());
-      //     customers = custs;
-
-      //     console.log(customers);
-      //     for (cust in customers) {
-      //       var obj = customers[cust];
-      //       console.log(obj);
-      //       var custsRef = firebase.database().ref("/customers/" + cust);
-      //       custsRef.update(obj);
-      //     }
-      //   });
-
-      // }
-
-      // document.getElementById('testUpload').addEventListener('click', testUpload);
-      // function testUpload() {
-      //   var dorms = {};
-      //   model.universities.forEach(function(uni) {
-      //     var obj = {};
-      //     for (var i = 0; i < uni.dorms.length; i++) {
-      //       obj[i] = uni.dorms[i];
-      //     }
-      //     dorms[uni.name] = obj;
-      //   });
-      //   var dormsRef = firebase.database().ref('dorms/');
-      //     dormsRef.set(dorms);
-      // }
-
-      // function addRefs() {
-      //   var refUids;
-      //   referrers = {};
-
-      //   firebase.database().ref('/referrers/').once('value').then(function(snapshot) {
-
-      //     var loadReferrers = (snapshot.val());
-
-      //     console.log(loadReferrers);
-
-      //     refUids = Object.keys(loadReferrers);
-        
-      //     console.log(refUids);
-          
-      //     refUids.forEach(function(id) {
-      //       referrers[id] = true;
-      //     });
-
-      //   }).then(function() {
-      //     firebase.database().ref('roles/').set({
-      //       referrers
-      //     });
-      //   });
-      // }
-
-      // Needed for this page
+      // Needed for navigation purposes
       var count1 = 0;
       var count2 = 0;
       var count3 = 0;
@@ -4622,7 +5053,10 @@
 
       // For interaction with Firebase
       var model = {
-        customer: null,
+        customer: {
+          cardOnFile: false
+        },
+        custPaymentInfo: {},
         transfers: null,
         appointments: {
           type: null
@@ -4632,21 +5066,63 @@
         uid: null
       }
 
+      // Notifications event listeners
 
+      function setupSchedulePickup() {
+        document.getElementById('notificationSchedulePickup').addEventListener('click', displaySchedulePickup);
+      };
+
+      function setupAddPayment() {
+        document.getElementById('notificationAddPayment').addEventListener('click', displayAddPayment);
+      }
+
+      function setupRequestBoxes() {
+        document.getElementById('notificationRequestBoxes').addEventListener('click', displayRequestBoxes);
+      }
+
+      // Disable all days before today on calendar
       $('#pickupDate').pickadate({
-        min: [2017,3,22],
-        max: [2017,5,15]
+        min: true
       });
 
       $("#pickupDate").on('change', vetDateDisplayTimes);
       $("#scheduleType").on('change', displayScheduleType);
       $("#housingType").on('change', housingTypePt2);
+      $("#boxHousingType").on('change', boxHousingType);
       document.getElementById('submitPickupForm').addEventListener('click', submitPickupForm);
+      document.getElementById('submitBoxForm').addEventListener('click', submitBoxForm);
       document.getElementById('pickupTime').addEventListener('click', function() {
         if (!document.getElementById('pickupDate').value) {
           Materialize.toast('Please select a pickup date before selecting a pickup time.', 4000);
         } 
       });
+
+      // Event Listeners for activating the Submit button on the box request form
+
+      $("#boxFirstName").on('change', displayBoxSubmitButton);
+      $("#boxLastName").on('change', displayBoxSubmitButton);
+      $("#boxHousingType").on('change', displayBoxSubmitButton);
+      $("#boxDormSelection").on('change', displayBoxSubmitButton);
+      $("#roomNumber").on('change', displayBoxSubmitButton);
+      $("#boxAddressStreet1").on('change', displayBoxSubmitButton);
+      $("#boxAddressStreet2").on('change', displayBoxSubmitButton);
+      $("#boxAddressCity").on('change', displayBoxSubmitButton);
+      $("#boxAddressState").on('change', displayBoxSubmitButton);
+      $("#boxAddressZip").on('change', displayBoxSubmitButton);
+      $("#boxNumber").on('change', displayBoxSubmitButton);
+
+      // Event Listeners for activating the Submit button on the add a card form
+      $("#cardNumber").on('change', displayPaymentSubmitButton);
+      $("#cardCvc").on('change', displayPaymentSubmitButton);
+      $("#cardExpiryMonth").on('change', displayPaymentSubmitButton);
+      $("#cardExpiryYear").on('change', displayPaymentSubmitButton);
+
+      // Event Listeners for submitting payment info
+      document.getElementById('submitPaymentForm').addEventListener('click', addCard);
+
+      // Event Listeners for Account Information. Delete account and reset password. 
+      document.getElementById('deleteAccountButton').addEventListener('click', deleteAccount);
+      document.getElementById('resetPasswordButton').addEventListener('click', resetPassword);
 
 
       // Event Listener for Auth State Change
@@ -4654,9 +5130,9 @@
 
       function handleAuthStateChange() {
         const user = firebase.auth().currentUser;
-        model.uid = user.uid;
 
         if (user) {
+          model.uid = user.uid;
 
           firebase.database().ref('/roles/customers').once('value').then(function(snapshot) {
 
@@ -4667,31 +5143,37 @@
                 model.customer = (snapshot.val());
                 firebase.database().ref('/dorms/' + model.customer.university + 'Dorms/').once('value').then(function(snapshot) {
                   model.dorms = (snapshot.val());
-                });
+                  firebase.database().ref('/transfers/' + model.uid).once('value').then(function(snapshot) {
+                    model.transfers = (snapshot.val());
+                    seedToDoListPickup();
+                    seedToDoListPayment();
+                    seedToDoListBoxes();
+                  });
 
-                // Disable all days we are not at various universities
-                if (model.customer.university === 'au') {
-                  $('#pickupDate').pickadate({
-                    min: [2017,3,22],
-                    max: [2017,5,15]
-                  });
-                } else if (model.customer.university === 'cnu') {
-                  $('#pickupDate').pickadate({
-                    min: [2017,3,24],
-                    max: [2017,4,2]
-                  });
-                } else if (model.customer.university === 'odu') {
-                  $('#pickupDate').pickadate({
-                    min: [2017,3,25],
-                    max: [2017,4,5]
-                  });
-                } else {
-                  $('#pickupDate').pickadate({
-                    min: [2017,4,12],
-                    max: [2017,5,15]
-                  });
-                }
+      // Disable all days we are not at various universities
+      if (model.customer.university === 'au') {
+        $('#pickupDate').pickadate({
+          min: [2017,3,22],
+          max: [2017,5,15]
+        });
+      } else if (model.customer.university === 'cnu') {
+        $('#pickupDate').pickadate({
+          min: [2017,3,24],
+          max: [2017,4,2]
+        });
+      } else if (model.customer.university === 'odu') {
+        $('#pickupDate').pickadate({
+          min: [2017,3,25],
+          max: [2017,4,5]
+        });
+      } else {
+        $('#pickupDate').pickadate({
+          min: [2017,4,12],
+          max: [2017,5,15]
+        });
+      }
 
+      });
               });
               document.getElementById('profile').style.display = 'inline';
               document.getElementById('checkingAuth').style.display = 'none';
@@ -4699,7 +5181,6 @@
           });
 
           warmUpApi();
-
           console.log('in');
 
         } else {
@@ -4712,38 +5193,339 @@
 
       function handleSignout() {
         event.preventDefault();
-        // Logout User
-        firebase.auth().signOut().then(function() {
-          window.location = "https://www.storganize.io/";
-        }, function(error) {
-          console.error('Sign Out Error', error);
-        });
+      // Logout User
+      firebase.auth().signOut().then(function() {
+        window.location = "https://www.storganize.io/";
+      }, function(error) {
+        console.error('Sign Out Error', error);
+      });
       }
 
+      // Display the box shipping form for CNU / ODU students and the box delivery form for AU
+      function displayCorrectBoxForm() {
+        if (model.customer.university === 'au') {
+          document.getElementById('boxDeliveryRequest').style.display = 'inline';
+          document.getElementById('boxShipRequest').style.display = 'none';
+        } else {
+          document.getElementById('boxDeliveryRequest').style.display = 'none';
+          document.getElementById('boxShipRequest').style.display = 'inline';
+        }
+      }
 
+      // Notifications Logic
+      function displaySchedulePickup() {
+        myFunction('schedule');
+      }
+
+      function displayAddPayment() {
+        myFunction('creditCard')
+      }
+
+      function displayRequestBoxes() {
+        myFunction('boxRequest')
+      }
+
+      // Notifications for Pickups
+
+
+      function seedToDoListPickup() {
+        if (model.transfers !== null) {
+          addEventSchedulePickup();
+        } else {
+          addToDoSchedulePickup();
+        }
+      }
+
+      function addToDoSchedulePickup() {
+        var li = document.createElement("li");
+        var t = document.createTextNode('Schedule Your Pickup!!!');
+        li.classList.add("collection-item")
+        li.appendChild(t);
+
+        var link = document.createElement("A");
+        link.href = "#!";
+        link.id = "notificationSchedulePickup";
+        link.className = "secondary-content";
+        li.appendChild(link);
+
+        var icon = document.createElement("I");
+        var text = document.createTextNode('send');
+        icon.classList.add("material-icons")
+        icon.appendChild(text);
+        link.appendChild(icon);
+
+        document.getElementById("toDoList").appendChild(li);
+        setupSchedulePickup();
+      }
+
+      function addEventSchedulePickup() {
+        var pickupDetails;
+
+        for (var transfer in model.transfers) {
+          // If the model contains a transfer labeled "Pickup" that has not been completed, add it to the Upcoming Events List
+          if (!model.transfers[transfer].completed && model.transfers[transfer].transferType === 'Pickup') {
+            // If the transfer is coming from an address (Apartment or Home), use the address in the notification
+            if (model.transfers[transfer].transferFromDorm === '') {
+              var transferType = model.transfers[transfer].transferType;
+              var transferDate = model.transfers[transfer].transferDate;
+              var transferFromAddress = model.transfers[transfer].transferFromAddress;
+              var transferStartTime = model.transfers[transfer].transferStartTime;
+
+              pickupDetails = transferType + ' ' + 'scheduled for:' + ' ' + transferDate + ' ' + transferStartTime + ' ' + transferFromAddress
+
+              var li2 = document.createElement("li");
+              var t2 = document.createTextNode(pickupDetails);
+              li2.classList.add("collection-item")
+              li2.appendChild(t2);
+
+              var link2 = document.createElement("A");
+              var text = document.createTextNode('change / cancel');
+              link2.appendChild(text);
+              link2.href = "#!";
+              link2.id = "changeSchedulePickup";
+              link2.className = "secondary-content";
+              li2.appendChild(link2);
+
+              document.getElementById("upcomingEventsCalendar").appendChild(li2);
+
+            } 
+            // If the transfer is coming from a Dorm, use the Dorm Name in the notification
+            else {
+              var transferType = model.transfers[transfer].transferType;
+              var transferDate = model.transfers[transfer].transferDate;
+              var transferFromDorm = model.transfers[transfer].transferFromDorm;
+              var transferStartTime = model.transfers[transfer].transferStartTime;
+
+              pickupDetails = transferType + ' ' + 'scheduled for:' + ' ' + transferDate + ' ' + transferStartTime + ' ' + transferFromDorm
+
+              var li2 = document.createElement("li");
+              var t2 = document.createTextNode(pickupDetails);
+              li2.classList.add("collection-item")
+              li2.appendChild(t2);
+
+              var link2 = document.createElement("A");
+              var text = document.createTextNode('change / cancel');
+              link2.appendChild(text);
+              link2.href = "#!";
+              link2.id = "changeSchedulePickup";
+              link2.className = "secondary-content";
+              li2.appendChild(link2);
+
+              document.getElementById("upcomingEventsCalendar").appendChild(li2);
+            }
+          } 
+          // If the model contains a transfer labeled "Pickup" that HAS been completed, add it to the Past Events List
+          else if (model.transfers[transfer].completed && model.transfers[transfer].transferType === 'Pickup') {
+            // If the transfer is coming from an address (Apartment or Home), use the address in the notification
+            if (model.transfers[transfer].transferFromDorm === '') {
+              var transferType = model.transfers[transfer].transferType;
+              var transferDate = model.transfers[transfer].transferDate;
+              var transferFromAddress = model.transfers[transfer].transferFromAddress;
+              var transferStartTime = model.transfers[transfer].transferStartTime;
+
+              pickupDetails = transferType + ' ' + 'occurred on:' + ' ' + transferDate + ' ' + transferStartTime + ' ' + transferFromAddress
+
+              var li2 = document.createElement("li");
+              var t2 = document.createTextNode(pickupDetails);
+              li2.classList.add("collection-item")
+              li2.appendChild(t2);
+
+              document.getElementById("pastEventsCalendar").appendChild(li2);
+            } else {
+              var transferType = model.transfers[transfer].transferType;
+              var transferDate = model.transfers[transfer].transferDate;
+              var transferFromDorm = model.transfers[transfer].transferFromDorm;
+              var transferStartTime = model.transfers[transfer].transferStartTime;
+
+              pickupDetails = transferType + ' ' + 'occurred on:' + ' ' + transferDate + ' ' + transferStartTime + ' ' + transferFromDorm
+
+              var li2 = document.createElement("li");
+              var t2 = document.createTextNode(pickupDetails);
+              li2.classList.add("collection-item")
+              li2.appendChild(t2);
+
+              document.getElementById("pastEventsCalendar").appendChild(li2);
+            }
+          } 
+        }
+      };
+
+
+      // Notifications for Request Boxes
+
+      function seedToDoListBoxes() {
+        if (model.transfers !== null) {
+          addEventScheduleBoxes();
+        } else {
+          addToDoScheduleBoxes();
+        }
+      }
+
+      function addToDoScheduleBoxes() {
+        var li = document.createElement("li");
+        var t = document.createTextNode('Request Free Boxes (optional)');
+        li.classList.add("collection-item")
+        li.appendChild(t);
+
+        var link = document.createElement("A");
+        link.href = "#!";
+        link.id = "notificationRequestBoxes";
+        link.className = "secondary-content";
+        li.appendChild(link);
+
+        var icon = document.createElement("I");
+        var text = document.createTextNode('send');
+        icon.classList.add("material-icons")
+        icon.appendChild(text);
+        link.appendChild(icon);
+
+        document.getElementById("toDoList").appendChild(li);
+        setupRequestBoxes();
+      }
+
+      function addEventScheduleBoxes() {
+        var pickupDetails;
+
+        for (var transfer in model.transfers) {
+      // If the model contains a transfer labeled "Ship Boxes" that has not been completed, add it to the Upcoming Events List
+      if ((!model.transfers[transfer].completed) && (model.transfers[transfer].transferType === 'Ship Boxes')) {
+      // If the transfer is coming from an address (Apartment or Home), use the address in the notification
+      if (model.transfers[transfer].transferFromDorm === '') {
+        var boxNumber = model.transfers[transfer].boxNumber;
+        var dateCreated = model.transfers[transfer].dateCreated;
+        var transferToAptAddress = model.transfers[transfer].transferToAptAddress;
+
+        pickupDetails = boxNumber + ' ' + 'order placed on:' + ' ' +  dateCreated + ' ' + 'to' + ' ' + transferToAptAddress
+
+        var li2 = document.createElement("li");
+        var t2 = document.createTextNode(pickupDetails);
+        li2.classList.add("collection-item")
+        li2.appendChild(t2);
+
+        var link2 = document.createElement("A");
+        var text = document.createTextNode('change / cancel');
+        link2.appendChild(text);
+        link2.href = "#!";
+        link2.id = "changeScheduleBoxShipment";
+        link2.className = "secondary-content";
+        li2.appendChild(link2);
+
+        document.getElementById("upcomingEventsCalendar").appendChild(li2)
+      }
+      // If the transfer is coming from a Dorm, use the Dorm Name in the notification
+      else {
+        var boxNumber = model.transfers[transfer].boxNumber;
+        var dateCreated = model.transfers[transfer].dateCreated;
+        var transferToDormAddress = model.transfers[transfer].transferToDormAddress;
+
+        pickupDetails = boxNumber + ' ' + 'order placed on:' + ' ' +  dateCreated + ' ' + 'to' + ' ' + transferToDormAddress
+
+        var li2 = document.createElement("li");
+        var t2 = document.createTextNode(pickupDetails);
+        li2.classList.add("collection-item")
+        li2.appendChild(t2);
+
+        var link2 = document.createElement("A");
+        var text = document.createTextNode('change / cancel');
+        link2.appendChild(text);
+        link2.href = "#!";
+        link2.id = "changeScheduleBoxShipment";
+        link2.className = "secondary-content";
+        li2.appendChild(link2);
+
+        document.getElementById("upcomingEventsCalendar").appendChild(li2)
+      }
+      } 
+      // If the model contains a transfer labeled "Ship Boxes" that HAS been completed, add it to the Past Events List
+      else if (model.transfers[transfer].completed && model.transfers[transfer].transferType === 'Ship Boxes') {
+      // If the transfer is coming from an address (Apartment or Home), use the address in the notification
+      if (model.transfers[transfer].transferFromDorm === '') {
+        var boxNumber = model.transfers[transfer].boxNumber;
+        var dateCreated = model.transfers[transfer].dateCreated;
+        var transferToAptAddress = model.transfers[transfer].transferToAptAddress;
+
+        pickupDetails = boxNumber + ' ' + 'delivery completed to:' + ' ' + transferToAptAddress
+
+        var li2 = document.createElement("li");
+        var t2 = document.createTextNode(pickupDetails);
+        li2.classList.add("collection-item")
+        li2.appendChild(t2);
+
+        document.getElementById("pastEventsCalendar").appendChild(li2);
+      }
+      // If the transfer is coming from a Dorm, use the Dorm Name in the notification
+      else {
+        var boxNumber = model.transfers[transfer].boxNumber;
+        var dateCreated = model.transfers[transfer].dateCreated;
+        var transferToDormAddress = model.transfers[transfer].transferToDormAddress;
+
+        pickupDetails = boxNumber + ' ' + 'delivery completed to:' + ' ' + transferToDormAddress
+
+        var li2 = document.createElement("li");
+        var t2 = document.createTextNode(pickupDetails);
+        li2.classList.add("collection-item")
+        li2.appendChild(t2);
+
+        document.getElementById("pastEventsCalendar").appendChild(li2);
+      }
+      }
+      // If there is no transfer labeled "Ship Boxes" in the model, add To Do: Request Boxes to the To Do List
+      else {
+        addToDoScheduleBoxes();
+      }
+      }
+      };
+
+      // Notifications for Add a Payment Method
+
+      function seedToDoListPayment(){
+        if (!model.customer.cardOnFile) {
+          var li = document.createElement("li");
+          var t = document.createTextNode('Add a Payment Method');
+          li.classList.add("collection-item")
+          li.appendChild(t);
+
+          var link = document.createElement("A");
+          link.href = "#!";
+          link.id = "notificationAddPayment";
+          link.className = "secondary-content";
+          li.appendChild(link);
+
+          var icon = document.createElement("I");
+          var text = document.createTextNode('send');
+          icon.classList.add("material-icons")
+          icon.appendChild(text);
+          link.appendChild(icon);
+
+          document.getElementById("toDoList").appendChild(li);
+          setupAddPayment();
+        } else {console.log('no card on file or card already on file')}
+      }
+
+      // Schedule a Pickup Logic
       function submitPickupForm() {
         document.getElementById('pickup').style.display = 'none';
         document.getElementById('confirmingRequest').style.display = 'inline';
         model.appointments.type = 'Pickup';
 
         // Log Selections to the Model
-        
+
         // Box/Item Estimate
         model.customer.boxEstimate = document.getElementById('boxEstimate').value;
         model.customer.itemEstimate = document.getElementById('itemEstimate').value;
-        
+
         // Personal Info
         model.customer.firstName = document.getElementById('firstName').value;
         model.customer.lastName = document.getElementById('lastName').value;
         model.customer.phoneNumber = document.getElementById('phoneNumber').value;
         model.customer.email = document.getElementById('email').value;
-        
+
         // Housing Type
         model.customer.housingType = document.getElementById('housingType').value;
-        
+
         // Dorm
         model.customer.dormSelection = document.getElementById('dormSelection').value;
-        
+
         // Address
         model.customer.addressStreet1 = document.getElementById('addressStreet1').value;
         model.customer.addressStreet2 = document.getElementById('addressStreet2').value;
@@ -4776,7 +5558,6 @@
         if (model.customer.boxEstimate > 10 || model.customer.itemEstimate > 7) {
           apptId = model.customer.aptPlanId;
         }
-        
 
         var payload = {
           datetime: dateTime,
@@ -4789,71 +5570,367 @@
         };
 
         $.post('https://young-plateau-13187.herokuapp.com/' + 'acuity/appointments', payload)
-          .done((data) => {
-            console.log(data);
-            document.getElementById('confirmingRequest').style.display = 'none';
-            document.getElementById('requestConfirmed').style.display = 'inline';
+        .done((data) => {
+          console.log(data);
+          document.getElementById('confirmingRequest').style.display = 'none';
+          document.getElementById('requestConfirmed').style.display = 'inline';
 
-            var transfer = {};
-            transfer[data.id] = {
-              dateCreated: data.dateCreated,
-              transferType: model.appointments.type,
-              transferDate: document.getElementById('pickupDate').value,
-              transferFromUniversity: model.customer.university,
-              transferFromDorm: model.customer.dormSelection,
-              transferFromAddress: document.getElementById('addressStreet1').value + ' ' + document.getElementById('addressStreet2').value + ' ' + document.getElementById('addressCity').value + ' ' + document.getElementById('addressState').value + ' ' + document.getElementById('addressZip').value,
-              transferToAddress: 'Storage',
-              transferStartTime: data.time,
-              transferEndTime: data.endTime,
-              transferFee: 0,
-              transferLink: data.confirmationPage,
-              completed: false
-            };
-            var transfersRef = firebase.database().ref("transfers/" + model.uid);
-            transfersRef.update(transfer);
+          var transfer = {};
+          transfer[data.id] = {
+        //dateCreated: data.dateCreated,
+        transferType: model.appointments.type,
+        transferDate: document.getElementById('pickupDate').value,
+        transferFromUniversity: model.customer.university,
+        transferFromDorm: model.customer.dormSelection,
+        transferFromAddress: document.getElementById('addressStreet1').value + ' ' + document.getElementById('addressStreet2').value + ' ' + document.getElementById('addressCity').value + ' ' + document.getElementById('addressState').value + ' ' + document.getElementById('addressZip').value,
+        transferToAddress: 'Storage',
+        //transferStartTime: data.time,
+        //transferEndTime: data.endTime,
+        transferFee: 0,
+        //transferLink: data.confirmationPage,
+        completed: false
+        };
+        var transfersRef = firebase.database().ref("transfers/" + model.uid);
+        transfersRef.update(transfer);
 
-            var updateCust = {
-              boxEstimate: model.customer.boxEstimate,
-              itemEstimate: model.customer.itemEstimate,
-              firstName: model.customer.firstName,
-              lastName: model.customer.lastName,
-              phoneNumber: model.customer.phoneNumber,
-              email: model.customer.email,
-              housingType: model.customer.housingType,
-              dormSelection: model.customer.dormSelection,
-              addressStreet1: model.customer.addressStreet1,
-              addressStreet2: model.customer.addressStreet2,
-              addressCity: model.customer.addressCity,
-              addressState: model.customer.addressState,
-              addressZip: model.customer.addressZip
-            };
-            var custRef = firebase.database().ref("customers/" + model.uid);
-            custRef.update(updateCust);
+        var updateCust = {
+          boxEstimate: model.customer.boxEstimate,
+          itemEstimate: model.customer.itemEstimate,
+          firstName: model.customer.firstName,
+          lastName: model.customer.lastName,
+          phoneNumber: model.customer.phoneNumber,
+          email: model.customer.email,
+          housingType: model.customer.housingType,
+          dormSelection: model.customer.dormSelection,
+          addressStreet1: model.customer.addressStreet1,
+          addressStreet2: model.customer.addressStreet2,
+          addressCity: model.customer.addressCity,
+          addressState: model.customer.addressState,
+          addressZip: model.customer.addressZip
+        };
+        var custRef = firebase.database().ref("customers/" + model.uid);
+        custRef.update(updateCust);
 
-          })
-          .fail((data) => {
-            console.log(data);
-          });
+        })
+        .fail((data) => {
+          console.log(data);
+        });
 
       }
 
 
-      function housingTypePt2() {
-        // Hide Selections 
-        document.getElementById('housingTypeDorm').style.display = 'none';
-        document.getElementById('housingTypeApt').style.display = 'none';
+      // Request Boxes (Shipping) Logic
 
-        // Make Selection
-        if (document.getElementById('housingType').value === 'dorm') {
-          model.dorms.forEach(function(dorm) {
-            var option = document.createElement("option");
-            option.text = dorm;
-            document.getElementById('dormSelection').appendChild(option);
-          });
-          document.getElementById('housingTypeDorm').style.display = 'inline';
-        } else if (document.getElementById('housingType').value === 'apartment' || document.getElementById('housingType').value === 'house') {
-          document.getElementById('housingTypeApt').style.display = 'inline';
+      // Disable the "Submit" button until all the form fields have been completed
+
+      function displayBoxSubmitButton() {
+        var fName = document.getElementById('boxFirstName').value;
+        var lName = document.getElementById('boxLastName').value;
+        var bEmail = document.getElementById('boxEmail').value;
+        var bPhone = document.getElementById('boxPhoneNumber').value;
+        var hType = document.getElementById('boxHousingType').value;
+        var dType = document.getElementById('boxDormSelection').value;
+        var rNum = document.getElementById('roomNumber').value;
+        var ad1 = document.getElementById('boxAddressStreet1').value;
+        var ad2 = document.getElementById('boxAddressStreet2').value;
+        var adCity = document.getElementById('boxAddressCity').value;
+        var adState = document.getElementById('boxAddressState').value;
+        var adZip = document.getElementById('boxAddressZip').value;
+        var boxNum = document.getElementById('boxNumber').value;
+
+        if (fName !== '' && lName !== '' && bEmail !== '' && bPhone !== '' && hType !== '' && dType !== '' && rNum !== '' && boxNum !== '') {
+          document.getElementById('submitBoxForm').classList.remove('disabled');
+        } else if (fName !== '' && lName !== '' && bEmail !== '' && bPhone !== '' && ad1 !== '' && ad2 !== '' && adCity !== '' && adState !== '' && adZip !== '' && boxNum !== '') {
+          document.getElementById('submitBoxForm').classList.remove('disabled');
+        };
+      };
+
+      // Payment form logic
+
+      //TO DO: Update this to send to stripe
+
+      function submitPaymentInfo() {
+        // Update the customer object in the database
+        var updateCust = {
+          cardOnFile: true
+        };
+        var custRef = firebase.database().ref("customers/" + model.uid);
+        custRef.update(updateCust);
+
+        document.getElementById('creditCardForm').style.display = 'none';
+        document.getElementById('addPaymentConfirmed').style.display = 'inline';
+      }
+
+      function addCard() {
+
+        event.preventDefault();
+        // Flag variable:
+        var error = false;
+
+        // disable the submit button to prevent repeated clicks:
+        $('#submitPaymentInfo').attr("disabled", "disabled");
+
+        // Get the values:
+        var ccNum = document.getElementById('cardNumber').value, 
+        cvcNum = document.getElementById('cardCvc').value, 
+        expMonth = document.getElementById('cardExpiryMonth').value, 
+        expYear = document.getElementById('cardExpiryYear').value;
+
+
+        // Validate the number:
+        if (!Stripe.card.validateCardNumber(ccNum)) {
+          error = true;
+          payments.reportError('The credit card number appears to be invalid.');
         }
+
+        // Validate the CVC:
+        if (!Stripe.card.validateCVC(cvcNum)) {
+          error = true;
+          payments.reportError('The CVC number appears to be invalid.');
+        }
+
+        // Validate the expiration:
+        if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+          error = true;
+          payments.reportError('The expiration date appears to be invalid.');
+        }
+
+        // Validate other form elements, if needed!
+
+        // Check for errors:
+        if (!error) {
+          console.log("1");
+          // Get the Stripe token:
+          Stripe.card.createToken({
+            number: ccNum,
+            cvc: cvcNum,
+            exp_month: expMonth,
+            exp_year: expYear
+          }, stripeResponseHandler);
+        }
+      }
+
+      function stripeResponseHandler(status, response) {
+        const config = require('./config.js');
+        const storganize = require('./models.js');
+        const payments = require('./payments.js');
+        const templates = require('./templates.js');
+
+        // Check for an error:
+        if (response.error) {
+
+          reportError(response.error.message);
+
+        } else { // No errors, submit the form:
+
+          var f = $("#paymentForm");
+
+          // Token contains id, last4, and card type:
+          var token = response['id'];
+
+          // Insert the token into the form so it gets submitted to the server
+          f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+
+          // Uses Heroku URL for Post Request
+          
+          $.post('https://young-plateau-13187.herokuapp.com/' + 'stripe/customer',
+            {stripeToken: token, email: storganize.custMeta.email},
+            // If you want to charge the card after creating the customer, simply add
+            // payments.nodeResponseHandler as the callback function below.
+            function(response, status){
+              console.log(status);
+              console.log(response);
+              if (status === 'success') {
+
+                // Do something...
+                model.custPaymentInfo.stripeCcId = response.default_source;
+                model.custPaymentInfo.ccBrand = response.sources.data[0].brand;
+                model.custPaymentInfo.ccLast4 = response.sources.data[0].last4;
+                model.custPaymentInfo.ccExpMonth = response.sources.data[0].exp_month;
+                model.custPaymentInfo.ccExpYear = response.sources.data[0].exp_year;
+                model.custPaymentInfo.stripeCustomerId = response.id;
+                model.custPaymentInfo.placedOnFileUnixDate = response.created;
+                if (response.sources.data[0].cvc_check === 'pass') {
+                  model.appState.cardOnFile = true;
+                }
+
+                var stripeCcId = model.custPaymentInfo.stripeCcId;
+                var ccOnFile = {};
+                ccOnFile[stripeCcId] = true;
+
+                var uid = model.uid;
+                var customers = {};
+                customers[uid] = true;
+
+                // Add Card Info to Firebase
+                firebase.database().ref('customers/' + model.uid + '/ccInfo').set({
+                  stripeCcId: model.custPaymentInfo.stripeCcId,
+                  ccBrand: model.custPaymentInfo.ccBrand,
+                  ccLast4: model.custPaymentInfo.ccLast4,
+                  ccExpMonth: model.custPaymentInfo.ccExpMonth,
+                  ccExpYear: model.custPaymentInfo.ccExpYear,
+                  stripeCustomerId: model.custPaymentInfo.stripeCustomerId,
+                  cardCharged: model.custPaymentInfo.cardCharged,
+                  placedOnFileUnixDate: model.custPaymentInfo.placedOnFileUnixDate
+                });   
+                  
+                // Update the customer object in the database
+                var updateCust = {
+                  cardOnFile: true
+                };
+                var custRef = firebase.database().ref("customers/" + model.uid);
+                custRef.update(updateCust);
+
+                document.getElementById('creditCardForm').style.display = 'none';
+                document.getElementById('addPaymentConfirmed').style.display = 'inline';
+              }
+          });
+        }
+      }
+
+      function reportError (msg) {
+        // Show the error in the form:
+        $('#paymentErrors').text(msg).addClass('alert alert-error');
+
+        // re-enable the submit button:
+        $('#submitPaymentInfo').prop('disabled', false);
+
+        return false;
+      }
+
+      function displayPaymentSubmitButton() {
+        var cardNum = document.getElementById('cardNumber').value;
+        var cardCvc = document.getElementById('cardCvc').value;
+        var cardMonth = document.getElementById('cardExpiryMonth').value;
+        var cardYear = document.getElementById('cardExpiryYear').value;
+
+        if (cardNum !== '' && cardCvc !== '' && cardMonth !== '' && cardYear !== '') {
+          document.getElementById('submitPaymentForm').classList.remove('disabled');
+        } 
+      };
+
+
+      // Generate a unique ID for a new transfer in the transfers list on the DB
+      function makeTransferCode() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz111112222233333444445555566666777778888899999";
+        for( var i=0; i < 5; i++ )
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+      };
+
+      function submitBoxForm() {
+        document.getElementById('boxRequestForm').style.display = 'none';
+        document.getElementById('boxRequestConfirmed').style.display = 'inline';
+
+      // Log Selections to the Model
+
+      // Personal Info
+      model.customer.firstName = document.getElementById('boxFirstName').value;
+      model.customer.lastName = document.getElementById('boxLastName').value;
+      model.customer.phoneNumber = document.getElementById('boxPhoneNumber').value;
+      model.customer.email = document.getElementById('boxEmail').value;
+
+      // Housing Type
+      model.customer.housingType = document.getElementById('boxHousingType').value;
+
+      // Dorm
+      model.customer.dormSelection = document.getElementById('boxDormSelection').value;
+      model.customer.roomNumber = document.getElementById('roomNumber').value;
+
+      // Address
+      model.customer.addressStreet1 = document.getElementById('boxAddressStreet1').value;
+      model.customer.addressStreet2 = document.getElementById('boxAddressStreet2').value;
+      model.customer.addressCity = document.getElementById('boxAddressCity').value;
+      model.customer.addressState = document.getElementById('boxAddressState').value;
+      model.customer.addressZip = document.getElementById('boxAddressZip').value;
+
+      // # of Boxes Requested
+
+      var boxNumber = document.getElementById('boxNumber').value;
+
+
+      // Update the customer object in the database
+      var updateCust = {
+        firstName: model.customer.firstName,
+        lastName: model.customer.lastName,
+        email: model.customer.email,
+        phone: model.customer.phoneNumber,
+        housingType: model.customer.housingType,
+        roomNumber: model.customer.roomNumber,
+        dormSelection: model.customer.dormSelection,
+        addressStreet1: model.customer.addressStreet1,
+        addressStreet2: model.customer.addressStreet2,
+        addressCity: model.customer.addressCity,
+        addressState: model.customer.addressState,
+        addressZip: model.customer.addressZip
+      };
+      var custRef = firebase.database().ref("customers/" + model.uid);
+      custRef.update(updateCust);
+
+      // Create a new transfer in the database
+
+      // Get the timestamp of the request (currently in GMT, but not a top priority to change this now)
+      var dt = new Date();
+      var utcDate = dt.toUTCString();
+      timestamp = utcDate;
+
+      var aptAddress = model.customer.addressStreet1 + ' ' + model.customer.addressStreet2 + ' ' + model.customer.addressCity + ' ' + model.customer.addressState + ' ' + model.customer.addressZip;
+      var dormAddress = model.customer.dormSelection + ' ' + model.customer.roomNumber;
+      var transferCode = makeTransferCode();
+
+      var updateTransfer = {};
+      updateTransfer[transferCode] = {
+        dateCreated: timestamp,
+        firstName: model.customer.firstName,
+        lastName: model.customer.lastName,
+        email: model.customer.email,
+        phone: model.customer.phoneNumber,
+        transferType: 'Ship Boxes',
+        transferToDormAddress: dormAddress,
+        transferToAptAddress: aptAddress,
+        boxNumber: boxNumber,
+        transferFee: 0,
+        completed: false
+      };
+      var boxTransferRef = firebase.database().ref("transfers/" + model.uid);
+      boxTransferRef.update(updateTransfer);
+      };
+
+
+      function housingTypePt2() {
+      // Hide Selections 
+      document.getElementById('housingTypeDorm').style.display = 'none';
+      document.getElementById('housingTypeApt').style.display = 'none';
+
+      // Make Selection
+      if (document.getElementById('housingType').value === 'dorm') {
+        model.dorms.forEach(function(dorm) {
+          var option = document.createElement("option");
+          option.text = dorm;
+          document.getElementById('dormSelection').appendChild(option);
+        });
+        document.getElementById('housingTypeDorm').style.display = 'inline';
+      } else if (document.getElementById('housingType').value === 'apartment' || document.getElementById('housingType').value === 'house') {
+        document.getElementById('housingTypeApt').style.display = 'inline';
+      }
+      }
+
+      function boxHousingType() {
+
+      // Make Selection
+      if (document.getElementById('boxHousingType').value === 'dorm') {
+        model.dorms.forEach(function(dorm) {
+          var option = document.createElement("option");
+          option.text = dorm;
+          document.getElementById('boxDormSelection').appendChild(option);
+        });
+        document.getElementById('boxHousingTypeDorm').style.display = 'inline';
+        document.getElementById('boxHousingTypeApt').style.display = 'none';
+      } else if (document.getElementById('boxHousingType').value === 'apartment' || document.getElementById('boxHousingType').value === 'house') {
+        document.getElementById('boxHousingTypeApt').style.display = 'inline';
+        document.getElementById('boxHousingTypeDorm').style.display = 'none';
+      }
       }
 
       function displayScheduleType() {
@@ -4902,9 +5979,36 @@
           document.getElementById('addressZip').value = model.customer.addressZip;
         }
 
-        // Activate the input fields that are filled in
-        Materialize.updateTextFields();
+      // Activate the input fields that are filled in
+      Materialize.updateTextFields();
       }
+
+      function seedBoxRequest(){
+        if (model.customer.firstName) {
+          document.getElementById('boxFirstName').value = model.customer.firstName;
+        }
+        if (model.customer.lastName) {
+          document.getElementById('boxLastName').value = model.customer.lastName;
+        }
+        if (model.customer.housingType) {
+          document.getElementById('boxHousingType').value = model.customer.housingType;
+        }
+        if (model.customer.dormSelection) {
+          boxHousingType();
+          document.getElementById('boxDormSelection').value = model.customer.dormSelection;
+          document.getElementById('roomNumber').value = model.customer.roomNumber;
+        } else if (model.customer.addressStreet1) {
+          document.getElementById('boxAddressStreet1').value = model.customer.addressStreet1;
+          document.getElementById('boxAddressStreet2').value = model.customer.addressStreet2;
+          document.getElementById('boxAddressCity').value = model.customer.addressCity;
+          document.getElementById('boxAddressState').value = model.customer.addressState;
+          document.getElementById('boxAddressZip').value = model.customer.addressZip;
+        }
+
+      // Activate the input fields that are filled in
+      Materialize.updateTextFields();
+      }
+
 
       function warmUpApi() {
         $.ajax({
@@ -4922,139 +6026,139 @@
       function vetDateDisplayTimes() {
         document.getElementById('pickupTime').style.display = 'none';
         document.getElementById('loadingPickup').style.display = 'inline';
-        // Grab Chosen Date Value
-        var date = document.getElementById('pickupDate').value;
-        // Year in Date
-        var year = date.substr(date.length - 4);
-        // Imperfect Day in Date
-        var day = date.substr(0,2);
-        var days = ['1 ','2 ','3 ','4 ','5 ','6 ','7 ','8 ','9 ']
-        // Perfect Day in Date
-        days.forEach(function(d) {
-          if (day.indexOf(d) !== -1) {
-            day = '0' + date.substr(0,1);
-          }
-        });
+      // Grab Chosen Date Value
+      var date = document.getElementById('pickupDate').value;
+      // Year in Date
+      var year = date.substr(date.length - 4);
+      // Imperfect Day in Date
+      var day = date.substr(0,2);
+      var days = ['1 ','2 ','3 ','4 ','5 ','6 ','7 ','8 ','9 ']
+      // Perfect Day in Date
+      days.forEach(function(d) {
+        if (day.indexOf(d) !== -1) {
+          day = '0' + date.substr(0,1);
+        }
+      });
 
-        // Format Month in Chosen Date Value
-        var month;
-        var monthsFull = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
-        var acuityDate;
+      // Format Month in Chosen Date Value
+      var month;
+      var monthsFull = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+      var acuityDate;
 
-        for (var i = 0; i < 12; i++) {
-          if (date.indexOf(monthsFull[i]) !== -1) {
-            if (i < 10) {
-              month = '0' + (i + 1);
-            } else {
-              month = (i + 1);
-            }
+      for (var i = 0; i < 12; i++) {
+        if (date.indexOf(monthsFull[i]) !== -1) {
+          if (i < 10) {
+            month = '0' + (i + 1);
+          } else {
+            month = (i + 1);
           }
         }
+      }
 
-        acuityDate = year + '-' + month;
+      acuityDate = year + '-' + month;
 
-        model.date = acuityDate + '-' + day;
+      model.date = acuityDate + '-' + day;
 
-        var foundDateMatch = false;
+      var foundDateMatch = false;
 
-        $.ajax({
-          url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/dates/' + model.customer.itemPlanId + '/' + model.customer.calendarId + '/' + acuityDate,
-          type: "GET",
-          success: function(response) {
-            response.forEach(function(obj) {
-              var respDate = obj.date.substr(obj.date.length - 2);
-              if (day === respDate) {
-                foundDateMatch = true;
-                $.ajax({
-                  url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/times/' + model.customer.itemPlanId + '/' + model.customer.calendarId + '/' + acuityDate + '-' + day,
-                  type: "GET",
-                  success: function(response) {
-                    times = [];
-                    var normTimes = ['09','10','11'];
-                    response.forEach(function(obj) {
-                      var respTime = obj.time.substring(11,16);
-                      normTimes.forEach(function(time) {
-                        if (respTime.substring(0,2) === time) {
-                          // Put in times before 9 am
-                          if (times.indexOf(respTime) === -1) {
-                            times.push({
-                              humanTime: respTime + ' am',
-                              acuityTime: obj.time
-                            });
-                          }
-                        }
-                      });
-                      if (respTime.substring(0,2) === '12') {
-                        // Put in p.m. to 12
-                        if (times.indexOf(respTime) === -1) {
-                          times.push({
-                            humanTime: respTime + ' pm',
-                            acuityTime: obj.time
-                          });
-                        }
-                      } else if (Number(respTime.substring(0,2)) > 12) {
-                        // Put in reformatted times after 12 pm
-                        var toReformat = Number(respTime.substring(0,2));
-                        if ((toReformat -12) > 0) {
-                          var reformattedHour = (toReformat - 12).toString();
-                          var reformattedTime = reformattedHour + respTime.substring(respTime.length - 3);
-                          if (times.indexOf(reformattedTime) === -1) {  
-                            times.push({
-                              humanTime: '0' + reformattedTime + ' pm',
-                              acuityTime: obj.time
-                            });
-                          }
-                        }
-                      }
-                    });
-
-                    document.getElementById('pickupTime').innerHTML = '';
-                    document.getElementById('pickupTime').innerHTML = '<option value="" disabled selected>' +
-                        'Pickup Time' +
-                      '</option>';
-
-                    for (var i = 0; i < times.length; i++) {
-                      var option = document.createElement("option");
-                      option.text = times[i].humanTime;
-                      option.value = times[i].acuityTime;
-                      document.getElementById('pickupTime').appendChild(option);
-                    }
-
-                    document.getElementById('pickupTimeErrorMessage').style.display = 'none';
-                    document.getElementById('pickupTime').style.display = 'inline';
-                    document.getElementById('loadingPickup').style.display = 'none';
-                  },
-                  error: function(err) {
-                    document.getElementById('pickupTimeErrorMessage').style.color = 'red';
-                    document.getElementById('pickupTimeErrorMessage').style.backgroundColor = 'red';
-                    document.getElementById('pickupTimeErrorMessage').innerHTML = '<p>' + err.message + '</p>';
-                  }
-                });
-              }
-            });
-
-            if (!foundDateMatch) {
-              document.getElementById('pickupTime').innerHTML = '';
-              document.getElementById('pickupTime').innerHTML = '<option value="" disabled selected>' +
-                  'Pickup Time' +
-                '</option>';
-              Materialize.toast('There are no available pickup times on this day. Please select another pickup day.', 4000);
-              document.getElementById('pickupTime').style.display = 'inline';
-              document.getElementById('loadingPickup').style.display = 'none';
-            }
-          },
-          error: function(err) {
-            document.getElementById('pickupTimeErrorMessage').style.color = 'red';
-            document.getElementById('pickupTimeErrorMessage').style.backgroundColor = 'red';
-            document.getElementById('pickupTimeErrorMessage').innerHTML = '<p>' + err.message + '</p>';
-          }
+      $.ajax({
+        url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/dates/' + model.customer.itemPlanId + '/' + model.customer.calendarId + '/' + acuityDate,
+        type: "GET",
+        success: function(response) {
+          response.forEach(function(obj) {
+            var respDate = obj.date.substr(obj.date.length - 2);
+            if (day === respDate) {
+              foundDateMatch = true;
+              $.ajax({
+                url: 'https://young-plateau-13187.herokuapp.com/' + 'acuity/availability/times/' + model.customer.itemPlanId + '/' + model.customer.calendarId + '/' + acuityDate + '-' + day,
+                type: "GET",
+                success: function(response) {
+                  times = [];
+                  var normTimes = ['09','10','11'];
+                  response.forEach(function(obj) {
+                    var respTime = obj.time.substring(11,16);
+                    normTimes.forEach(function(time) {
+                      if (respTime.substring(0,2) === time) {
+      // Put in times before 9 am
+      if (times.indexOf(respTime) === -1) {
+        times.push({
+          humanTime: respTime + ' am',
+          acuityTime: obj.time
         });
+      }
+      }
+      });
+                    if (respTime.substring(0,2) === '12') {
+      // Put in p.m. to 12
+      if (times.indexOf(respTime) === -1) {
+        times.push({
+          humanTime: respTime + ' pm',
+          acuityTime: obj.time
+        });
+      }
+      } else if (Number(respTime.substring(0,2)) > 12) {
+      // Put in reformatted times after 12 pm
+      var toReformat = Number(respTime.substring(0,2));
+      if ((toReformat -12) > 0) {
+        var reformattedHour = (toReformat - 12).toString();
+        var reformattedTime = reformattedHour + respTime.substring(respTime.length - 3);
+        if (times.indexOf(reformattedTime) === -1) {  
+          times.push({
+            humanTime: '0' + reformattedTime + ' pm',
+            acuityTime: obj.time
+          });
+        }
+      }
+      }
+      });
+
+                  document.getElementById('pickupTime').innerHTML = '';
+                  document.getElementById('pickupTime').innerHTML = '<option value="" disabled selected>' +
+                  'Pickup Time' +
+                  '</option>';
+
+                  for (var i = 0; i < times.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = times[i].humanTime;
+                    option.value = times[i].acuityTime;
+                    document.getElementById('pickupTime').appendChild(option);
+                  }
+
+                  document.getElementById('pickupTimeErrorMessage').style.display = 'none';
+                  document.getElementById('pickupTime').style.display = 'inline';
+                  document.getElementById('loadingPickup').style.display = 'none';
+                },
+                error: function(err) {
+                  document.getElementById('pickupTimeErrorMessage').style.color = 'red';
+                  document.getElementById('pickupTimeErrorMessage').style.backgroundColor = 'red';
+                  document.getElementById('pickupTimeErrorMessage').innerHTML = '<p>' + err.message + '</p>';
+                }
+              });
+            }
+          });
+
+          if (!foundDateMatch) {
+            document.getElementById('pickupTime').innerHTML = '';
+            document.getElementById('pickupTime').innerHTML = '<option value="" disabled selected>' +
+            'Pickup Time' +
+            '</option>';
+            Materialize.toast('There are no available pickup times on this day. Please select another pickup day.', 4000);
+            document.getElementById('pickupTime').style.display = 'inline';
+            document.getElementById('loadingPickup').style.display = 'none';
+          }
+        },
+        error: function(err) {
+          document.getElementById('pickupTimeErrorMessage').style.color = 'red';
+          document.getElementById('pickupTimeErrorMessage').style.backgroundColor = 'red';
+          document.getElementById('pickupTimeErrorMessage').innerHTML = '<p>' + err.message + '</p>';
+        }
+      });
       }
 
       // Set up Event Listeners for Need Help Buttons + Show Quote Button
       var collection = Array.from(document.getElementsByClassName("needHelp")); 
       for (var i = 0; i < collection.length; i++) {
-          collection[i].addEventListener('click', showHelp, false);
+        collection[i].addEventListener('click', showHelp, false);
       }
 
       // Show Help + Show Quote Function
@@ -5073,14 +6177,41 @@
       document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('notificationsButton').click();
         $('.datepicker').pickadate({
-          selectMonths: true, // Creates a dropdown to control month
-          selectYears: 1 // Creates a dropdown of 15 years to control year
-        });
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 1 // Creates a dropdown of 15 years to control year
       });
+      });
+
+      // Account Information Logic
+
+      function deleteAccount() {
+        var user = firebase.auth().currentUser;
+
+        user.delete().then(function() {
+          window.location='https://storganize.io/';
+        }, function(error) {
+      // An error happened.
+      });
+      };
+
+      function resetPassword () {
+        event.preventDefault();
+        var auth = firebase.auth();
+        const emailAddress = model.customer.email;
+        auth.sendPasswordResetEmail(emailAddress).then(function() {
+        }, function(error) {
+      // Display Error Message
+      document.getElementById('resetPasswordConfirmation').style.display = 'inline';
+      document.getElementById('displayAccountInformation').style.display = 'none';
+      alert(error.message);
+      });
+      }
+
+      // End Account Information Logic
 
       function myFunction(id) {
 
-        var ids = ['notifications', 'schedule', 'creditCard', 'boxRequest', 'viewItems', 'acctInfo'];
+        var ids = ['notifications', 'schedule', 'viewItems', 'acctInfo', 'boxRequest', 'creditCard'];
 
         ids.forEach(function(a) {
           document.getElementById(a + 'Button').classList.remove('button-active');
@@ -5089,7 +6220,7 @@
         if (id === 'notifications'){
           for (var i = 0; i < ids.length; i++) {
             if (ids[i] === 'notifications') {
-                ids.splice(i, 1);
+              ids.splice(i, 1);
             }
           }
           count1 += 1;
@@ -5103,13 +6234,13 @@
                 document.getElementById(y).classList.remove('w3-show');
                 if (y.indexOf('sch') !== -1) {
                   count2 += 1;
-                } else if (y.indexOf('cre') !== -1) {
-                  count3 += 1;
-                } else if (y.indexOf('box') !== -1) {
-                  count4 += 1;
                 } else if (y.indexOf('vie') !== -1) {
-                  count5 += 1;
+                  count3 += 1;
                 } else if (y.indexOf('acc') !== -1) {
+                  count4 += 1;
+                } else if (y.indexOf('box') !== -1) {
+                  count5 += 1;
+                } else if (y.indexOf('cre') !== -1) {
                   count6 += 1;
                 }
               }
@@ -5118,7 +6249,7 @@
         } else if (id === 'schedule'){
           for (var i = 0; i < ids.length; i++) {
             if (ids[i] === 'schedule') {
-                ids.splice(i, 1);
+              ids.splice(i, 1);
             }
           }
           count2 += 1;
@@ -5132,22 +6263,22 @@
                 document.getElementById(y).classList.remove('w3-show');
                 if (y.indexOf('not') !== -1) {
                   count1 += 1;
-                } else if (y.indexOf('cre') !== -1) {
-                  count3 += 1;
-                } else if (y.indexOf('box') !== -1) {
-                  count4 += 1;
                 } else if (y.indexOf('vie') !== -1) {
-                  count5 += 1;
+                  count3 += 1;
                 } else if (y.indexOf('acc') !== -1) {
+                  count4 += 1;
+                } else if (y.indexOf('box') !== -1) {
+                  count5 += 1;
+                } else if (y.indexOf('cre') !== -1) {
                   count6 += 1;
                 }
               }
             });
           }
-        } else if (id === 'creditCard'){
+        } else if (id === 'viewItems'){
           for (var i = 0; i < ids.length; i++) {
-            if (ids[i] === 'creditCard') {
-                ids.splice(i, 1);
+            if (ids[i] === 'viewItems') {
+              ids.splice(i, 1);
             }
           }
           count3 += 1;
@@ -5159,20 +6290,24 @@
             ids.forEach(function(y) {
               if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
                 document.getElementById(y).classList.remove('w3-show');
-                if (y.indexOf('not') !== -1) {
+                if (y.indexOf('sch') !== -1) {
+                  count2 += 1;
+                } else if (y.indexOf('not') !== -1) {
                   count1 += 1;
-                } else if (y.indexOf('vie') !== -1) {
-                  count3 += 1;
                 } else if (y.indexOf('acc') !== -1) {
                   count4 += 1;
+                } else if (y.indexOf('box') !== -1) {
+                  count5 += 1;
+                } else if (y.indexOf('cre') !== -1) {
+                  count6 += 1;
                 }
               }
             });
           }
-        } else if (id === 'boxRequest'){
+        } else if (id === 'acctInfo'){
           for (var i = 0; i < ids.length; i++) {
-            if (ids[i] === 'boxRequest') {
-                ids.splice(i, 1);
+            if (ids[i] === 'acctInfo') {
+              ids.splice(i, 1);
             }
           }
           count4 += 1;
@@ -5184,20 +6319,24 @@
             ids.forEach(function(y) {
               if (document.getElementById(y).className.indexOf("w3-show") !== -1) {
                 document.getElementById(y).classList.remove('w3-show');
-                if (y.indexOf('not') !== -1) {
+                if (y.indexOf('sch') !== -1) {
+                  count2 += 1;
+                } else if (y.indexOf('not') !== -1) {
                   count1 += 1;
                 } else if (y.indexOf('vie') !== -1) {
                   count3 += 1;
-                } else if (y.indexOf('acc') !== -1) {
-                  count4 += 1;
+                } else if (y.indexOf('box') !== -1) {
+                  count5 += 1;
+                } else if (y.indexOf('cre') !== -1) {
+                  count6 += 1;
                 }
               }
             });
           }
-        } else if (id === 'viewItems'){
+        } else if (id === 'boxRequest'){
           for (var i = 0; i < ids.length; i++) {
-            if (ids[i] === 'viewItems') {
-                ids.splice(i, 1);
+            if (ids[i] === 'boxRequest') {
+              ids.splice(i, 1);
             }
           }
           count5 += 1;
@@ -5213,16 +6352,20 @@
                   count2 += 1;
                 } else if (y.indexOf('not') !== -1) {
                   count1 += 1;
+                } else if (y.indexOf('vie') !== -1) {
+                  count3 += 1;
                 } else if (y.indexOf('acc') !== -1) {
                   count4 += 1;
+                } else if (y.indexOf('cre') !== -1) {
+                  count6 += 1;
                 }
               }
             });
           }
-        } else if (id === 'acctInfo'){
+        } else if (id === 'creditCard'){
           for (var i = 0; i < ids.length; i++) {
-            if (ids[i] === 'acctInfo') {
-                ids.splice(i, 1);
+            if (ids[i] === 'creditCard') {
+              ids.splice(i, 1);
             }
           }
           count6 += 1;
@@ -5240,16 +6383,30 @@
                   count1 += 1;
                 } else if (y.indexOf('vie') !== -1) {
                   count3 += 1;
+                } else if (y.indexOf('acc') !== -1) {
+                  count4 += 1;
+                } else if (y.indexOf('box') !== -1) {
+                  count5 += 1;
                 }
               }
             });
           }
+          seedBoxRequest();
+          displayBoxSubmitButton();
+          displayCorrectBoxForm();
         }
         window.scrollTo(0,0);
       }
+
+      // Initialize Modals
+      function displayModal() {
+        $("#deleteAccountModal").modal('open');
+      }
+      $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+      });
     </script>
 
   </body>
 </html>
-
-
