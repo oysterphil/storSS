@@ -5035,12 +5035,11 @@
     </script>
 
     <!-- Import Stripe -->
-    <script type="text/javascript" src="https://js.stripe.com/v2/">
-      Stripe.setPublishableKey('pk_test_PNHDYzynpslrFV84lXzoTTCc');
-    </script>
-
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
     <script>
+
+      Stripe.setPublishableKey('pk_test_PNHDYzynpslrFV84lXzoTTCc');
 
       // Needed for navigation purposes
       var count1 = 0;
@@ -5577,39 +5576,39 @@
 
           var transfer = {};
           transfer[data.id] = {
-        //dateCreated: data.dateCreated,
-        transferType: model.appointments.type,
-        transferDate: document.getElementById('pickupDate').value,
-        transferFromUniversity: model.customer.university,
-        transferFromDorm: model.customer.dormSelection,
-        transferFromAddress: document.getElementById('addressStreet1').value + ' ' + document.getElementById('addressStreet2').value + ' ' + document.getElementById('addressCity').value + ' ' + document.getElementById('addressState').value + ' ' + document.getElementById('addressZip').value,
-        transferToAddress: 'Storage',
-        //transferStartTime: data.time,
-        //transferEndTime: data.endTime,
-        transferFee: 0,
-        //transferLink: data.confirmationPage,
-        completed: false
-        };
-        var transfersRef = firebase.database().ref("transfers/" + model.uid);
-        transfersRef.update(transfer);
+            dateCreated: data.dateCreated,
+            transferType: model.appointments.type,
+            transferDate: document.getElementById('pickupDate').value,
+            transferFromUniversity: model.customer.university,
+            transferFromDorm: model.customer.dormSelection,
+            transferFromAddress: document.getElementById('addressStreet1').value + ' ' + document.getElementById('addressStreet2').value + ' ' + document.getElementById('addressCity').value + ' ' + document.getElementById('addressState').value + ' ' + document.getElementById('addressZip').value,
+            transferToAddress: 'Storage',
+            transferStartTime: data.time,
+            transferEndTime: data.endTime,
+            transferFee: 0,
+            transferLink: data.confirmationPage,
+            completed: false
+          };
+          var transfersRef = firebase.database().ref("transfers/" + model.uid);
+          transfersRef.update(transfer);
 
-        var updateCust = {
-          boxEstimate: model.customer.boxEstimate,
-          itemEstimate: model.customer.itemEstimate,
-          firstName: model.customer.firstName,
-          lastName: model.customer.lastName,
-          phoneNumber: model.customer.phoneNumber,
-          email: model.customer.email,
-          housingType: model.customer.housingType,
-          dormSelection: model.customer.dormSelection,
-          addressStreet1: model.customer.addressStreet1,
-          addressStreet2: model.customer.addressStreet2,
-          addressCity: model.customer.addressCity,
-          addressState: model.customer.addressState,
-          addressZip: model.customer.addressZip
-        };
-        var custRef = firebase.database().ref("customers/" + model.uid);
-        custRef.update(updateCust);
+          var updateCust = {
+            boxEstimate: model.customer.boxEstimate,
+            itemEstimate: model.customer.itemEstimate,
+            firstName: model.customer.firstName,
+            lastName: model.customer.lastName,
+            phoneNumber: model.customer.phoneNumber,
+            email: model.customer.email,
+            housingType: model.customer.housingType,
+            dormSelection: model.customer.dormSelection,
+            addressStreet1: model.customer.addressStreet1,
+            addressStreet2: model.customer.addressStreet2,
+            addressCity: model.customer.addressCity,
+            addressState: model.customer.addressState,
+            addressZip: model.customer.addressZip
+          };
+          var custRef = firebase.database().ref("customers/" + model.uid);
+          custRef.update(updateCust);
 
         })
         .fail((data) => {
